@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
-import { useFeaturedProducts } from "@/features/home/hooks";
+import { useLocaleContext } from "@/providers/providers";
 
 const productIcons = [LucideBox, LucideDroplets, LucideFlame];
 const productColors = [
@@ -22,50 +22,31 @@ export function ProductShowcase() {
   const title = t("products.title");
   const description = t("products.description");
   const ctaLabel = t("products.cta");
-  const { data: featuredProducts } = useFeaturedProducts();
-  let rawItems: unknown;
-  try {
-    rawItems = t.raw("products.items");
-  } catch {
-    rawItems = [];
-  }
-  const fallbackItems = Array.isArray(rawItems) && rawItems.length > 0
-    ? (rawItems as string[]).map((item, index) => ({
-        id: `fallback-${index}`,
-        title: item,
-        slug: undefined,
-        description: undefined,
-      }))
-    : [
-        {
-          id: "fallback-1",
-          title: "Premium white sugar (50kg)",
-          slug: undefined,
-          description: "Refined crystals packaged for wholesale and institutional buyers.",
-        },
-        {
-          id: "fallback-2",
-          title: "Retail crystal sugar (5kg)",
-          slug: undefined,
-          description: "Household-friendly packs sourced directly from Ethiopian cane fields.",
-        },
-        {
-          id: "fallback-3",
-          title: "Industrial molasses supply",
-          slug: undefined,
-          description: "Reliable feedstock volumes tailored for ethanol and feed processors.",
-        },
-      ];
+  const { locale } = useLocaleContext();
 
-  const items =
-    Array.isArray(featuredProducts) && featuredProducts.length > 0
-      ? featuredProducts.slice(0, 3).map((product, index) => ({
-          id: String(product.id ?? index),
-          title: product.name,
-          slug: product.slug,
-          description: product.short_description ?? product.description,
-        }))
-      : fallbackItems;
+  const items = [
+    {
+      id: "1",
+      title: "Premium white sugar (50kg)",
+      slug: "premium-white-sugar-50kg",
+      description: "Refined crystals packaged for wholesale and institutional buyers.",
+      image: "/images/Premium white sugar (50kg)1.jpg",
+    },
+    {
+      id: "2",
+      title: "Retail crystal sugar (5kg)",
+      slug: "retail-crystal-sugar-5kg",
+      description: "Household-friendly packs sourced directly from Ethiopian cane fields.",
+      image: "/images/Retail crystal sugar (5kg).jpg",
+    },
+    {
+      id: "3",
+      title: "Industrial molasses supply",
+      slug: "industrial-molasses-supply",
+      description: "Reliable feedstock volumes tailored for ethanol and feed processors.",
+      image: "/images/Industrial molasses supply.jpg",
+    },
+  ];
 
   return (
     <SectionContainer className="relative overflow-hidden bg-transparent">
@@ -73,8 +54,19 @@ export function ProductShowcase() {
       <div className="pointer-events-none absolute -right-40 -top-40 size-80 rounded-full bg-primary/5 blur-3xl" />
       <div className="pointer-events-none absolute -left-40 bottom-0 size-60 rounded-full bg-accent/5 blur-3xl" />
 
-      <SectionHeading eyebrow={t("products.cta")} title={title} description={description} />
-      <div className="grid gap-8 md:grid-cols-3">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+        <SectionHeading eyebrow={t("products.cta")} title={title} description={description} />
+        <Link
+          href="/products"
+          locale={locale as "en" | "am"}
+          className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5 shrink-0"
+        >
+          View All Products
+          <span aria-hidden>→</span>
+        </Link>
+      </div>
+      
+      <div className="grid gap-6 md:grid-cols-3">
         {items.map((product, index) => {
           const Icon = productIcons[index] ?? LucideBox;
           const colors = productColors[index] ?? productColors[0];
@@ -90,13 +82,21 @@ export function ProductShowcase() {
               {/* Animated gradient strip at top */}
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ animation: "gradient-rotate 3s ease infinite" }} />
 
-              {/* Image placeholder */}
-              <div className="mb-6 aspect-[4/3] overflow-hidden rounded-2xl img-placeholder">
-                <div className="flex h-full items-center justify-center">
-                  <div className={`rounded-2xl bg-gradient-to-br ${colors.icon} p-4 text-white shadow-lg transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`}>
-                    <Icon size={32} strokeWidth={1.5} />
+              {/* Product image */}
+              <div className="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-white/50">
+                {product.image ? (
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <div className={`rounded-2xl bg-gradient-to-br ${colors.icon} p-4 text-white shadow-lg transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`}>
+                      <Icon size={32} strokeWidth={1.5} />
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               <p className="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">{product.title}</p>
@@ -105,9 +105,10 @@ export function ProductShowcase() {
               )}
               <Link
                 href={(product.slug ? `/products/${product.slug}` : "/products") as LocalizedRoute}
+                locale={locale as "en" | "am"}
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2"
               >
-                {ctaLabel}
+                View Detail
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
             </motion.div>

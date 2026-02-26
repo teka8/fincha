@@ -3,11 +3,12 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { LucideCalendar, LucideArrowRight } from "lucide-react";
+import { LucideArrowRight, LucideTrendingUp, LucideCalendar, LucideArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { LocalizedRoute } from "@/i18n/routing";
 import type { NewsPreview } from "@/features/home/hooks";
 import { useLatestNews } from "@/features/home/hooks";
+import { useLocaleContext } from "@/providers/providers";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/routing";
 

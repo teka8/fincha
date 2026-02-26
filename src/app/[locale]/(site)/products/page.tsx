@@ -107,15 +107,26 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           }) : (
             // Fallback product cards if none from API
             [
-              { title: "White Refined Sugar", type: "sugar", desc: "Premium grade sugar produced for industrial and wholesale markets." },
+              { title: "White Refined Sugar", type: "sugar", desc: "Premium grade sugar produced for industrial and wholesale markets.", image: "/images/sweet sugar.jpg" },
               { title: "Retail Crystal Sugar", type: "sugar", desc: "Available in 5kg and 2kg packs for household consumption." },
               { title: "Ethanol (Fuel Grade)", type: "ethanol", desc: "99.5% pure ethanol distilled from high-quality molasses." },
               { title: "Cane Molasses", type: "molasses", desc: "Rich in nutrients, ideal for cattle feed and industrial fermentation." },
               { title: "Bagasse Bales", type: "energy", desc: "Pressed cane fiber used as carbon-neutral biofuel for industrial boilers." }
             ].map((p, i) => (
               <div key={i} className="group relative flex flex-col bg-white rounded-[40px] border border-slate-100 p-8 shadow-card transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden opacity-80">
-                <div className="relative mb-8 aspect-square bg-slate-100 rounded-3xl flex items-center justify-center text-slate-300">
-                   <LucideBox size={64} strokeWidth={1} />
+                <div className="relative mb-8 aspect-square bg-slate-100 rounded-3xl overflow-hidden">
+                  {p.image ? (
+                    <Image 
+                      src={p.image} 
+                      alt={p.title} 
+                      fill 
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-300">
+                      <LucideBox size={64} strokeWidth={1} />
+                    </div>
+                  )}
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">{p.title}</h2>
                 <p className="text-sm text-slate-500 leading-relaxed mb-8">{p.desc}</p>
