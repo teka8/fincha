@@ -17,7 +17,8 @@
       "faq": "FAQ",
       "search": "Search",
       "footer": "Footer",
-      "support": "Support"
+      "support": "Support",
+      "events": "Events"
     },
     "actions": {
       "view_all": "View all",
@@ -145,10 +146,22 @@
       "description": "Photos and videos capturing our operations and community outreach.",
       "caption": "Captured at Fincha operations",
       "items": [
-        { "label": "Cane harvest at dawn", "meta": "Fincha Valley" },
-        { "label": "Ethanol distillation control room", "meta": "Process innovation" },
-        { "label": "Community health outreach", "meta": "CSR Spotlight" },
-        { "label": "Bagasse power turbines", "meta": "Renewable energy" }
+        {
+          "label": "Cane harvest at dawn",
+          "meta": "Fincha Valley"
+        },
+        {
+          "label": "Ethanol distillation control room",
+          "meta": "Process innovation"
+        },
+        {
+          "label": "Community health outreach",
+          "meta": "CSR Spotlight"
+        },
+        {
+          "label": "Bagasse power turbines",
+          "meta": "Renewable energy"
+        }
       ]
     },
     "partners": {

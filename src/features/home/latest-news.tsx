@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -51,6 +53,17 @@ export function LatestNews() {
   const items: Array<NewsPreview & { summary?: string; link?: string }> =
     Array.isArray(latestNews) && latestNews.length > 0 ? latestNews : fallbackItems;
 
+  // Helper to safely compute href as string
+  const toHref = (article: NewsPreview & { summary?: string; link?: string; slug?: string }) => {
+    if (typeof article.slug === "string" && article.slug.length > 0) {
+      return `/news/${article.slug}`;
+    }
+    if (typeof article.link === "string" && article.link.length > 0) {
+      return article.link;
+    }
+    return "/news";
+  };
+
   return (
     <SectionContainer className="bg-transparent">
       <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
@@ -98,13 +111,7 @@ export function LatestNews() {
               ) : article.summary ? (
                 <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-2">{article.summary}</p>
               ) : null}
-              <Link
-                href={(article.slug ? `/news/${article.slug}` : article.link ?? "/news") as LocalizedRoute}
-                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2"
-              >
-                {ctaLabel}
-                <LucideArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </Link>
+              
             </div>
           </motion.article>
         ))}

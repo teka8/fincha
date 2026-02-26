@@ -55,6 +55,7 @@ const navigationStructure: NavItem[] = [
       { href: "/careers", key: "careers", label: "Careers" },
     ],
   },
+
   {
     key: "operations",
     label: "Operations",
@@ -62,6 +63,15 @@ const navigationStructure: NavItem[] = [
       { href: "/products", key: "products", label: "Products" },
       { href: "/projects", key: "projects", label: "Strategic Projects" },
       { href: "/tenders", key: "tenders", label: "Tender Notices" },
+    ],
+  },
+  {
+    key: "Latest",
+    label: "Latest News",
+    children: [
+      { href: "/announcement", key: "announcement", label: "Announcement" },
+      { href: "/event", key: "event", label: "Events" },
+      { href: "/news", key: "news", label: "News" },
     ],
   },
   {
