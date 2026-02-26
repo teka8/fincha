@@ -16,7 +16,13 @@ type NewsDetailPageProps = {
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
   const { locale, id } = await params;
-  const post = await getPostById(locale, "news", id);
+  
+  let post;
+  try {
+    post = await getPostById(locale, "news", id);
+  } catch {
+    post = null;
+  }
 
   return {
     title: post?.title ?? "News Detail",
@@ -26,7 +32,13 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   const { locale, id } = await params;
-  const post = await getPostById(locale, "news", id);
+  
+  let post;
+  try {
+    post = await getPostById(locale, "news", id);
+  } catch {
+    post = null;
+  }
 
   if (!post) {
     return (

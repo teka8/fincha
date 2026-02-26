@@ -67,6 +67,10 @@ export const pathnames = {
     en: "/tenders/[id]",
     am: "/ጨረታዎች/[id]",
   },
+  "/team": {
+    en: "/team",
+    am: "/ቡድን",
+  },
   "/downloads": {
     en: "/downloads",
     am: "/የማውረድ-ማዕከል",

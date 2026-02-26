@@ -157,6 +157,16 @@ export default async function AboutPage({ params }: AboutPageProps) {
               ))
             )}
           </div>
+
+          <div className="mt-12 text-center">
+            <a 
+              href={`/${locale}/team`}
+              className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5"
+            >
+              Meet Our FSF Team
+              <span aria-hidden>→</span>
+            </a>
+          </div>
         </SectionContainer>
       </div>
 

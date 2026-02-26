@@ -1,71 +1,44 @@
-
-
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
 import { LucideArrowRight, LucideTrendingUp, LucideCalendar, LucideArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import type { LocalizedRoute } from "@/i18n/routing";
+import { usePathname } from "@/i18n/routing";
 import type { NewsPreview } from "@/features/home/hooks";
 import { useLatestNews } from "@/features/home/hooks";
-import { useLocaleContext } from "@/providers/providers";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
-import { Link } from "@/i18n/routing";
-
-type NewsItem = NewsPreview & { 
-  summary?: string; 
-  link?: string; 
-  image?: string;
-  category?: string;
-};
 
 export function LatestNews() {
   const prefersReducedMotion = useReducedMotion();
   const t = useTranslations("home");
+  const pathname = usePathname();
+  const locale = pathname?.startsWith("/am") ? "am" : "en";
   const title = t("news.title");
   const description = t("news.description");
   const { data: latestNews } = useLatestNews();
-
   
-  const fallbackItems: NewsItem[] = [
-
+  const fallbackItems: NewsPreview[] = [
     {
       title: "Fincha scales ethanol production to support clean fuels",
-      summary: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
-      link: "/news",
       slug: "fincha-ethanol-upgrade",
-      id: 1,
       excerpt: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       created_at: "2026-02-01",
-      image: "/images/hero-factory.jpg",
-      category: "Sustainability",
     },
     {
       title: "Community outgrower program expands irrigated hectares",
-      summary: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
-      link: "/news",
       slug: "community-outgrower-expansion",
-      id: 2,
       excerpt: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       created_at: "2026-01-18",
-      image: "/images/4.jpg",
-      category: "Community",
     },
     {
       title: "Fincha inaugurates vocational training center",
-      summary: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
-      link: "/news",
       slug: "vocational-training-center",
-      id: 3,
       excerpt: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
       created_at: "2026-01-05",
-      image: "/images/5.jpg",
-      category: "Education",
     },
   ];
-
   
-  const items: NewsItem[] =
+  const items: NewsPreview[] =
     Array.isArray(latestNews) && latestNews.length > 0 ? latestNews : fallbackItems;
 
   const featured = items[0];
@@ -82,7 +55,6 @@ export function LatestNews() {
     Community: "from-primary to-primary-600",
     Education: "from-amber-500 to-orange-600",
     Innovation: "from-purple-500 to-violet-600",
-
   };
 
   return (
@@ -94,10 +66,10 @@ export function LatestNews() {
         
         <div className="relative flex flex-col items-start justify-between gap-4 md:flex-row md:items-end mb-10">
           <SectionHeading eyebrow="Latest Updates" title={title} description={description} />
-          <Link href={"/news" as LocalizedRoute} className="group inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-2.5 text-sm font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/25">
+          <a href={`/${locale}/news`} className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5">
             View all news
-            <LucideArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-          </Link>
+            <span aria-hidden>→</span>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -106,14 +78,14 @@ export function LatestNews() {
             initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="lg:col-span-8 group relative overflow-hidden rounded-3xl bg-slate-900 cursor-pointer shadow-2xl"
           >
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-600/70 via-primary-800/50 to-slate-900/95 z-10" />
-              <div 
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-1000"
-                style={{ backgroundImage: `url('${featured.image || '/images/hero-factory.jpg'}')` }}
+              <motion.div 
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url('${featured.slug === "fincha-ethanol-upgrade" ? "/images/hero-factory.jpg" : "/images/hero-factory.jpg"}')` }}
               />
             </div>
 
@@ -122,76 +94,115 @@ export function LatestNews() {
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-accent/10 to-transparent rounded-tr-full" />
 
             <div className="relative z-20 flex flex-col justify-end h-full min-h-[480px] p-8 lg:p-12">
-              <div className="flex items-center gap-3 mb-5">
-                <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${categoryColors[featured.category || 'Sustainability'] || 'bg-primary'}`}>
-                  {featured.category || "News"}
+              <motion.div 
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="flex items-center gap-3 mb-5"
+              >
+                <span className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${categoryColors.Sustainability}`}>
+                  Sustainability
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-slate-900 bg-accent">
                   <LucideTrendingUp size={12} />
                   Featured
                 </span>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center gap-4 mb-5 text-sm text-slate-300">
+              <motion.div 
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="flex items-center gap-4 mb-5 text-sm text-slate-300"
+              >
                 <span className="inline-flex items-center gap-1.5">
                   <LucideCalendar size={14} />
                   {featured.created_at ? formatDate(featured.created_at) : ""}
                 </span>
-              </div>
+              </motion.div>
               
-              <h3 className="text-2xl lg:text-4xl font-black text-white mb-4 leading-tight group-hover:text-accent transition-colors">
-                {featured.title}
-              </h3>
-              
-              <p className="text-slate-300 text-base lg:text-lg max-w-2xl mb-8 line-clamp-3">
-                {featured.excerpt || featured.summary}
-              </p>
-
-              
-              <Link 
-                href={(featured.slug ? `/news/${featured.slug}` : featured.link ?? "/news") as LocalizedRoute}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-slate-900 transition-all hover:bg-accent hover:gap-3 shadow-lg"
-
+              <motion.h3 
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="text-2xl lg:text-4xl font-black text-white mb-4 leading-tight"
               >
-                Read More
-                <LucideArrowRight size={14} />
-              </Link>
-
+                {featured.title}
+              </motion.h3>
+              
+              <motion.p 
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                className="text-slate-300 text-base lg:text-lg max-w-2xl mb-8 line-clamp-3"
+              >
+                {featured.excerpt}
+              </motion.p>
+              
+              <motion.div
+                initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+              >
+                <a 
+                  href={`/${locale}/news/${featured.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-slate-900 transition-all hover:bg-accent hover:gap-3 shadow-lg"
+                >
+                  Read More
+                  <LucideArrowRight size={14} />
+                </a>
+              </motion.div>
             </div>
           </motion.div>
 
           {/* Secondary Articles - Small List */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             {secondary.map((article, index) => {
-              const articleImage = article.image || (index === 0 ? "/images/4.jpg" : "/images/5.jpg");
+              const articleImage = index === 0 ? "/images/4.jpg" : "/images/5.jpg";
               return (
-                <motion.article
+                <motion.div
                   key={article.slug ?? article.title}
                   initial={prefersReducedMotion ? undefined : { opacity: 0, x: 20 }}
                   whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.15 }}
-                  className="group flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all cursor-pointer"
+                  transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
                 >
-                  <div className="w-24 h-24 shrink-0 rounded-xl overflow-hidden shadow-md">
-                    <div 
-                      className="w-full h-full bg-cover bg-center group-hover:scale-125 transition-transform duration-700"
-                      style={{ backgroundImage: `url('${articleImage}')` }}
-                    />
-                  </div>
-                  <div className="flex flex-col justify-center flex-1 min-w-0">
-                    <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold text-white w-fit bg-gradient-to-r ${categoryColors[article.category || categories[index + 1]] || 'bg-primary'}`}>
-                      {article.category || categories[index + 1]}
-                    </span>
-                    <h4 className="text-sm font-bold text-slate-800 line-clamp-2 mt-2 group-hover:text-primary transition-colors">
-                      {article.title}
-                    </h4>
-                    <span className="text-[11px] text-slate-500 mt-2 flex items-center gap-1">
-                      {article.created_at ? formatDate(article.created_at) : ""}
-                      <LucideArrowUpRight size={10} className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </span>
-                  </div>
-                </motion.article>
+                  <a href={`/${locale}/news/${article.slug}`} className="group block">
+                    <motion.article
+                      whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all cursor-pointer"
+                    >
+                      <motion.div 
+                        whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                        className="w-24 h-24 shrink-0 rounded-xl overflow-hidden shadow-md"
+                      >
+                        <div 
+                          className="w-full h-full bg-cover bg-center"
+                          style={{ backgroundImage: `url('${articleImage}')` }}
+                        />
+                      </motion.div>
+                      <div className="flex flex-col justify-center flex-1 min-w-0">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold text-white w-fit bg-gradient-to-r ${categoryColors[categories[index + 1]]}`}>
+                          {categories[index + 1]}
+                        </span>
+                        <h4 className="text-sm font-bold text-slate-800 line-clamp-2 mt-2 group-hover:text-primary transition-colors">
+                          {article.title}
+                        </h4>
+                        <span className="text-[11px] text-slate-500 mt-2 flex items-center gap-1">
+                          {article.created_at ? formatDate(article.created_at) : ""}
+                          <LucideArrowUpRight size={10} className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </span>
+                      </div>
+                    </motion.article>
+                  </a>
+                </motion.div>
               );
             })}
           </div>
