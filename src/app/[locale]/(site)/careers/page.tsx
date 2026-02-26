@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideBriefcase, LucideMapPin, LucideClock, LucideSearch, LucideArrowRight } from "lucide-react";
+import { LucideBriefcase, LucideMapPin, LucideClock, LucideArrowRight } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getJobs } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 
@@ -30,40 +31,12 @@ export default async function CareersPage({ params }: CareersPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Careers Hero */}
-      <section className="bg-primary-900 pt-32 pb-24 overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-950 to-primary-900 opacity-90 z-10" />
-        {/* Abstract Pattern */}
-        <div className="absolute top-0 right-0 p-24 opacity-5 rotate-12 z-0">
-           <LucideBriefcase size={400} />
-        </div>
-        
-        <div className="relative z-20 max-w-layout mx-auto px-8">
-           <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight">
-                Build a <span className="text-accent italic">Sweet</span> Career
-              </h1>
-              <p className="text-xl text-primary-100/80 leading-relaxed">
-                Join Ethiopia&apos;s industrial transformation. We&apos;re looking for passionate 
-                professionals to help us innovate the sugar value chain.
-              </p>
-              
-              <div className="mt-12 flex flex-col sm:flex-row gap-4 max-w-xl">
-                 <div className="relative flex-1">
-                    <LucideSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-primary-300" size={18} />
-                    <input 
-                      type="text" 
-                      placeholder="Search roles (e.g. Engineer)"
-                      className="w-full bg-white/10 border border-white/20 rounded-2xl pl-12 pr-4 py-4 text-white placeholder:text-white/30 focus:outline-none focus:ring-4 focus:ring-accent/20 focus:bg-white/15 transition-all"
-                    />
-                 </div>
-                 <button className="px-8 py-4 bg-accent text-primary-950 font-black rounded-2xl hover:bg-white transition-colors active:scale-95">
-                    Search Jobs
-                 </button>
-              </div>
-           </div>
-        </div>
-      </section>
+      <PageHero
+        title="Build a Sweet Career"
+        subtitle="Join Ethiopia's industrial transformation. We're looking for passionate professionals to help us innovate the sugar value chain."
+        image="/images/pexels-mikael-blomkvist-6476595.jpg"
+        badge="Join the Fincha Family"
+      />
 
       {/* Jobs Listing */}
       <SectionContainer className="bg-white">
