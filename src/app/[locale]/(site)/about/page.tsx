@@ -6,6 +6,12 @@ import { SectionContainer, SectionHeading } from "@/components/ui/section-headin
 import { getLeaders } from "@/lib/cms";
 import Image from "next/image";
 
+import { AboutStats } from "@/features/about/stats-grid";
+import { GMMessage } from "@/features/about/gm-message";
+import { CoreValues } from "@/features/about/core-values";
+import { CommunityImpact } from "@/features/about/community-impact";
+import { AboutTimeline } from "@/features/about/milestones-timeline";
+
 type AboutPageProps = {
   params: Promise<{
     locale: string;
@@ -47,6 +53,8 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </p>
         </div>
       </section>
+
+      <AboutStats />
 
       {/* History & Mission */}
       <SectionContainer className="bg-white">
@@ -102,6 +110,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
         </div>
       </SectionContainer>
 
+      <GMMessage />
+      
+      <CoreValues />
+
       {/* Leadership Section */}
       <div className="bg-slate-50/50">
         <SectionContainer>
@@ -147,6 +159,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
           </div>
         </SectionContainer>
       </div>
+
+      <CommunityImpact />
+
+      <AboutTimeline />
 
       {/* Values / Integrated Model */}
       <SectionContainer className="bg-white">

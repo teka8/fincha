@@ -14,7 +14,11 @@ import type {
   Tender,
 } from "@/types/cms";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000/api/v1";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://fincha.tewostechsolutions.com/api/v1";
+
 
 type PaginatedResponse<T> = {
   data: T[];
@@ -146,15 +150,22 @@ export async function getPostById(locale: string, postType: string, id: string):
   }
 }
 
-export async function getEvents(locale: string): Promise<Event[]> {
+export async function getEvents(locale: string, params?: URLSearchParams): Promise<PaginatedResponse<Event>> {
+  const query = params && params.size > 0 ? `?${params.toString()}` : "";
+  return fetchJson<PaginatedResponse<Event>>(`/events${query}`, {
+    headers: { "Accept-Language": locale },
+  });
+}
+
+export async function getEventById(locale: string, id: string): Promise<Event | null> {
   try {
-    const data = await fetchJson<PaginatedResponse<Event>>("/events", {
+    const data = await fetchJson<{ data: Event } | Event>(`/events/${id}`, {
       headers: { "Accept-Language": locale },
     });
-    return data.data;
+    return (data as { data: Event }).data ?? (data as Event) ?? null;
   } catch (error) {
-    console.error("Failed to load events", error);
-    return [];
+    console.error("Failed to load event", error);
+    return null;
   }
 }
 

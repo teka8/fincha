@@ -17,7 +17,8 @@
       "faq": "FAQ",
       "search": "Search",
       "footer": "Footer",
-      "support": "Support"
+      "support": "Support",
+      "events": "Events"
     },
     "actions": {
       "view_all": "View all",
@@ -145,10 +146,22 @@
       "description": "Photos and videos capturing our operations and community outreach.",
       "caption": "Captured at Fincha operations",
       "items": [
-        { "label": "Cane harvest at dawn", "meta": "Fincha Valley" },
-        { "label": "Ethanol distillation control room", "meta": "Process innovation" },
-        { "label": "Community health outreach", "meta": "CSR Spotlight" },
-        { "label": "Bagasse power turbines", "meta": "Renewable energy" }
+        {
+          "label": "Cane harvest at dawn",
+          "meta": "Fincha Valley"
+        },
+        {
+          "label": "Ethanol distillation control room",
+          "meta": "Process innovation"
+        },
+        {
+          "label": "Community health outreach",
+          "meta": "CSR Spotlight"
+        },
+        {
+          "label": "Bagasse power turbines",
+          "meta": "Renewable energy"
+        }
       ]
     },
     "partners": {
@@ -257,6 +270,86 @@
           "description": "Dispatch to markets nationwide"
         }
       }
+    }
+  },
+  "about": {
+    "stats": {
+      "established": "1998",
+      "established_label": "Year Established",
+      "hectares": "22,000+",
+      "hectares_label": "Total Hectares",
+      "production": "270,000",
+      "production_label": "Annual Production (Tons)",
+      "employees": "10,000+",
+      "employees_label": "Total Employees"
+    },
+    "gm_message": {
+      "eyebrow": "A Message From Leadership",
+      "title": "Driving Sustainable Growth for Ethiopia",
+      "quote": "At Fincha Sugar Factory, we are not just producing sugar and energy; we are building a sustainable future for our communities and our nation. Our commitment to excellence, innovation, and environmental stewardship guides every decision we make.",
+      "name": "General Manager / CEO",
+      "role": "Fincha Sugar Factory"
+    },
+    "values": {
+      "eyebrow": "Guiding Principles",
+      "title": "Our Core Values",
+      "description": "The foundational beliefs that drive our operations, culture, and commitment to excellence.",
+      "items": [
+        {
+          "title": "Integrity",
+          "description": "We uphold the highest ethical standards in all our operations and relationships."
+        },
+        {
+          "title": "Sustainability",
+          "description": "We are committed to environmental stewardship and ensuring a greener future."
+        },
+        {
+          "title": "Excellence",
+          "description": "We strive for continuous improvement and superior quality in everything we do."
+        },
+        {
+          "title": "Community",
+          "description": "We actively empower and invest in the well-being of the communities we serve."
+        }
+      ]
+    },
+    "impact": {
+      "eyebrow": "Community Deep Dive",
+      "title": "Empowering Beyond Production",
+      "description": "Our success is deeply intertwined with the prosperity of the Fincha Valley. We are dedicated to creating lasting, positive change through comprehensive community programs.",
+      "achievements": [
+        "Constructed and equipped multiple local schools.",
+        "Built modern healthcare clinics serving thousands.",
+        "Developed and maintained vital regional road networks.",
+        "Provided extensive agronomy training to outgrower farmers."
+      ]
+    },
+    "timeline": {
+      "eyebrow": "Our Milestones",
+      "title": "A Legacy of Quality",
+      "description": "Tracing our journey of continuous improvement, certifications, and national recognition.",
+      "items": [
+        {
+          "year": "2015",
+          "title": "ISO 9001:2015",
+          "description": "Achieved Quality Management System certification."
+        },
+        {
+          "year": "2018",
+          "title": "ISO 14001:2015",
+          "description": "Certified for Environmental Management systems."
+        },
+        {
+          "year": "2020",
+          "title": "ISO 45001:2018",
+          "description": "Recognized for Occupational Health & Safety."
+        },
+        {
+          "year": "2023",
+          "title": "National Industry Award",
+          "description": "Awarded for outstanding contribution to the agro-industrial sector."
+        }
+      ]
     }
   }
 }

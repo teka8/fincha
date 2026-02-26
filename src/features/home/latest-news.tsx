@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -6,6 +8,7 @@ import { useTranslations } from "next-intl";
 import type { LocalizedRoute } from "@/i18n/routing";
 import type { NewsPreview } from "@/features/home/hooks";
 import { useLatestNews } from "@/features/home/hooks";
+import { useLocaleContext } from "@/providers/providers";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/routing";
 
@@ -22,13 +25,16 @@ export function LatestNews() {
   const title = t("news.title");
   const description = t("news.description");
   const { data: latestNews } = useLatestNews();
+
   
   const fallbackItems: NewsItem[] = [
+
     {
       title: "Fincha scales ethanol production to support clean fuels",
       summary: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       link: "/news",
       slug: "fincha-ethanol-upgrade",
+      id: 1,
       excerpt: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       created_at: "2026-02-01",
       image: "/images/hero-factory.jpg",
@@ -39,6 +45,7 @@ export function LatestNews() {
       summary: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       link: "/news",
       slug: "community-outgrower-expansion",
+      id: 2,
       excerpt: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       created_at: "2026-01-18",
       image: "/images/4.jpg",
@@ -49,12 +56,14 @@ export function LatestNews() {
       summary: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
       link: "/news",
       slug: "vocational-training-center",
+      id: 3,
       excerpt: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
       created_at: "2026-01-05",
       image: "/images/5.jpg",
       category: "Education",
     },
   ];
+
   
   const items: NewsItem[] =
     Array.isArray(latestNews) && latestNews.length > 0 ? latestNews : fallbackItems;
@@ -73,6 +82,7 @@ export function LatestNews() {
     Community: "from-primary to-primary-600",
     Education: "from-amber-500 to-orange-600",
     Innovation: "from-purple-500 to-violet-600",
+
   };
 
   return (
@@ -136,14 +146,17 @@ export function LatestNews() {
               <p className="text-slate-300 text-base lg:text-lg max-w-2xl mb-8 line-clamp-3">
                 {featured.excerpt || featured.summary}
               </p>
+
               
               <Link 
                 href={(featured.slug ? `/news/${featured.slug}` : featured.link ?? "/news") as LocalizedRoute}
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-slate-900 transition-all hover:bg-accent hover:gap-3 shadow-lg"
+
               >
                 Read More
                 <LucideArrowRight size={14} />
               </Link>
+
             </div>
           </motion.div>
 
