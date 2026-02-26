@@ -1,17 +1,19 @@
 import { NextResponse } from "next/server";
 
-import { getLatestPosts } from "@/lib/cms";
+import { getPosts } from "@/lib/cms";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const locale = url.searchParams.get("locale") ?? "en";
-  const limit = Number(url.searchParams.get("limit") ?? "3");
+  const page = url.searchParams.get("page") ?? "1";
+  const perPage = url.searchParams.get("per_page") ?? url.searchParams.get("limit") ?? "10";
 
   try {
-    const posts = await getLatestPosts(locale, limit);
-    return NextResponse.json(posts.slice(0, Math.max(limit, 0)));
+    const params = new URLSearchParams({ page, per_page: perPage });
+    const result = await getPosts(locale, "news", params);
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Failed to load news", error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json({ data: [], meta: { current_page: 1, last_page: 1, total: 0, per_page: 10 } }, { status: 500 });
   }
 }

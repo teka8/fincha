@@ -17,7 +17,8 @@
       "faq": "FAQ",
       "search": "Search",
       "footer": "Footer",
-      "support": "Support"
+      "support": "Support",
+      "events": "Events"
     },
     "actions": {
       "view_all": "View all",
@@ -145,10 +146,22 @@
       "description": "Photos and videos capturing our operations and community outreach.",
       "caption": "Captured at Fincha operations",
       "items": [
-        { "label": "Cane harvest at dawn", "meta": "Fincha Valley" },
-        { "label": "Ethanol distillation control room", "meta": "Process innovation" },
-        { "label": "Community health outreach", "meta": "CSR Spotlight" },
-        { "label": "Bagasse power turbines", "meta": "Renewable energy" }
+        {
+          "label": "Cane harvest at dawn",
+          "meta": "Fincha Valley"
+        },
+        {
+          "label": "Ethanol distillation control room",
+          "meta": "Process innovation"
+        },
+        {
+          "label": "Community health outreach",
+          "meta": "CSR Spotlight"
+        },
+        {
+          "label": "Bagasse power turbines",
+          "meta": "Renewable energy"
+        }
       ]
     },
     "partners": {
@@ -226,6 +239,37 @@
       "title": "A Day in the Life",
       "description": "Witness the dedication, technology, and scale of our daily operations.",
       "cta": "Watch the Film"
+    },
+    "dayInLife": {
+      "eyebrow": "Our People",
+      "title": "A Day in the Life at Fincha",
+      "description": "From sunrise to sunset, see how our team powers Ethiopia's sugar industry.",
+      "slots": {
+        "dawn": {
+          "title": "Dawn Operations",
+          "description": "First shifts begin at sunrise"
+        },
+        "morning": {
+          "title": "Morning Huddle",
+          "description": "Team briefings and safety checks"
+        },
+        "team": {
+          "title": "Field Teams",
+          "description": "Agronomy and cane management"
+        },
+        "maintenance": {
+          "title": "Engineering",
+          "description": "Keeping operations running smoothly"
+        },
+        "production": {
+          "title": "Production",
+          "description": "Sugar and ethanol processing"
+        },
+        "logistics": {
+          "title": "Logistics",
+          "description": "Dispatch to markets nationwide"
+        }
+      }
     }
   }
 }

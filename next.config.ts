@@ -19,6 +19,16 @@ const nextConfig: NextConfig = {
         hostname: "*.finchasugar.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "fincha.tewostechsolutions.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "*.tewostechsolutions.com",
+        pathname: "**",
+      },
     ],
   },
 };
