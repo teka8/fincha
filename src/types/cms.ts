@@ -83,6 +83,23 @@ export type Event = {
   attachments?: Array<{ path?: string; file_name?: string }>;
 };
 
+export type Announcement = {
+  id: number;
+  title: string;
+  slug: string;
+  content: string;
+  description?: string;
+  excerpt?: string;
+  featured_image?: string;
+  image?: string;
+  created_at: string;
+  status?: string;
+  category?: string;
+  external_link?: string;
+  terms?: Array<{ name: string; taxonomy: string }>;
+  attachments?: Array<{ path?: string; file_name?: string }>;
+};
+
 export type Leader = {
   id: number;
   name: string;

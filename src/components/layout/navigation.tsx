@@ -66,7 +66,7 @@ const navigationStructure: NavItem[] = [
     ],
   },
   {
-    key: "Latest",
+    key: "latest",
     label: "Latest News",
     children: [
       { href: "/announcement", key: "announcement", label: "Announcement" },
@@ -78,7 +78,7 @@ const navigationStructure: NavItem[] = [
     key: "media",
     label: "Resources",
     children: [
-      { href: "/news", key: "news", label: "News & Stories" },
+
       { href: "/media", key: "media", label: "Media Gallery" },
       { href: "/downloads", key: "downloads", label: "Download Center" },
       { href: "/faq", key: "faq", label: "FAQ" },
@@ -146,18 +146,17 @@ export function Navigation({ brandName }: NavigationProps) {
   const animation = prefersReducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: -20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.4, ease: "easeOut" },
-      };
+      initial: { opacity: 0, y: -20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.4, ease: "easeOut" },
+    };
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-500 ${
-        isScrolled
-          ? "border-b border-white/10 bg-white/70 shadow-lg shadow-primary/5 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
+      className={`sticky top-0 z-50 w-full transition-all duration-500 ${isScrolled
+        ? "border-b border-white/10 bg-white/70 shadow-lg shadow-primary/5 backdrop-blur-xl"
+        : "bg-transparent"
+        }`}
     >
       <div className="mx-auto flex h-20 w-full max-w-layout items-center justify-between gap-4 px-8 sm:px-12 lg:px-16 xl:px-20">
         <motion.div {...animation} className="flex items-center gap-8">
@@ -183,13 +182,12 @@ export function Navigation({ brandName }: NavigationProps) {
                   >
                     <button
                       type="button"
-                      className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                        isActive || activeDropdown === item.key
-                          ? "bg-primary/10 text-primary"
-                          : "text-slate-600 hover:bg-primary/5 hover:text-primary"
-                      }`}
+                      className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all ${isActive || activeDropdown === item.key
+                        ? "bg-primary/10 text-primary"
+                        : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                        }`}
                     >
-                      {item.label}
+                      {tNav(item.key as any)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
@@ -216,13 +214,12 @@ export function Navigation({ brandName }: NavigationProps) {
                                 <Link
                                   key={child.key}
                                   href={child.href as LocalizedRoute}
-                                  className={`block rounded-2xl px-4 py-2.5 text-sm font-medium transition-all ${
-                                    isChildActive
-                                      ? "bg-primary/10 text-primary"
-                                      : "text-slate-600 hover:bg-primary/5 hover:text-primary"
-                                  }`}
+                                  className={`block rounded-2xl px-4 py-2.5 text-sm font-medium transition-all ${isChildActive
+                                    ? "bg-primary/10 text-primary"
+                                    : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                                    }`}
                                 >
-                                  {child.label}
+                                  {tNav(child.key as any)}
                                 </Link>
                               );
                             })}
@@ -239,11 +236,10 @@ export function Navigation({ brandName }: NavigationProps) {
                 <Link
                   key={item.key}
                   href={item.href as LocalizedRoute}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-slate-600 hover:bg-primary/5 hover:text-primary"
-                  }`}
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all ${isActive
+                    ? "bg-primary/10 text-primary"
+                    : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                    }`}
                 >
                   {isActive && (
                     <motion.span
@@ -252,7 +248,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">{tNav(item.key as any)}</span>
                 </Link>
               );
             })}
@@ -261,9 +257,9 @@ export function Navigation({ brandName }: NavigationProps) {
 
         <motion.div {...animation} className="flex items-center gap-3">
           <LanguageSwitcher currentLocale={contextLocale} />
-          <Button asChild className="hidden shadow-glow-sm md:inline-flex">
+          {/* <Button asChild className="hidden shadow-glow-sm md:inline-flex">
             <Link href="/contact">{tActions("learn_more")}</Link>
-          </Button>
+          </Button> */}
           <button
             type="button"
             className="relative inline-flex items-center rounded-xl p-2.5 text-slate-700 transition-all hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 lg:hidden"
@@ -308,9 +304,8 @@ export function Navigation({ brandName }: NavigationProps) {
                         <button
                           type="button"
                           onClick={() => setActiveDropdown(isOpen ? null : item.key)}
-                          className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${
-                            isOpen ? "text-primary" : "text-slate-900"
-                          }`}
+                          className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${isOpen ? "text-primary" : "text-slate-900"
+                            }`}
                         >
                           {item.label}
                           <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
@@ -332,9 +327,8 @@ export function Navigation({ brandName }: NavigationProps) {
                                   key={child.key}
                                   type="button"
                                   onClick={() => handleNavigate(child.href)}
-                                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${
-                                    pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600"
-                                  }`}
+                                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600"
+                                    }`}
                                 >
                                   {child.label}
                                 </button>
@@ -351,21 +345,20 @@ export function Navigation({ brandName }: NavigationProps) {
                       key={item.key}
                       type="button"
                       onClick={() => handleNavigate(item.href!)}
-                      className={`block w-full rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${
-                        pathname === item.href
-                          ? "bg-primary/10 text-primary"
-                          : "text-slate-900 hover:bg-primary/5 hover:text-primary"
-                      }`}
+                      className={`block w-full rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${pathname === item.href
+                        ? "bg-primary/10 text-primary"
+                        : "text-slate-900 hover:bg-primary/5 hover:text-primary"
+                        }`}
                     >
                       {item.label}
                     </button>
                   );
                 })}
-                <div className="pt-2">
+                {/* <div className="pt-2">
                   <Button asChild className="w-full justify-center shadow-glow-sm">
                     <Link href="/contact" onClick={closeMenu}>{tActions("learn_more")}</Link>
                   </Button>
-                </div>
+                </div> */}
               </div>
             </motion.nav>
           </>
