@@ -13,13 +13,35 @@ export function GMMessage() {
   return (
     <SectionContainer className="bg-slate-50 overflow-hidden">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Visual / Image */}
+        <motion.div
+          initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
+          whileInView={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-2xl bg-primary-900 order-2 lg:order-1"
+        >
+          {/* Transition to actual leader image when available */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 via-primary-800 to-accent/20" />
+          <div className="absolute inset-0 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center mix-blend-overlay opacity-30" />
+          
+          <div className="absolute inset-0 flex items-center justify-center">
+             <div className="text-center text-white/40 space-y-4">
+                <LucideQuote size={48} className="mx-auto" />
+                <p className="font-bold uppercase tracking-[0.2em] text-sm">Portrait Placeholder</p>
+             </div>
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-transparent to-transparent" />
+        </motion.div>
+
         {/* Quote Content */}
         <motion.div
           initial={prefersReducedMotion ? undefined : { opacity: 0, x: -30 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative"
+          className="relative order-1 lg:order-2"
         >
           <div className="absolute -top-12 -left-8 text-primary/10 select-none">
             <LucideQuote size={160} />
@@ -46,28 +68,6 @@ export function GMMessage() {
                </div>
             </div>
           </div>
-        </motion.div>
-
-        {/* Visual / Image */}
-        <motion.div
-          initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
-          whileInView={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-2xl bg-primary-900"
-        >
-          {/* Transition to actual leader image when available */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 via-primary-800 to-accent/20" />
-          <div className="absolute inset-0 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center mix-blend-overlay opacity-30" />
-          
-          <div className="absolute inset-0 flex items-center justify-center">
-             <div className="text-center text-white/40 space-y-4">
-                <LucideQuote size={48} className="mx-auto" />
-                <p className="font-bold uppercase tracking-[0.2em] text-sm">Portrait Placeholder</p>
-             </div>
-          </div>
-
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-transparent to-transparent" />
         </motion.div>
       </div>
     </SectionContainer>
