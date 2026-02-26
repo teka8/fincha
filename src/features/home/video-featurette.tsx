@@ -34,7 +34,7 @@ export function VideoFeaturette() {
       <div className="absolute inset-0 z-0">
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
           autoPlay
           muted
           loop
