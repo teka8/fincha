@@ -22,7 +22,6 @@ export function DistributionMap() {
       if (typeof window === "undefined" || !mapRef.current) return;
       
       const L = (await import("leaflet")).default;
-      await import("leaflet/dist/leaflet.css");
 
       if (mapRef.current.querySelector(".leaflet-container")) return;
 
