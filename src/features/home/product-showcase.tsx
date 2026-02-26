@@ -54,20 +54,19 @@ export function ProductShowcase() {
       <div className="pointer-events-none absolute -right-40 -top-40 size-80 rounded-full bg-primary/5 blur-3xl" />
       <div className="pointer-events-none absolute -left-40 bottom-0 size-60 rounded-full bg-accent/5 blur-3xl" />
 
-      <SectionHeading eyebrow={t("products.cta")} title={title} description={description} />
-      
-      <div className="mb-8 flex justify-end">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+        <SectionHeading eyebrow={t("products.cta")} title={title} description={description} />
         <Link
           href="/products"
           locale={locale as "en" | "am"}
-          className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5"
+          className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5 shrink-0"
         >
           View All Products
           <span aria-hidden>→</span>
         </Link>
       </div>
       
-      <div className="grid gap-8 md:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-3">
         {items.map((product, index) => {
           const Icon = productIcons[index] ?? LucideBox;
           const colors = productColors[index] ?? productColors[0];
