@@ -4,7 +4,7 @@ import type {
   CompanyInfo,
   Event,
   Faq,
-  Job,
+  Job, 
   Leader,
   MediaItem,
   NavigationLink,
@@ -196,7 +196,7 @@ export async function getMedia(locale: string): Promise<MediaItem[]> {
 
 export async function getProjects(locale: string, params?: URLSearchParams) {
   const query = params && params.size > 0 ? `?${params.toString()}` : "";
-  return fetchJson<PaginatedResponse<Record<string, unknown>>>(`/project${query}`, {
+  return fetchJson<PaginatedResponse<Record<string, unknown>>>(`/projects${query}`, {
     headers: { "Accept-Language": locale },
   });
 }
