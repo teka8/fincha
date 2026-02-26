@@ -63,12 +63,24 @@ export type Post = {
 export type Event = {
   id: number;
   title: string;
-  slug: string;
+  slug?: string;
   description: string;
-  location: string;
-  start_date: string;
-  end_date: string;
+  location?: string;
+  start_date?: string;
+  end_date?: string;
   hero_image?: string;
+  // Extended fields from the real API
+  event_date?: string;
+  start_time?: string;
+  end_time?: string;
+  event_image?: string;
+  category?: string;
+  status?: string;
+  target_audience?: string;
+  cost_amount?: string;
+  registration_link?: string;
+  google_map_location_link?: string;
+  attachments?: Array<{ path?: string; file_name?: string }>;
 };
 
 export type Leader = {

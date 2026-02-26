@@ -11,11 +11,16 @@ export function useLatestNews(limit = 3) {
   return useQuery<NewsPreview[]>({
     queryKey: ["home", "latest-news", locale, limit],
     queryFn: async () => {
-      const response = await fetch(`/api/news?locale=${locale}&limit=${limit}`);
+      const response = await fetch(`/api/news?locale=${locale}&per_page=${limit}`);
       if (!response.ok) {
         throw new Error("Failed to load news");
       }
-      const posts = (await response.json()) as Post[];
+      const json = (await response.json()) as { data?: Post[] } | Post[];
+      const posts: Post[] = Array.isArray(json)
+        ? json
+        : Array.isArray((json as { data?: Post[] }).data)
+          ? (json as { data: Post[] }).data
+          : [];
       return posts.map((post) => ({
         title: post.title,
         slug: post.slug,
