@@ -65,7 +65,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <HistoricalTimeline />
 
-      <section className="relative border-b border-slate-100 bg-slate-50/50">
+      <section className="relative border-b border-slate-100 bg-[#eeeeee]">
         <ProductShowcase />
       </section>
 
