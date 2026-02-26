@@ -12,8 +12,6 @@ import { MediaGallery } from "@features/home/media-gallery";
 import { PartnersMarquee } from "@features/home/partners-marquee";
 import { InnovationShowcase } from "@features/home/innovation-showcase";
 import { FAQsPreview } from "@features/home/faqs-preview";
-import { NewsletterBanner } from "@features/home/newsletter-banner";
-import { ContactBanner } from "@features/home/contact-banner";
 import { HistoricalTimeline } from "@features/home/historical-timeline";
 import { DistributionMap } from "@features/home/distribution-map";
 import { TestimonialsSlider } from "@features/home/testimonials-slider";
@@ -116,13 +114,13 @@ export default async function HomePage({ params }: HomePageProps) {
         ]}
       />
 
-      <VideoFeaturette />
-
       <section className="relative bg-white">
         <LatestNews />
       </section>
 
       <DistributionMap />
+
+      <VideoFeaturette />
 
       <section className="relative border-y border-slate-100 bg-slate-50/30">
         <MediaGallery />
@@ -170,8 +168,6 @@ export default async function HomePage({ params }: HomePageProps) {
       </section>
 
       <CertificationsBanner />
-      <NewsletterBanner />
-      <ContactBanner />
     </main>
   );
 }

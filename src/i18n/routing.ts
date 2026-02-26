@@ -27,6 +27,14 @@ export const pathnames = {
     en: "/news/[id]",
     am: "/ዜና/[id]",
   },
+  "/event": {
+    en: "/event",
+    am: "/ዝግጅቶች",
+  },
+  "/event/[id]": {
+    en: "/event/[id]",
+    am: "/ዝግጅቶች/[id]",
+  },
   "/csr": {
     en: "/csr",
     am: "/ህብረተሰብ",

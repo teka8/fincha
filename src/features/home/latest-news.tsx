@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
@@ -6,6 +8,7 @@ import { useTranslations } from "next-intl";
 import type { LocalizedRoute } from "@/i18n/routing";
 import type { NewsPreview } from "@/features/home/hooks";
 import { useLatestNews } from "@/features/home/hooks";
+import { useLocaleContext } from "@/providers/providers";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { Link } from "@/i18n/routing";
 
@@ -22,12 +25,14 @@ export function LatestNews() {
   const description = t("news.description");
   const ctaLabel = t("news.cta");
   const { data: latestNews } = useLatestNews();
-  const fallbackItems: Array<NewsPreview & { summary?: string; link?: string }> = [
+  const { locale } = useLocaleContext();
+  const fallbackItems: Array<NewsPreview & { summary?: string; link?: string; id?: number }> = [
     {
       title: "Fincha scales ethanol production to support clean fuels",
       summary: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       link: "/news",
       slug: "fincha-ethanol-upgrade",
+      id: 1,
       excerpt: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       created_at: "2026-02-01",
     },
@@ -36,6 +41,7 @@ export function LatestNews() {
       summary: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       link: "/news",
       slug: "community-outgrower-expansion",
+      id: 2,
       excerpt: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       created_at: "2026-01-18",
     },
@@ -44,12 +50,24 @@ export function LatestNews() {
       summary: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
       link: "/news",
       slug: "vocational-training-center",
+      id: 3,
       excerpt: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
       created_at: "2026-01-05",
     },
   ];
-  const items: Array<NewsPreview & { summary?: string; link?: string }> =
+  const items: Array<NewsPreview & { summary?: string; link?: string; id?: number }> =
     Array.isArray(latestNews) && latestNews.length > 0 ? latestNews : fallbackItems;
+
+  // Helper to safely compute href as string
+  const toHref = (article: NewsPreview & { summary?: string; link?: string; slug?: string }) => {
+    if (typeof article.slug === "string" && article.slug.length > 0) {
+      return `/news/${article.slug}`;
+    }
+    if (typeof article.link === "string" && article.link.length > 0) {
+      return article.link;
+    }
+    return "/news";
+  };
 
   return (
     <SectionContainer className="bg-transparent">
@@ -98,13 +116,16 @@ export function LatestNews() {
               ) : article.summary ? (
                 <p className="mt-3 text-sm leading-relaxed text-muted line-clamp-2">{article.summary}</p>
               ) : null}
+
               <Link
-                href={(article.slug ? `/news/${article.slug}` : article.link ?? "/news") as LocalizedRoute}
+                href={(article.id ? `/news/${String(article.id)}` : "/news") as LocalizedRoute}
+                locale={locale as "en" | "am"}
                 className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2"
               >
                 {ctaLabel}
                 <LucideArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>
+
             </div>
           </motion.article>
         ))}
