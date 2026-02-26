@@ -226,6 +226,37 @@
       "title": "A Day in the Life",
       "description": "Witness the dedication, technology, and scale of our daily operations.",
       "cta": "Watch the Film"
+    },
+    "dayInLife": {
+      "eyebrow": "Our People",
+      "title": "A Day in the Life at Fincha",
+      "description": "From sunrise to sunset, see how our team powers Ethiopia's sugar industry.",
+      "slots": {
+        "dawn": {
+          "title": "Dawn Operations",
+          "description": "First shifts begin at sunrise"
+        },
+        "morning": {
+          "title": "Morning Huddle",
+          "description": "Team briefings and safety checks"
+        },
+        "team": {
+          "title": "Field Teams",
+          "description": "Agronomy and cane management"
+        },
+        "maintenance": {
+          "title": "Engineering",
+          "description": "Keeping operations running smoothly"
+        },
+        "production": {
+          "title": "Production",
+          "description": "Sugar and ethanol processing"
+        },
+        "logistics": {
+          "title": "Logistics",
+          "description": "Dispatch to markets nationwide"
+        }
+      }
     }
   }
 }
