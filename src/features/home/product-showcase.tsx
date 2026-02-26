@@ -1,0 +1,119 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { LucideBox, LucideDroplets, LucideFlame } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import type { LocalizedRoute } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
+import { useFeaturedProducts } from "@/features/home/hooks";
+
+const productIcons = [LucideBox, LucideDroplets, LucideFlame];
+const productColors = [
+  { bg: "from-primary/5 to-primary-100/30", icon: "from-primary to-primary-400", border: "border-primary/10" },
+  { bg: "from-accent/5 to-accent-100/30", icon: "from-accent to-accent-400", border: "border-accent/10" },
+  { bg: "from-primary-50 to-primary-100/50", icon: "from-primary-400 to-primary-600", border: "border-primary-200/30" },
+];
+
+export function ProductShowcase() {
+  const prefersReducedMotion = useReducedMotion();
+  const t = useTranslations("home");
+  const title = t("products.title");
+  const description = t("products.description");
+  const ctaLabel = t("products.cta");
+  const { data: featuredProducts } = useFeaturedProducts();
+  let rawItems: unknown;
+  try {
+    rawItems = t.raw("products.items");
+  } catch {
+    rawItems = [];
+  }
+  const fallbackItems = Array.isArray(rawItems) && rawItems.length > 0
+    ? (rawItems as string[]).map((item, index) => ({
+        id: `fallback-${index}`,
+        title: item,
+        slug: undefined,
+        description: undefined,
+      }))
+    : [
+        {
+          id: "fallback-1",
+          title: "Premium white sugar (50kg)",
+          slug: undefined,
+          description: "Refined crystals packaged for wholesale and institutional buyers.",
+        },
+        {
+          id: "fallback-2",
+          title: "Retail crystal sugar (5kg)",
+          slug: undefined,
+          description: "Household-friendly packs sourced directly from Ethiopian cane fields.",
+        },
+        {
+          id: "fallback-3",
+          title: "Industrial molasses supply",
+          slug: undefined,
+          description: "Reliable feedstock volumes tailored for ethanol and feed processors.",
+        },
+      ];
+
+  const items =
+    Array.isArray(featuredProducts) && featuredProducts.length > 0
+      ? featuredProducts.slice(0, 3).map((product, index) => ({
+          id: String(product.id ?? index),
+          title: product.name,
+          slug: product.slug,
+          description: product.short_description ?? product.description,
+        }))
+      : fallbackItems;
+
+  return (
+    <SectionContainer className="relative overflow-hidden bg-transparent">
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute -right-40 -top-40 size-80 rounded-full bg-primary/5 blur-3xl" />
+      <div className="pointer-events-none absolute -left-40 bottom-0 size-60 rounded-full bg-accent/5 blur-3xl" />
+
+      <SectionHeading eyebrow={t("products.cta")} title={title} description={description} />
+      <div className="grid gap-8 md:grid-cols-3">
+        {items.map((product, index) => {
+          const Icon = productIcons[index] ?? LucideBox;
+          const colors = productColors[index] ?? productColors[0];
+          return (
+            <motion.div
+              key={product.id}
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+              whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.12 }}
+              className={`hover-lift group relative overflow-hidden rounded-3xl ${colors.border} border bg-gradient-to-br ${colors.bg} p-8 shadow-card`}
+            >
+              {/* Animated gradient strip at top */}
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ animation: "gradient-rotate 3s ease infinite" }} />
+
+              {/* Image placeholder */}
+              <div className="mb-6 aspect-[4/3] overflow-hidden rounded-2xl img-placeholder">
+                <div className="flex h-full items-center justify-center">
+                  <div className={`rounded-2xl bg-gradient-to-br ${colors.icon} p-4 text-white shadow-lg transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110`}>
+                    <Icon size={32} strokeWidth={1.5} />
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">{product.title}</p>
+              {product.description && (
+                <p className="mt-3 text-sm text-muted/80 leading-relaxed line-clamp-3">{product.description}</p>
+              )}
+              <Link
+                href={(product.slug ? `/products/${product.slug}` : "/products") as LocalizedRoute}
+                className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary transition-all group-hover:gap-2"
+              >
+                {ctaLabel}
+                <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </motion.div>
+          );
+        })}
+      </div>
+    </SectionContainer>
+  );
+}

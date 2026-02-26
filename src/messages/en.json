@@ -1,0 +1,231 @@
+{
+  "common": {
+    "brand": "Fincha Sugar Factory",
+    "tagline": "Sweetening progress with sustainable sugar manufacturing",
+    "navigation": {
+      "home": "Home",
+      "about": "About",
+      "products": "Products",
+      "news": "News",
+      "csr": "CSR",
+      "media": "Media",
+      "projects": "Projects",
+      "careers": "Careers",
+      "tenders": "Tenders",
+      "downloads": "Downloads",
+      "contact": "Contact",
+      "faq": "FAQ",
+      "search": "Search",
+      "footer": "Footer",
+      "support": "Support"
+    },
+    "actions": {
+      "view_all": "View all",
+      "apply_now": "Apply now",
+      "learn_more": "Learn more",
+      "submit": "Submit",
+      "search": "Search",
+      "subscribe": "Subscribe",
+      "open_menu": "Open menu",
+      "close_menu": "Close menu"
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe for tender and career alerts.",
+      "placeholder": "Enter your email address",
+      "consent": "By subscribing you agree to receive communications from Fincha Sugar Factory."
+    },
+    "form": {
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone number",
+      "message": "Message",
+      "company": "Company",
+      "subject": "Subject",
+      "success": "Thank you! We have received your submission.",
+      "error": "Something went wrong. Please try again."
+    },
+    "footer": {
+      "rights": "All rights reserved."
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Fincha Sugar Factory",
+      "subtitle": "From fields to future-focused products: discover our sugar, ethanol, and by-products supporting Ethiopia's growth.",
+      "badge": "Sustainable manufacturing",
+      "stats": {
+        "label": "Daily capacity",
+        "caption": "Crushed sugarcane processed daily",
+        "tenure": "Years of excellence",
+        "tenure_caption": "Heritage in sustainable sugar production",
+        "export": "Export ready"
+      },
+      "primaryCta": "Explore our products",
+      "secondaryCta": "Watch our story",
+      "tagline": "Investing in agro-industrial innovation"
+    },
+    "highlights": {
+      "product": "Integrated sugar production",
+      "community": "Community empowerment",
+      "sustainability": "Sustainable innovation",
+      "title": "What sets Fincha apart",
+      "description": "An integrated agro-industrial hub powering Ethiopia's sugar value chain with sustainable innovation."
+    },
+    "who_we_are": {
+      "eyebrow": "Who We Are",
+      "title": "A Legacy of Excellence",
+      "description_1": "Fincha Sugar Factory is a cornerstone of Ethiopia's industrial landscape. Since our establishment, we have continually expanded our capacity to become an integrated agro-industrial powerhouse in the heart of the Fincha Valley.",
+      "description_2": "Our massive operations span thousands of hectares. We are dedicated to creating high-impact products—from premium sugar and fuel-grade ethanol to clean co-generated electricity—while empowering local communities and fostering sustainable agricultural growth.",
+      "bullet_1": "Decades of manufacturing expertise",
+      "bullet_2": "Thousands of local jobs created",
+      "bullet_3": "Commitment to green energy and zero waste",
+      "cta": "Read our story"
+    },
+    "products": {
+      "title": "Featured products",
+      "description": "High-quality sugar products and downstream solutions crafted with precision.",
+      "cta": "All products",
+      "items": [
+        "Premium white sugar (50kg)",
+        "Retail crystal sugar (5kg)",
+        "Industrial molasses supply"
+      ]
+    },
+    "projects": {
+      "title": "Strategic projects",
+      "description": "Major agro-industrial projects boosting national supply chains.",
+      "cta": "Project portfolio",
+      "items": [
+        "Greenfield sugarcane expansion",
+        "Bagasse co-generation upgrade",
+        "Irrigation modernization phase II"
+      ]
+    },
+    "csr": {
+      "title": "CSR & Sustainability",
+      "description": "Programs transforming livelihoods and protecting the environment.",
+      "cta": "Explore CSR programs",
+      "focus": {
+        "title": "Community livelihood empowerment",
+        "description": "Supporting farmers, youth and women with skills training, finance and guaranteed offtake."
+      },
+      "impact": {
+        "title": "Environmental stewardship",
+        "description": "Investing in watershed restoration, renewable energy and climate-smart agriculture."
+      }
+    },
+    "news": {
+      "title": "Latest news & updates",
+      "description": "Stay informed with company announcements and industry insights.",
+      "cta": "More news",
+      "items": [
+        {
+          "title": "Fincha scales ethanol production to support clean fuels",
+          "summary": "New distillation upgrades improve efficiency and reduce emissions across the campus.",
+          "link": "/news"
+        },
+        {
+          "title": "Community outgrower program expands irrigated hectares",
+          "summary": "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
+          "link": "/news"
+        },
+        {
+          "title": "Fincha inaugurates vocational training center",
+          "summary": "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",
+          "link": "/news"
+        }
+      ]
+    },
+    "actions": {
+      "view_all": "View all news"
+    },
+    "media": {
+      "title": "Media spotlight",
+      "description": "Photos and videos capturing our operations and community outreach.",
+      "caption": "Captured at Fincha operations",
+      "items": [
+        { "label": "Cane harvest at dawn", "meta": "Fincha Valley" },
+        { "label": "Ethanol distillation control room", "meta": "Process innovation" },
+        { "label": "Community health outreach", "meta": "CSR Spotlight" },
+        { "label": "Bagasse power turbines", "meta": "Renewable energy" }
+      ]
+    },
+    "partners": {
+      "title": "Partners",
+      "description": "Collaborating with public and private stakeholders across Ethiopia and beyond.",
+      "eyebrow": "Strategic alliances"
+    },
+    "faqs": {
+      "title": "Quick answers",
+      "description": "Popular questions about our products, services, and opportunities."
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Subscribe for tender alerts, career updates, and production insights.",
+      "placeholder": "Enter your email address",
+      "cta": "Subscribe"
+    },
+    "contact": {
+      "title": "Let's build together",
+      "description": "Connect with our team for sales inquiries, partnerships, or community engagements.",
+      "cta": "Contact us"
+    },
+    "innovation": {
+      "eyebrow": "Innovating the sugar belt",
+      "title": "Transforming cane into clean energy and opportunity",
+      "description": "Beyond sugar, Fincha pioneers irrigation technology, co-generation energy and digital traceability to secure supply chains and uplift communities.",
+      "pill": "Innovation",
+      "smart_irrigation": "Precision irrigation & yield analytics",
+      "smart_irrigation_desc": "Satellite-supported monitoring and smart irrigation systems keep every hectare productive while conserving water.",
+      "green_energy": "Green energy from bagasse",
+      "green_energy_desc": "Co-generation turbines convert bagasse into clean electricity, powering operations and contributing to the grid.",
+      "digital_transformation": "Digital supply chain transparency",
+      "digital_transformation_desc": "QR-enabled product tracing and ERP-ready APIs open the door to real-time logistics and cross-border trade."
+    },
+    "metrics": {
+      "eyebrow": "Operations at scale",
+      "title": "Industrial performance in motion",
+      "description": "Fincha Sugar Factory operates one of Ethiopia's largest integrated agro-industrial campuses, turning cane into sugar, ethanol and renewable energy.",
+      "sugar": "Annual sugar output",
+      "sugar_desc": "Metric tons of refined sugar produced after the two-phase expansion.",
+      "ethanol": "Ethanol production",
+      "ethanol_desc": "Liters of fuel-grade ethanol distilled from molasses every year.",
+      "energy": "Co-generated power",
+      "energy_desc": "Megawatts of clean electricity exported from bagasse turbine systems.",
+      "jobs": "Livelihoods supported",
+      "jobs_desc": "Permanent, contract and seasonal roles, plus surrounding community beneficiaries."
+    },
+    "distribution": {
+      "eyebrow": "Global Reach",
+      "title": "Delivering Sweetness Worldwide",
+      "description": "Our strategic location and robust logistics network ensure reliable supply from the Fincha Valley to international markets."
+    },
+    "certifications": {
+      "title": "Certified Excellence",
+      "description": "Adhering to the highest global standards in quality, safety, and environmental stewardship.",
+      "iso_quality": "ISO 9001:2015",
+      "iso_quality_desc": "Quality Management System",
+      "environmental": "ISO 14001:2015",
+      "environmental_desc": "Environmental Management",
+      "safety": "ISO 45001:2018",
+      "safety_desc": "Occupational Health & Safety"
+    },
+    "testimonials": {
+      "eyebrow": "Voices of the Valley",
+      "title": "Impact Beyond Production",
+      "description": "Hear from the partners, employees, and community members who drive our shared success."
+    },
+    "timeline": {
+      "eyebrow": "Our Journey",
+      "title": "Decades of Growth",
+      "description": "From a visionary project to an agro-industrial powerhouse."
+    },
+    "video": {
+      "eyebrow": "Inside Fincha",
+      "title": "A Day in the Life",
+      "description": "Witness the dedication, technology, and scale of our daily operations.",
+      "cta": "Watch the Film"
+    }
+  }
+}

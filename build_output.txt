@@ -1,0 +1,167 @@
+﻿   Γû▓ Next.js 15.5.12
+   - Experiments (use with caution):
+     Γ¿» reactCompiler
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 14.2s
+   Linting and checking validity of types ...
+node.exe : 
+At C:\Program 
+Files\nodejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (:St  
+  ring) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+Failed to compile.
+
+./src/components/layout/foo
+ter.tsx
+197:14  Warning: 
+Classnames 'px-6, py-6' 
+could be replaced by the 
+'p-6' shorthand!  tailwindc
+ss/enforces-shorthand
+
+./src/components/layout/nav
+igation.tsx
+165:15  Warning: 
+Classnames 'left-0, 
+right-0' could be replaced 
+by the 'inset-x-0' 
+shorthand!  tailwindcss/enf
+orces-shorthand
+168:19  Warning: 
+Classnames 'px-4, py-4' 
+could be replaced by the 
+'p-4' shorthand!  tailwindc
+ss/enforces-shorthand
+
+./src/features/home/hero.ts
+x
+197:12  Warning: 
+Classnames 'left-0, 
+right-0' could be replaced 
+by the 'inset-x-0' 
+shorthand!  tailwindcss/enf
+orces-shorthand
+
+./src/features/home/innovat
+ion-showcase.tsx
+70:20  Warning: Classnames 
+'left-0, right-0' could be 
+replaced by the 
+'inset-x-0' shorthand!  tai
+lwindcss/enforces-shorthand
+
+./src/features/home/latest-
+news.tsx
+20:33  Warning: '_t' is 
+defined but never used.  @t
+ypescript-eslint/no-unused-
+vars
+
+./src/features/home/media-g
+allery.tsx
+21:35  Warning: '_t' is 
+defined but never used.  @t
+ypescript-eslint/no-unused-
+vars
+
+./src/features/home/operati
+onal-metrics.tsx
+29:7  Error: Error: 
+Calling setState 
+synchronously within an 
+effect can trigger 
+cascading renders
+
+Effects are intended to 
+synchronize state between 
+React and external systems 
+such as manually updating 
+the DOM, state management 
+libraries, or other 
+platform APIs. In general, 
+the body of an effect 
+should do one or both of 
+the following:
+* Update external systems 
+with the latest state from 
+React.
+* Subscribe for updates 
+from some external system, 
+calling setState in a 
+callback function when 
+external state changes.
+
+Calling setState 
+synchronously within an 
+effect body causes 
+cascading renders that can 
+hurt performance, and is 
+not recommended. (https://r
+eact.dev/learn/you-might-no
+t-need-an-effect).
+
+C:\Users\tekad\OneDrive\Doc
+uments\git\Fincha\frontend\
+src\features\home\operation
+al-metrics.tsx:29:7
+  27 |   useEffect(() => {
+  28 |     if 
+(prefersReducedMotion) {
+> 29 |       
+setCount(value);
+     |       ^^^^^^^^ 
+Avoid calling setState() 
+directly within an effect
+  30 |       return;
+  31 |     }
+  32 |     const duration 
+= 2000;  react-hooks/set-st
+ate-in-effect
+106:20  Warning: 
+Classnames 'left-0, 
+right-0' could be replaced 
+by the 'inset-x-0' 
+shorthand!  tailwindcss/enf
+orces-shorthand
+
+./src/features/home/product
+-showcase.tsx
+21:38  Warning: '_t' is 
+defined but never used.  @t
+ypescript-eslint/no-unused-
+vars
+57:20  Warning: Classnames 
+'left-0, right-0' could be 
+replaced by the 
+'inset-x-0' shorthand!  tai
+lwindcss/enforces-shorthand
+
+./src/features/home/project
+s-carousel.tsx
+22:39  Warning: '_t' is 
+defined but never used.  @t
+ypescript-eslint/no-unused-
+vars
+53:20  Warning: Classnames 
+'top-6, bottom-6' could be 
+replaced by the 
+'inset-y-6' shorthand!  tai
+lwindcss/enforces-shorthand
+
+info  - Need to disable 
+some ESLint rules? Learn 
+more here: https://nextjs.o
+rg/docs/app/api-reference/c
+onfig/eslint#disabling-rule
+s

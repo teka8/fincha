@@ -1,0 +1,55 @@
+﻿   Γû▓ Next.js 15.5.12
+   - Experiments (use with caution):
+     Γ¿» reactCompiler
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 15.2s
+   Linting and checking validity of types ...
+
+./src/components/layout/footer.tsx
+197:14  Warning: Classnames 'px-6, py-6' could be replaced by the 'p-6' shorthand!  tailwindcss/enforces-shorthand
+
+./src/components/layout/navigation.tsx
+165:15  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+168:19  Warning: Classnames 'px-4, py-4' could be replaced by the 'p-4' shorthand!  tailwindcss/enforces-shorthand
+
+./src/features/home/hero.tsx
+197:12  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+
+./src/features/home/innovation-showcase.tsx
+70:20  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+
+./src/features/home/operational-metrics.tsx
+104:20  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+
+./src/features/home/product-showcase.tsx
+53:20  Warning: Classnames 'left-0, right-0' could be replaced by the 'inset-x-0' shorthand!  tailwindcss/enforces-shorthand
+
+./src/features/home/projects-carousel.tsx
+49:20  Warning: Classnames 'top-6, bottom-6' could be replaced by the 'inset-y-6' shorthand!  tailwindcss/enforces-shorthand
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ Γ£ô Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+Γöî Γùï /                                      168 B         107 kB
+Γö£ Γùï /_not-found                            992 B         103 kB
+Γöö ╞Æ /[locale]                            16.3 kB         178 kB
++ First Load JS shared by all             102 kB
+  Γö£ chunks/255-ebd51be49873d76c.js         46 kB
+  Γö£ chunks/4bd1b696-c023c6e3521b1417.js  54.2 kB
+  Γöö other shared chunks (total)          1.99 kB
+
+
+╞Æ Middleware                             92.6 kB
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+
