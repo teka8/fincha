@@ -19,6 +19,14 @@ export const pathnames = {
     en: "/products/[slug]",
     am: "/ምርቶች/[slug]",
   },
+  "/announcement": {
+    en: "/announcement",
+    am: "/ማስታወቂያዎች",
+  },
+  "/announcement/[id]": {
+    en: "/announcement/[id]",
+    am: "/ማስታወቂያዎች/[id]",
+  },
   "/news": {
     en: "/news",
     am: "/ዜና",

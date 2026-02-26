@@ -18,7 +18,12 @@
       "search": "ፈልግ",
       "footer": "ግርጌ",
       "support": "ድጋፍ",
-      "events": "ዝግጅቶች"
+      "events": "ዝግጅቶች",
+      "event": "ዝግጅቶች",
+      "announcement": "ማስታወቂያዎች",
+      "company": "ድርጅት",
+      "operations": "ሥራዎች",
+      "latest": "የቅርብ ጊዜ"
     },
     "actions": {
       "view_all": "ሁሉንም ይመልከቱ",

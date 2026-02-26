@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { LucideQuote, LucideChevronLeft, LucideChevronRight } from "lucide-react";
+import { LucideQuote, LucideChevronLeft, LucideChevronRight, LucideStar } from "lucide-react";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 
 const testimonials = [
@@ -35,7 +35,6 @@ export function TestimonialsSlider() {
   const prefersReducedMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto-advance
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -47,70 +46,96 @@ export function TestimonialsSlider() {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <SectionContainer className="bg-primary-900 text-white relative overflow-hidden">
-      {/* Abstract Background Elements */}
-      <div className="absolute -left-40 -top-40 size-96 bg-primary/20 rounded-full blur-[100px]" />
-      <div className="absolute -right-40 -bottom-40 size-96 bg-accent/20 rounded-full blur-[100px]" />
+    <SectionContainer className="bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden py-8 md:py-12">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-10 left-10 w-32 h-32 border border-white/20 rounded-full" />
+        <div className="absolute bottom-20 right-20 w-48 h-48 border border-white/10 rounded-full" />
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 border border-white/10 rounded-full" />
+      </div>
+      
+      {/* Abstract Glow */}
+      <div className="absolute -left-10 -top-10 size-40 bg-primary-500/20 rounded-full blur-[60px]" />
+      <div className="absolute -right-10 -bottom-10 size-40 bg-accent/20 rounded-full blur-[60px]" />
 
       <SectionHeading 
         eyebrow={t("eyebrow")}
         title={t("title")}
         description={t("description")}
         align="center"
-        className="!text-white mb-16 relative z-10"
+        className="!text-white mb-2 relative z-10"
       />
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        <LucideQuote size={120} className="absolute -top-10 -left-10 text-white/5 rotate-180 pointer-events-none" />
+      <div className="relative z-10 px-12">
+        {/* Quote Icon */}
+        <div className="hidden md:block absolute left-4 top-0">
+          <LucideQuote size={48} className="text-primary-300/30" />
+        </div>
         
-        <div className="relative h-[300px] md:h-[250px]">
+        <div className="relative min-h-[100px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={prefersReducedMotion ? undefined : { opacity: 0, x: 50, filter: "blur(4px)" }}
-              animate={prefersReducedMotion ? undefined : { opacity: 1, x: 0, filter: "blur(0px)" }}
-              exit={prefersReducedMotion ? undefined : { opacity: 0, x: -50, filter: "blur(4px)" }}
-              transition={{ duration: 0.5, ease: "anticipate" }}
-              className="absolute inset-0 flex flex-col items-center text-center px-4 md:px-12"
+              initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+              animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+              exit={prefersReducedMotion ? undefined : { opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="w-full flex flex-col items-center text-center gap-4"
             >
-              <p className="text-xl md:text-3xl font-medium leading-relaxed text-white mb-8">
-                &quot;{testimonials[currentIndex].quote}&quot;
-              </p>
+              {/* Stars */}
+              <div className="flex gap-1 mb-1 md:hidden">
+                {[...Array(5)].map((_, i) => (
+                  <LucideStar key={i} size={12} className="fill-accent text-accent" />
+                ))}
+              </div>
+                
+              <div className="max-w-2xl">
+                <blockquote className="text-sm md:text-lg font-light text-white/95 leading-relaxed">
+                  &quot;{testimonials[currentIndex].quote}&quot;
+                </blockquote>
+              </div>
               
-              <div className="flex items-center gap-4 mt-auto">
-                 <div className="size-12 rounded-full bg-slate-800 overflow-hidden relative border-2 border-white/10 shrink-0">
-                    <div className="size-full flex items-center justify-center text-slate-500 font-bold bg-slate-800">
-                      {testimonials[currentIndex].author.charAt(0)}
-                    </div>
-                 </div>
-                 <div className="text-left">
-                   <p className="font-bold text-white tracking-wide">{testimonials[currentIndex].author}</p>
-                   <p className="text-xs text-primary font-semibold uppercase tracking-widest">{testimonials[currentIndex].role}</p>
-                 </div>
+              <div className="flex items-center gap-3 mt-2">
+                <div className="size-10 rounded-full bg-gradient-to-br from-primary-400 to-accent flex items-center justify-center text-white font-bold text-sm ring-3 ring-white/10">
+                  {testimonials[currentIndex].author.charAt(0)}
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-white text-sm">{testimonials[currentIndex].author}</p>
+                  <p className="text-xs text-primary-200 font-medium">{testimonials[currentIndex].role}</p>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-between md:justify-center gap-8 mt-12 px-4">
-           <button onClick={prev} className="size-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all active:scale-95" aria-label="Previous testimonial">
-             <LucideChevronLeft size={24} />
+        <div className="flex items-center justify-between mt-4 px-4">
+           <button 
+            onClick={prev} 
+            className="size-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/60 hover:bg-white/10 hover:text-white hover:border-white/40 transition-all" 
+            aria-label="Previous testimonial"
+          >
+             <LucideChevronLeft size={20} />
            </button>
            
-           <div className="flex gap-2">
+           <div className="flex gap-1.5">
              {testimonials.map((_, i) => (
                <button 
                 key={i} 
                 onClick={() => setCurrentIndex(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-10 bg-primary shadow-glow-sm' : 'w-2 bg-white/20 hover:bg-white/40'}`}
+                className={`rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-accent' : 'w-1.5 bg-white/30 hover:bg-white/50'}`}
+                style={{ height: "6px" }}
                 aria-label={`Go to testimonial ${i + 1}`}
                />
              ))}
            </div>
 
-           <button onClick={next} className="size-12 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all active:scale-95" aria-label="Next testimonial">
-             <LucideChevronRight size={24} />
+           <button 
+            onClick={next} 
+            className="size-10 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-white/60 hover:bg-white/10 hover:text-white hover:border-white/40 transition-all" 
+            aria-label="Next testimonial"
+          >
+             <LucideChevronRight size={20} />
            </button>
         </div>
       </div>
