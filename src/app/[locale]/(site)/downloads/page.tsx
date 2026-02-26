@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideFileText, LucideDownload, LucideSearch, LucideFileArchive, LucideChevronRight } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getResources, getDownloadCategories } from "@/lib/cms";
 
 type DownloadsPageProps = {
@@ -30,17 +31,12 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Downloads Hero */}
-      <section className="bg-slate-50 pt-32 pb-16">
-        <div className="max-w-layout mx-auto px-8">
-           <SectionHeading 
-              eyebrow="Download Center" 
-              title="Resources & Documents" 
-              description="A centralized hub for all public records, policy documents, and corporate media kits."
-              align="left"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Resources & Documents"
+        subtitle="A centralized hub for all public records, policy documents, and corporate media kits."
+        image="/images/4.jpg"
+        badge="Download Center"
+      />
 
       {/* Categories & Search */}
       <SectionContainer className="pt-0">

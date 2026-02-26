@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucidePhone, LucideMail, LucideMapPin, LucideClock, LucideGithub, LucideLinkedin, LucideFacebook } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 
 type ContactPageProps = {
   params: Promise<{
@@ -26,17 +27,12 @@ export default async function ContactPage({ params }: ContactPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Contact Hero */}
-      <section className="bg-slate-50 pt-32 pb-16">
-        <div className="max-w-layout mx-auto px-8">
-           <SectionHeading 
-              eyebrow="Get in touch" 
-              title="Let&apos;s Start a Conversation" 
-              description="Whether you&apos;re a prospective partner, a wholesaler, or a member of the community, we&apos;re here to listen and collaborate."
-              align="left"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Let's Start a Conversation"
+        subtitle="Whether you're a prospective partner, a wholesaler, or a member of the community, we're here to listen and collaborate."
+        image="/images/4.jpg"
+        badge="Get in touch"
+      />
 
       {/* Main Contact Section */}
       <SectionContainer className="pt-0">

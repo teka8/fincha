@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideVideo, LucideImage, LucideFileText, LucideDownload } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getMedia } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
@@ -29,19 +30,12 @@ export default async function MediaPage({ params }: MediaPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Media Hero */}
-      <section className="bg-slate-900 overflow-hidden relative py-24">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-950 to-black z-10" />
-        <div className="relative z-20 max-w-layout mx-auto px-8">
-           <SectionHeading 
-              eyebrow="Media Library" 
-              title="Through the Lens" 
-              description="Visual stories and documentaries capturing the essence of Fincha&apos;s industrial journey and social impact."
-              align="left"
-              className="!text-white"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Through the Lens"
+        subtitle="Visual stories and documentaries capturing the essence of Fincha's industrial journey and social impact."
+        image="/images/4.jpg"
+        badge="Media Library"
+      />
 
       {/* Gallery Section */}
       <SectionContainer className="bg-white">

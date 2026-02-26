@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideBox, LucideDroplets, LucideFlame, LucideArrowRight, LucideIcon } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getProducts } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
@@ -38,18 +39,12 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Products Hero */}
-      <section className="relative py-24 bg-slate-50 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50/30 opacity-60" />
-        <div className="relative max-w-layout mx-auto px-8">
-           <SectionHeading 
-              eyebrow="Our Products" 
-              title="Sweetening Progress, Powering Industry" 
-              description="From premium refined sugar to renewable energy, Fincha's integrated output supports households and industries across the nation."
-              align="left"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Sweetening Progress, Powering Industry"
+        subtitle="From premium refined sugar to renewable energy, Fincha's integrated output supports households and industries across the nation."
+        image="/images/sweet sugar.jpg"
+        badge="Our Products"
+      />
 
       {/* Products Grid */}
       <SectionContainer className="bg-white">

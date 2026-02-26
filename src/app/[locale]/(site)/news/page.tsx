@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { NewsListView } from "@/features/news/news-list-view";
 
 type NewsPageProps = {
@@ -26,17 +27,12 @@ export default async function NewsPage({ params }: NewsPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Page Header */}
-      <section className="bg-white pt-24 pb-12">
-        <div className="max-w-layout mx-auto px-8">
-          <SectionHeading
-            eyebrow="News & Media"
-            title="Voice of the Valley"
-            description="Discover the latest stories on industrial expansion, community impact, and agricultural innovation at Fincha."
-            align="left"
-          />
-        </div>
-      </section>
+      <PageHero
+        title="Voice of the Valley"
+        subtitle="Discover the latest stories on industrial expansion, community impact, and agricultural innovation at Fincha."
+        image="/images/hero-factory.jpg"
+        badge="News & Media"
+      />
 
       {/* Interactive News List — featured article + sidebar + pagination */}
       <SectionContainer className="pt-4">
