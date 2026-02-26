@@ -113,14 +113,13 @@ export default async function HomePage({ params }: HomePageProps) {
           },
         ]}
       />
+      <VideoFeaturette />
 
       <section className="relative bg-white">
         <LatestNews />
       </section>
 
       <DistributionMap />
-
-      <VideoFeaturette />
 
       <section className="relative border-y border-slate-100 bg-slate-50/30">
         <MediaGallery />

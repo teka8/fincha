@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideGavel, LucideClock, LucideFileText, LucideInfo, LucideArrowRight } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getTenders } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 
@@ -30,19 +31,12 @@ export default async function TendersPage({ params }: TendersPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Tenders Hero */}
-      <section className="bg-slate-900 pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/40 via-transparent to-transparent z-10" />
-        <div className="max-w-layout mx-auto px-8 relative z-20">
-           <SectionHeading 
-              eyebrow="Procurement" 
-              title="Business Opportunities" 
-              description="Review our latest invitations for bids and supply chain opportunities. We value transparency and excellence in all our partnerships."
-              align="left"
-              className="!text-white"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Business Opportunities"
+        subtitle="Review our latest invitations for bids and supply chain opportunities. We value transparency and excellence in all our partnerships."
+        image="/images/hero-factory.jpg"
+        badge="Procurement"
+      />
 
       {/* Tenders Selection */}
       <SectionContainer className="bg-white">

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 // Removed unused motion import
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getLeaders } from "@/lib/cms";
 import Image from "next/image";
 
@@ -35,24 +36,12 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* About Hero */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden bg-primary-900 flex items-center justify-center">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/40 to-primary-900 z-10" />
-          {/* Placeholder for Hero Image - In a real app we'd use a real asset */}
-          <div className="size-full bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center" />
-        </div>
-        
-        <div className="relative z-20 max-w-layout mx-auto px-8 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-            {t("navigation.about")}
-          </h1>
-          <p className="text-xl text-primary-100/80 max-w-2xl mx-auto leading-relaxed">
-            Fincha Sugar Factory is a cornerstone of Ethiopia&apos;s industrial landscape, 
-            driving progress through sustainable sugar production and innovation.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="Sweetening the Nation Since 1998"
+        subtitle="Experience the history, scale, and dedication behind one of Africa's most integrated sugar production complexes."
+        image="/images/hero-factory.jpg"
+        badge="Our Heritage"
+      />
 
       <AboutStats />
 

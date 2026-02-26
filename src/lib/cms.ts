@@ -122,7 +122,17 @@ export async function getProductById(locale: string, id: string): Promise<Produc
 }
 
 export async function getPosts(locale: string, postType = "news", params?: URLSearchParams): Promise<PaginatedResponse<Post>> {
-  const query = params && params.size > 0 ? `?${params.toString()}` : "";
+  const cleanParams = new URLSearchParams();
+  if (params) {
+    params.forEach((value, key) => {
+      // Skip locale as it's in the headers, and skip empty values
+      if (key !== "locale" && value.trim() !== "") {
+        cleanParams.append(key, value);
+      }
+    });
+  }
+
+  const query = cleanParams.size > 0 ? `?${cleanParams.toString()}` : "";
   return fetchJson<PaginatedResponse<Post>>(`/posts/${postType}${query}`, {
     headers: { "Accept-Language": locale },
   });
@@ -140,14 +150,22 @@ export async function getLatestPosts(locale: string, limit = 4): Promise<Post[]>
 
 export async function getPostById(locale: string, postType: string, id: string): Promise<Post | null> {
   try {
-    const data = await fetchJson<{ data: Post }>(`/posts/${postType}/${id}`, {
+    const data = await fetchJson<{ data: Post } | Post>(`/posts/${postType}/${id}`, {
       headers: { "Accept-Language": locale },
     });
-    return data.data;
+    return (data as { data: Post }).data ?? (data as Post) ?? null;
   } catch (error) {
     console.error("Failed to load post:", error);
     return null;
   }
+}
+
+export async function getAnnouncements(locale: string, params?: URLSearchParams) {
+  return getPosts(locale, "announcement", params);
+}
+
+export async function getAnnouncementById(locale: string, id: string) {
+  return getPostById(locale, "announcement", id);
 }
 
 export async function getEvents(locale: string, params?: URLSearchParams): Promise<PaginatedResponse<Event>> {
