@@ -73,7 +73,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <ProjectsCarousel />
       </section>
 
-      <section className="relative border-y border-primary/5 bg-primary-50/10">
+      <section className="relative border-y border-primary/5 bg-[#eeeeee]">
         <CSRSpotlight
           title={t("csr.title")}
           description={t("csr.description")}

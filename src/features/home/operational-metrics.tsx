@@ -55,7 +55,7 @@ export function OperationalMetrics({ eyebrow, title, description, metrics, local
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[#f0f9ea]">
+    <section className="relative overflow-hidden py-24 bg-[#ffffff]">
       {/* Animated subtle shapes for light theme */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
