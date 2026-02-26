@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideMessageCircle, LucideHelpCircle, LucideChevronDown, LucideArrowRight } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getFaqs } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 
@@ -29,17 +30,12 @@ export default async function FAQPage({ params }: FAQPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* FAQ Hero */}
-      <section className="bg-slate-50 pt-32 pb-16">
-        <div className="max-w-layout mx-auto px-8">
-           <SectionHeading 
-              eyebrow="Support Center" 
-              title="Frequently Asked Questions" 
-              description="Quick answers to our most common inquiries regarding products, wholesale, and community relations."
-              align="left"
-           />
-        </div>
-      </section>
+      <PageHero
+        title="Frequently Asked Questions"
+        subtitle="Quick answers to our most common inquiries regarding products, wholesale, and community relations."
+        image="/images/5.jpg"
+        badge="Support Center"
+      />
 
       {/* Accordion Section */}
       <SectionContainer className="pt-0 bg-white">

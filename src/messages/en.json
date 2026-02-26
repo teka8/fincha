@@ -18,7 +18,12 @@
       "search": "Search",
       "footer": "Footer",
       "support": "Support",
-      "events": "Events"
+      "events": "Events",
+      "event": "Events",
+      "announcement": "Announcements",
+      "company": "Company",
+      "operations": "Operations",
+      "latest": "Latest Updates"
     },
     "actions": {
       "view_all": "View all",

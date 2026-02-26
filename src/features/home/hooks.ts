@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocaleContext } from "@/providers/providers";
 import type { Post, Product, ProjectSummary } from "@/types/cms";
 
-export type NewsPreview = Pick<Post, "title" | "slug" | "excerpt" | "created_at">;
+export type NewsPreview = Pick<Post, "id" | "title" | "slug" | "excerpt" | "created_at" | "image" | "featured_image" | "category" | "summary">;
 
 export function useLatestNews(limit = 3) {
   const { locale } = useLocaleContext();
@@ -21,11 +21,17 @@ export function useLatestNews(limit = 3) {
         : Array.isArray((json as { data?: Post[] }).data)
           ? (json as { data: Post[] }).data
           : [];
+
       return posts.map((post) => ({
-        title: post.title,
-        slug: post.slug,
+        id: post.id,
+        title: String(post.title || ""),
+        slug: String(post.slug || ""),
         excerpt: post.excerpt,
+        summary: post.summary,
         created_at: post.created_at,
+        image: post.image,
+        featured_image: post.featured_image,
+        category: post.category,
       }));
     },
     staleTime: 1000 * 60 * 5,

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideSprout, LucideZap, LucideDroplets, LucideCheckCircle2 } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getProjects } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
@@ -31,26 +32,12 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 
   return (
     <div className="flex flex-col">
-      {/* Projects Hero */}
-      <section className="relative h-[50vh] min-h-[400px] overflow-hidden bg-primary-950 flex items-center">
-        <div className="absolute inset-0 bg-[url('/images/project-banner.jpg')] bg-cover bg-center opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-950 via-primary-950/80 to-transparent" />
-        
-        <div className="relative max-w-layout mx-auto px-8 w-full">
-           <div className="max-w-2xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm border border-accent/30">
-                Strategic Portfolio
-              </span>
-              <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
-                Engineering <span className="text-primary italic">Sustainable</span> Change
-              </h1>
-              <p className="text-xl text-primary-100/70 leading-relaxed">
-                From precision irrigation to carbon-neutral power, our projects address 
-                the dual challenges of industrial productivity and environmental care.
-              </p>
-           </div>
-        </div>
-      </section>
+      <PageHero
+        title="Engineering Sustainable Change"
+        subtitle="From precision irrigation to carbon-neutral power, our projects address the dual challenges of industrial productivity and environmental care."
+        image="/images/project-banner.jpg" // Using actual image referenced in original code
+        badge="Strategic Portfolio"
+      />
 
       {/* Projects Portfolio */}
       <SectionContainer className="bg-white">
