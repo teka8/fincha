@@ -19,18 +19,21 @@ export function LatestNews() {
   
   const fallbackItems: NewsPreview[] = [
     {
+      id: 1,
       title: "Fincha scales ethanol production to support clean fuels",
       slug: "fincha-ethanol-upgrade",
       excerpt: "New distillation upgrades improve efficiency and reduce emissions across the campus.",
       created_at: "2026-02-01",
     },
     {
+      id: 2,
       title: "Community outgrower program expands irrigated hectares",
       slug: "community-outgrower-expansion",
       excerpt: "Smallholder farmers gain access to agronomy training and guaranteed offtake agreements.",
       created_at: "2026-01-18",
     },
     {
+      id: 3,
       title: "Fincha inaugurates vocational training center",
       slug: "vocational-training-center",
       excerpt: "Technical apprenticeships prepare youth for skilled roles in agro-industrial operations.",

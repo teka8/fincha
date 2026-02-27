@@ -8,7 +8,7 @@ import {
     LucideX, LucideBell, LucideCheckCircle2
 } from "lucide-react";
 import { useAnnouncementsList } from "@/hooks/use-announcements-list";
-import { Link } from "@/i18n/routing";
+import { Link, type LocalizedRoute } from "@/i18n/routing";
 import type { Announcement } from "@/types/cms";
 import { clsx } from "clsx";
 
@@ -38,7 +38,7 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
             transition={{ duration: 0.4, delay: index * 0.05 }}
         >
             <Link
-                href={{ pathname: "/announcement/[id]", params: { id: String(item.id) } } as any}
+                href={`/announcement/${item.id}` as LocalizedRoute}
                 className="group relative flex flex-col md:flex-row gap-8 p-8 bg-white rounded-[2.5rem] border border-slate-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
             >
                 {/* Visual Date Element */}
@@ -168,7 +168,7 @@ export function AnnouncementListView() {
 
                 {searchTerm && (
                     <p className="text-xs font-bold text-slate-300 italic">
-                        Filtering for: <span className="text-primary">"{searchTerm}"</span>
+                        Filtering for: <span className="text-primary">&quot;{searchTerm}&quot;</span>
                     </p>
                 )}
             </div>
@@ -189,7 +189,7 @@ export function AnnouncementListView() {
                         <LucideMegaphone size={64} strokeWidth={1} className="mx-auto mb-8 text-slate-200" />
                         <h3 className="text-2xl font-black text-slate-900 mb-2">Announcement Unreachable</h3>
                         <p className="text-slate-400 font-medium max-w-sm mx-auto mb-10 leading-relaxed">
-                            We're having trouble connecting to the archive server. Please verify your connection.
+                            We&apos;re having trouble connecting to the archive server. Please verify your connection.
                         </p>
                         <button
                             onClick={() => void refetch()}

@@ -222,7 +222,7 @@ export function Navigation({ brandName }: NavigationProps) {
                         : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                         }`}
                     >
-                      {tNav(item.key as any)}
+                      {tNav(item.key as StaticNavLinkKey)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
@@ -254,7 +254,7 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                                     }`}
                                 >
-                                  {child.label ?? tNav(child.key as any)}
+                                  {child.label ?? tNav(child.key as StaticNavLinkKey)}
                                 </Link>
                               );
                             })}
@@ -283,7 +283,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="relative z-10">{tNav(item.key as any)}</span>
+                  <span className="relative z-10">{tNav(item.key as StaticNavLinkKey)}</span>
                 </Link>
               );
             })}

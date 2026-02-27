@@ -84,7 +84,7 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="absolute right-0 mt-3 min-w-[170px] origin-top-right rounded-3xl border border-slate-100 bg-white p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-50 shadow-glow-sm"
+            className="absolute right-0 mt-3 min-w-[170px] origin-top-right rounded-3xl border border-slate-100 bg-white p-2.5 shadow-glow-sm z-50"
           >
             <div className="space-y-1">
               {locales.map((languageCode) => {
