@@ -28,7 +28,7 @@ export function FAQsPreview() {
   const t = useTranslations("home");
 
   return (
-    <SectionContainer className="relative overflow-hidden bg-surface">
+    <SectionContainer className="relative overflow-hidden bg-white dark:bg-slate-900/50">
       {/* Background decoration */}
       <div className="pointer-events-none absolute -right-40 top-20 size-80 rounded-full bg-primary/5 blur-[100px]" />
 
@@ -50,25 +50,23 @@ export function FAQsPreview() {
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className={`group overflow-hidden rounded-2xl border transition-all duration-300 ${
-                  isOpen
-                    ? "border-primary/20 bg-white shadow-card"
-                    : "border-slate-100 bg-white hover:border-primary/10 hover:shadow-sm"
-                }`}
+                className={`group overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen
+                  ? "border-primary/20 bg-white dark:bg-slate-900 shadow-card"
+                  : "border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-primary/10 hover:shadow-sm"
+                  }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors"
                 >
                   <div className="flex items-center gap-4">
-                    <span className={`flex size-8 items-center justify-center rounded-lg text-xs font-bold transition-colors ${
-                      isOpen
-                        ? "bg-primary text-white"
-                        : "bg-primary/10 text-primary"
-                    }`}>
+                    <span className={`flex size-8 items-center justify-center rounded-lg text-xs font-bold transition-colors ${isOpen
+                      ? "bg-primary text-white"
+                      : "bg-primary/10 text-primary"
+                      }`}>
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <p className={`text-base font-semibold transition-colors ${isOpen ? "text-primary" : "text-slate-900"}`}>
+                    <p className={`text-base font-semibold transition-colors ${isOpen ? "text-primary" : "text-slate-900 dark:text-white"}`}>
                       {faq.question}
                     </p>
                   </div>
@@ -86,8 +84,8 @@ export function FAQsPreview() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="border-t border-slate-100 px-5 pb-5 pt-4">
-                        <p className="pl-12 text-sm leading-relaxed text-muted">{faq.answer}</p>
+                      <div className="border-t border-slate-100 dark:border-slate-800 px-5 pb-5 pt-4">
+                        <p className="pl-12 text-sm leading-relaxed text-slate-500 dark:text-slate-400">{faq.answer}</p>
                       </div>
                     </motion.div>
                   )}

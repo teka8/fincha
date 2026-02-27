@@ -136,12 +136,12 @@ export function EventListView() {
             {/* ── View toggle + month nav ─────────────────────────────────────── */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 {/* Toggle */}
-                <div className="inline-flex p-1 bg-slate-100 rounded-2xl">
+                <div className="inline-flex p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl">
                     <button
                         onClick={() => setView("calendar")}
                         className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all ${view === "calendar"
-                                ? "bg-white text-primary shadow-sm"
-                                : "text-slate-500 hover:text-slate-700"
+                            ? "bg-white dark:bg-slate-700 text-primary shadow-sm"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                             }`}
                     >
                         <LucideCalendar size={15} />
@@ -150,8 +150,8 @@ export function EventListView() {
                     <button
                         onClick={() => setView("list")}
                         className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all ${view === "list"
-                                ? "bg-white text-primary shadow-sm"
-                                : "text-slate-500 hover:text-slate-700"
+                            ? "bg-white dark:bg-slate-700 text-primary shadow-sm"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                             }`}
                     >
                         <LucideList size={15} />
@@ -164,20 +164,20 @@ export function EventListView() {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={() => setCalMonth((m) => new Date(m.getFullYear(), m.getMonth() - 1, 1))}
-                            className="p-2 rounded-xl bg-white border border-slate-100 hover:bg-slate-50 transition shadow-sm"
+                            className="p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm"
                             aria-label="Previous month"
                         >
                             <LucideChevronLeft size={18} />
                         </button>
                         <button
                             onClick={() => setCalMonth(new Date())}
-                            className="px-4 py-2 rounded-xl bg-white border border-slate-100 font-bold text-sm hover:bg-slate-50 transition shadow-sm"
+                            className="px-4 py-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm"
                         >
                             Today
                         </button>
                         <button
                             onClick={() => setCalMonth((m) => new Date(m.getFullYear(), m.getMonth() + 1, 1))}
-                            className="p-2 rounded-xl bg-white border border-slate-100 hover:bg-slate-50 transition shadow-sm"
+                            className="p-2 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm"
                             aria-label="Next month"
                         >
                             <LucideChevronRight size={18} />
@@ -204,7 +204,7 @@ export function EventListView() {
                     {meta && meta.last_page > 1 && (
                         <div className="flex items-center justify-center gap-4 pt-6 border-t border-slate-100">
                             <button onClick={handlePrev} disabled={page === 1}
-                                className="p-3 rounded-2xl bg-white border border-slate-100 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 transition shadow-sm group"
+                                className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm group"
                                 aria-label="Previous page">
                                 <LucideArrowLeft size={18} className="group-hover:-translate-x-0.5 transition-transform" />
                             </button>
@@ -212,7 +212,7 @@ export function EventListView() {
                                 Page {page} of {meta.last_page}
                             </span>
                             <button onClick={handleNext} disabled={page >= meta.last_page}
-                                className="p-3 rounded-2xl bg-white border border-slate-100 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 transition shadow-sm group"
+                                className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-700 transition shadow-sm group"
                                 aria-label="Next page">
                                 <LucideArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
                             </button>
@@ -225,10 +225,10 @@ export function EventListView() {
             {view === "calendar" && (
                 <div className="space-y-6">
                     {/* Calendar grid */}
-                    <div className="bg-white p-4 sm:p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                    <div className="bg-white dark:bg-slate-800 p-4 sm:p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700">
                         {/* Month label */}
                         <div className="flex items-center justify-center mb-8">
-                            <h3 className="text-xl sm:text-2xl font-black text-slate-900">
+                            <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                                 {formatMonthYear(calMonth)}
                             </h3>
                         </div>
@@ -258,13 +258,13 @@ export function EventListView() {
                                             type="button"
                                             onClick={() => setSelectedDate(new Date(d))}
                                             className={`min-h-[56px] sm:min-h-[120px] rounded-xl sm:rounded-2xl border p-1 sm:p-2 text-left transition-all ${inMonth
-                                                    ? "bg-white border-slate-100 hover:border-primary/40"
-                                                    : "bg-slate-50/60 border-transparent text-slate-300"
+                                                ? "bg-white dark:bg-slate-800/50 border-slate-100 dark:border-slate-700 hover:border-primary/40"
+                                                : "bg-slate-50/60 dark:bg-slate-900/30 border-transparent text-slate-300 dark:text-slate-600"
                                                 } ${isToday ? "ring-2 ring-primary ring-inset" : ""} ${isSelected ? "border-primary bg-primary/5" : ""
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between mb-1">
-                                                <span className={`text-xs sm:text-sm font-bold ${inMonth ? "text-slate-900" : "text-slate-300"}`}>
+                                                <span className={`text-xs sm:text-sm font-bold ${inMonth ? "text-slate-900 dark:text-white" : "text-slate-300 dark:text-slate-600"}`}>
                                                     {d.getDate()}
                                                 </span>
                                                 {dayEvents.length > 0 && (
@@ -303,9 +303,9 @@ export function EventListView() {
                     </div>
 
                     {/* Selected day events panel */}
-                    <div className="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700">
                         <div className="flex items-center justify-between mb-6">
-                            <h3 className="text-lg font-black text-slate-900">
+                            <h3 className="text-lg font-black text-slate-900 dark:text-white">
                                 Events on {formatFullDate(selectedDate)}
                             </h3>
                             {selectedDayEvents.length > 0 && (

@@ -11,9 +11,9 @@ import { useFeaturedProducts } from "@/features/home/hooks";
 
 const productIcons = [LucideBox, LucideDroplets, LucideFlame];
 const productColors = [
-  { bg: "from-primary/5 to-primary-100/30", icon: "from-primary to-primary-400", border: "border-primary/10" },
-  { bg: "from-accent/5 to-accent-100/30", icon: "from-accent to-accent-400", border: "border-accent/10" },
-  { bg: "from-primary-50 to-primary-100/50", icon: "from-primary-400 to-primary-600", border: "border-primary-200/30" },
+  { bg: "from-primary/5 to-primary-100/30 dark:from-primary/10 dark:to-primary-900/30", icon: "from-primary to-primary-400", border: "border-primary/10 dark:border-primary/20" },
+  { bg: "from-accent/5 to-accent-100/30 dark:from-accent/10 dark:to-accent-900/30", icon: "from-accent to-accent-400", border: "border-accent/10 dark:border-accent/20" },
+  { bg: "from-primary-50 to-primary-100/50 dark:from-primary-900/50 dark:to-primary-800/30", icon: "from-primary-400 to-primary-600", border: "border-primary-200/30 dark:border-primary-800/30" },
 ];
 
 export function ProductShowcase() {
@@ -31,40 +31,40 @@ export function ProductShowcase() {
   }
   const fallbackItems = Array.isArray(rawItems) && rawItems.length > 0
     ? (rawItems as string[]).map((item, index) => ({
-        id: `fallback-${index}`,
-        title: item,
-        slug: undefined,
-        description: undefined,
-      }))
+      id: `fallback-${index}`,
+      title: item,
+      slug: undefined,
+      description: undefined,
+    }))
     : [
-        {
-          id: "fallback-1",
-          title: "Premium white sugar (50kg)",
-          slug: undefined,
-          description: "Refined crystals packaged for wholesale and institutional buyers.",
-        },
-        {
-          id: "fallback-2",
-          title: "Retail crystal sugar (5kg)",
-          slug: undefined,
-          description: "Household-friendly packs sourced directly from Ethiopian cane fields.",
-        },
-        {
-          id: "fallback-3",
-          title: "Industrial molasses supply",
-          slug: undefined,
-          description: "Reliable feedstock volumes tailored for ethanol and feed processors.",
-        },
-      ];
+      {
+        id: "fallback-1",
+        title: "Premium white sugar (50kg)",
+        slug: undefined,
+        description: "Refined crystals packaged for wholesale and institutional buyers.",
+      },
+      {
+        id: "fallback-2",
+        title: "Retail crystal sugar (5kg)",
+        slug: undefined,
+        description: "Household-friendly packs sourced directly from Ethiopian cane fields.",
+      },
+      {
+        id: "fallback-3",
+        title: "Industrial molasses supply",
+        slug: undefined,
+        description: "Reliable feedstock volumes tailored for ethanol and feed processors.",
+      },
+    ];
 
   const items =
     Array.isArray(featuredProducts) && featuredProducts.length > 0
       ? featuredProducts.slice(0, 3).map((product, index) => ({
-          id: String(product.id ?? index),
-          title: product.name,
-          slug: product.slug,
-          description: product.short_description ?? product.description,
-        }))
+        id: String(product.id ?? index),
+        title: product.name,
+        slug: product.slug,
+        description: product.short_description ?? product.description,
+      }))
       : fallbackItems;
 
   return (
@@ -99,7 +99,7 @@ export function ProductShowcase() {
                 </div>
               </div>
 
-              <p className="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">{product.title}</p>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white group-hover:text-primary transition-colors">{product.title}</p>
               {product.description && (
                 <p className="mt-3 text-sm text-muted/80 leading-relaxed line-clamp-3">{product.description}</p>
               )}

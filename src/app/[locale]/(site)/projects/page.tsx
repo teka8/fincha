@@ -35,81 +35,81 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden bg-primary-950 flex items-center">
         <div className="absolute inset-0 bg-[url('/images/project-banner.jpg')] bg-cover bg-center opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-r from-primary-950 via-primary-950/80 to-transparent" />
-        
+
         <div className="relative max-w-layout mx-auto px-8 w-full">
-           <div className="max-w-2xl">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm border border-accent/30">
-                Strategic Portfolio
-              </span>
-              <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
-                Engineering <span className="text-primary italic">Sustainable</span> Change
-              </h1>
-              <p className="text-xl text-primary-100/70 leading-relaxed">
-                From precision irrigation to carbon-neutral power, our projects address 
-                the dual challenges of industrial productivity and environmental care.
-              </p>
-           </div>
+          <div className="max-w-2xl">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-accent/20 text-accent text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm border border-accent/30">
+              Strategic Portfolio
+            </span>
+            <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+              Engineering <span className="text-primary italic">Sustainable</span> Change
+            </h1>
+            <p className="text-xl text-primary-100/70 leading-relaxed">
+              From precision irrigation to carbon-neutral power, our projects address
+              the dual challenges of industrial productivity and environmental care.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Projects Portfolio */}
-      <SectionContainer className="bg-white">
+      <SectionContainer className="bg-white dark:bg-slate-900">
         <div className="space-y-24">
           {projects.length > 0 ? projects.map((project, index) => {
             const isEven = index % 2 === 0;
             return (
-              <div 
-                key={String(project.id)} 
+              <div
+                key={String(project.id)}
                 className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}
               >
                 <div className={`${!isEven ? 'lg:order-2' : ''}`}>
                   <div className="flex items-center gap-3 mb-6">
-                     <span className="flex size-10 items-center justify-center rounded-xl bg-primary-50 text-primary font-bold">
-                       0{index + 1}
-                     </span>
-                     <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-                       {String(project.status ?? "Ongoing Project")}
-                     </span>
-                  </div>
-                  
-                  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 transition-colors group-hover:text-primary">
-                    {String(project.title ?? project.name)}
-                  </h3>
-                  
-                  <div className="prose prose-slate leading-relaxed text-muted mb-8">
-                    <p>{String(project.summary ?? project.description ?? "Transforming agro-industrial operations through innovative engineering and sustainable resource management.")}</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                     {["Solar-ready", "99% Efficiency", "Community-fed", "Modular scale"].map((tag, i) => (
-                       <div key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                         <LucideCheckCircle2 size={16} className="text-primary" />
-                         {tag}
-                       </div>
-                     ))}
+                    <span className="flex size-10 items-center justify-center rounded-xl bg-primary-50 text-primary font-bold">
+                      0{index + 1}
+                    </span>
+                    <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">
+                      {String(project.status ?? "Ongoing Project")}
+                    </span>
                   </div>
 
-                  <Link 
+                  <h3 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 transition-colors group-hover:text-primary">
+                    {String(project.title ?? project.name)}
+                  </h3>
+
+                  <div className="prose prose-slate dark:prose-invert leading-relaxed text-muted dark:text-slate-400 mb-8">
+                    <p>{String(project.summary ?? project.description ?? "Transforming agro-industrial operations through innovative engineering and sustainable resource management.")}</p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    {["Solar-ready", "99% Efficiency", "Community-fed", "Modular scale"].map((tag, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
+                        <LucideCheckCircle2 size={16} className="text-primary" />
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link
                     href={{ pathname: "/projects/[id]", params: { id: String(project.slug || project.id || "0") } }}
-                    className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-slate-900 text-white font-bold transition-all hover:bg-primary hover:shadow-glow-sm hover:-translate-y-1"
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold transition-all hover:bg-primary hover:shadow-glow-sm hover:-translate-y-1"
                   >
                     View project details
                   </Link>
                 </div>
-                
-                <div className={`relative rounded-[60px] overflow-hidden aspect-[4/3] bg-slate-100 shadow-2xl ${!isEven ? 'lg:order-1' : ''}`}>
-                   {project.image ? (
-                     <Image 
-                       src={String(project.image)} 
-                       alt={String(project.title ?? project.name)} 
-                       fill 
-                       className="object-cover"
-                     />
-                   ) : (
-                     <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-300 flex items-center justify-center">
-                        <LucideSprout size={100} className="text-primary opacity-20" />
-                     </div>
-                   )}
+
+                <div className={`relative rounded-[60px] overflow-hidden aspect-[4/3] bg-slate-100 dark:bg-slate-800 shadow-2xl ${!isEven ? 'lg:order-1' : ''}`}>
+                  {project.image ? (
+                    <Image
+                      src={String(project.image)}
+                      alt={String(project.title ?? project.name)}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-300 flex items-center justify-center">
+                      <LucideSprout size={100} className="text-primary opacity-20" />
+                    </div>
+                  )}
                 </div>
               </div>
             );
@@ -120,26 +120,26 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
           )}
         </div>
       </SectionContainer>
-      
+
       {/* Visionary Banner */}
-      <div className="bg-slate-50 border-y border-slate-100">
-         <SectionContainer className="py-20 text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 italic">&quot;We don&apos;t just process cane; we cultivate the future of Ethiopia&apos;s agro-industrial self-reliance.&quot;</h2>
-            <div className="flex border-t border-slate-200 pt-8 justify-center gap-12">
-               <div>
-                  <p className="text-3xl font-black text-primary mb-1">2030</p>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Vision target</p>
-               </div>
-               <div>
-                  <p className="text-3xl font-black text-primary mb-1">Zero</p>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Waste goal</p>
-               </div>
-               <div>
-                  <p className="text-3xl font-black text-primary mb-1">100%</p>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Renewable</p>
-               </div>
+      <div className="bg-slate-50 dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800">
+        <SectionContainer className="py-20 text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 italic dark:text-white">&quot;We don&apos;t just process cane; we cultivate the future of Ethiopia&apos;s agro-industrial self-reliance.&quot;</h2>
+          <div className="flex border-t border-slate-200 dark:border-slate-700 pt-8 justify-center gap-12">
+            <div>
+              <p className="text-3xl font-black text-primary mb-1">2030</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Vision target</p>
             </div>
-         </SectionContainer>
+            <div>
+              <p className="text-3xl font-black text-primary mb-1">Zero</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Waste goal</p>
+            </div>
+            <div>
+              <p className="text-3xl font-black text-primary mb-1">100%</p>
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Renewable</p>
+            </div>
+          </div>
+        </SectionContainer>
       </div>
     </div>
   );

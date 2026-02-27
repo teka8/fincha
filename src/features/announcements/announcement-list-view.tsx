@@ -39,12 +39,12 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
         >
             <Link
                 href={{ pathname: "/announcement/[id]", params: { id: String(item.id) } } as any}
-                className="group relative flex flex-col md:flex-row gap-8 p-8 bg-white rounded-[2.5rem] border border-slate-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
+                className="group relative flex flex-col md:flex-row gap-8 p-8 bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-100 dark:border-slate-700 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
             >
                 {/* Visual Date Element */}
-                <div className="flex-shrink-0 flex flex-col items-center justify-center w-24 h-24 rounded-3xl bg-slate-50 group-hover:bg-primary/5 transition-colors duration-500 overflow-hidden relative">
+                <div className="flex-shrink-0 flex flex-col items-center justify-center w-24 h-24 rounded-3xl bg-slate-50 dark:bg-slate-700 group-hover:bg-primary/5 transition-colors duration-500 overflow-hidden relative">
                     <div className="absolute top-0 inset-x-0 h-1 bg-primary/20 group-hover:bg-primary transition-colors" />
-                    <span className="text-3xl font-black text-slate-900 group-hover:text-primary leading-none z-10">{day}</span>
+                    <span className="text-3xl font-black text-slate-900 dark:text-white group-hover:text-primary leading-none z-10">{day}</span>
                     <span className="text-[10px] font-black text-slate-400 group-hover:text-primary/70 uppercase tracking-widest mt-1 z-10">{month}</span>
                 </div>
 
@@ -60,7 +60,7 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
                             {item.category ?? "News"}
                         </span>
                         {item.attachments && item.attachments.length > 0 && (
-                            <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+                            <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-50 dark:bg-slate-700 text-slate-400 text-[10px] font-black uppercase tracking-widest group-hover:bg-primary/5 group-hover:text-primary transition-colors">
                                 <LucideDownload size={12} />
                                 {item.attachments.length} Document{item.attachments.length > 1 ? "s" : ""}
                             </div>
@@ -71,7 +71,7 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
                         </span>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 group-hover:text-primary transition-colors leading-[1.2] mb-4 line-clamp-2">
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-[1.2] mb-4 line-clamp-2">
                         {item.title}
                     </h3>
 
@@ -82,7 +82,7 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
 
                 {/* Action Arrow Overlay */}
                 <div className="flex items-center justify-center md:pl-8 border-l border-slate-50 group-hover:border-primary/10 transition-colors">
-                    <div className="w-14 h-14 rounded-full bg-slate-50 group-hover:bg-primary flex items-center justify-center text-slate-300 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[-45deg] shadow-sm">
+                    <div className="w-14 h-14 rounded-full bg-slate-50 dark:bg-slate-700 group-hover:bg-primary flex items-center justify-center text-slate-300 group-hover:text-white transition-all duration-500 transform group-hover:rotate-[-45deg] shadow-sm">
                         <LucideArrowRight size={24} />
                     </div>
                 </div>
@@ -112,7 +112,7 @@ export function AnnouncementListView() {
     return (
         <div className="space-y-12">
             {/* Control Bar: Tabs & Search */}
-            <div className="bg-white/50 backdrop-blur-md rounded-[2.5rem] p-4 border border-slate-100 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-md rounded-[2.5rem] p-4 border border-slate-100 dark:border-slate-700 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-6">
                 {/* Tabs */}
                 <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
                     {CATEGORIES.map((cat) => (
@@ -144,7 +144,7 @@ export function AnnouncementListView() {
                         placeholder="Search archives..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full h-14 pl-14 pr-12 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-primary/20 focus:ring-0 text-sm font-bold text-slate-900 transition-all placeholder:text-slate-300"
+                        className="w-full h-14 pl-14 pr-12 rounded-2xl bg-slate-50 dark:bg-slate-700 border-transparent focus:bg-white dark:focus:bg-slate-600 focus:border-primary/20 focus:ring-0 text-sm font-bold text-slate-900 dark:text-white transition-all placeholder:text-slate-300 dark:placeholder:text-slate-500"
                     />
                     {searchTerm && (
                         <button
@@ -178,16 +178,16 @@ export function AnnouncementListView() {
                 {isLoading ? (
                     <div className="grid gap-6">
                         {[1, 2, 3, 4].map(i => (
-                            <div key={i} className="h-44 w-full bg-slate-50 rounded-[2.5rem] animate-pulse relative overflow-hidden">
+                            <div key={i} className="h-44 w-full bg-slate-50 dark:bg-slate-800 rounded-[2.5rem] animate-pulse relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-100%] animate-[shimmer_2s_infinite]" />
                             </div>
                         ))}
                     </div>
                 ) : isError ? (
-                    <div className="bg-white p-20 rounded-[4rem] text-center border border-slate-100 shadow-xl overflow-hidden relative">
+                    <div className="bg-white dark:bg-slate-800 p-20 rounded-[4rem] text-center border border-slate-100 dark:border-slate-700 shadow-xl overflow-hidden relative">
                         <div className="absolute -top-12 -right-12 size-48 bg-primary/5 rounded-full blur-3xl" />
                         <LucideMegaphone size={64} strokeWidth={1} className="mx-auto mb-8 text-slate-200" />
-                        <h3 className="text-2xl font-black text-slate-900 mb-2">Announcement Unreachable</h3>
+                        <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Announcement Unreachable</h3>
                         <p className="text-slate-400 font-medium max-w-sm mx-auto mb-10 leading-relaxed">
                             We're having trouble connecting to the archive server. Please verify your connection.
                         </p>
@@ -200,12 +200,12 @@ export function AnnouncementListView() {
                     </div>
                 ) : announcements.length === 0 ? (
                     <div className="text-center py-40 rounded-[4rem] bg-slate-50/30 border-2 border-dashed border-slate-100">
-                        <div className="bg-white size-24 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-xl relative">
+                        <div className="bg-white dark:bg-slate-800 size-24 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-xl relative">
                             <LucideSearch size={40} className="text-slate-100" strokeWidth={1} />
                             <div className="absolute -top-1 -right-1 size-5 bg-rose-500 rounded-full border-4 border-white" />
                         </div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-2">No Announcements Found</h3>
-                        
+                        <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">No Announcements Found</h3>
+
                     </div>
                 ) : (
                     <div className="grid gap-8">
@@ -221,11 +221,11 @@ export function AnnouncementListView() {
             {/* Pagination Controls */}
             {meta && meta.last_page > 1 && (
                 <div className="flex flex-col items-center gap-6 pt-12 animate-fade-in">
-                    <div className="flex items-center gap-3 p-2 bg-white rounded-[2rem] border border-slate-100 shadow-sm">
+                    <div className="flex items-center gap-3 p-2 bg-white dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 shadow-sm">
                         <button
                             onClick={() => setPage(p => Math.max(1, p - 1))}
                             disabled={page === 1}
-                            className="w-14 h-14 flex items-center justify-center rounded-2xl text-slate-400 hover:text-primary hover:bg-slate-50 disabled:opacity-20 transition-all font-black text-xs uppercase"
+                            className="w-14 h-14 flex items-center justify-center rounded-2xl text-slate-400 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-20 transition-all font-black text-xs uppercase"
                         >
                             Prev
                         </button>

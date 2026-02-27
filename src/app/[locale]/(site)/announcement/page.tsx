@@ -27,7 +27,7 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
     return (
         <div className="flex flex-col">
             {/* Page Header */}
-            <section className="bg-white pt-24 pb-12">
+            <section className="bg-white dark:bg-slate-900 pt-24 pb-12">
                 <div className="max-w-layout mx-auto px-8">
                     <SectionHeading
                         eyebrow="Updates & Notices"
@@ -44,12 +44,12 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
             </SectionContainer>
 
             {/* Quick Access Archive */}
-            <div className="bg-slate-50">
+            <div className="bg-slate-50 dark:bg-slate-900/50">
                 <SectionContainer className="py-16">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 rounded-[40px] bg-white shadow-sm border border-slate-200/50">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 p-12 rounded-[40px] bg-white dark:bg-slate-800 shadow-sm border border-slate-200/50 dark:border-slate-700">
                         <div className="max-w-md">
-                            <h3 className="text-2xl font-bold mb-2">Notice Archive</h3>
-                            <p className="text-sm text-slate-500">
+                            <h3 className="text-2xl font-bold mb-2 text-slate-900 dark:text-white">Notice Archive</h3>
+                            <p className="text-sm text-slate-500 dark:text-slate-400">
                                 Are you looking for a message that has already been archived? You can find all past official notices here.
                             </p>
                         </div>

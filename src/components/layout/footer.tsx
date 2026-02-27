@@ -40,28 +40,28 @@ export function Footer({ links = [], company }: FooterProps = {}) {
   const sectionAnimation = prefersReducedMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 24 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.2 },
-        transition: { duration: 0.45, ease: "easeOut" },
-      };
+      initial: { opacity: 0, y: 24 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, amount: 0.2 },
+      transition: { duration: 0.45, ease: "easeOut" },
+    };
 
   const services = links.filter((link) => link.section === "services");
   const support = links.filter((link) => link.section === "support");
 
   return (
     <footer
-      className="relative mt-20 overflow-hidden bg-[#090909] text-white"
+      className="relative mt-20 overflow-hidden bg-[#090909] dark:bg-black text-white"
       aria-labelledby="footer-heading"
     >
       {/* Background decorations - Mesh & Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -left-20 -top-20 size-[600px] rounded-full bg-primary/5 blur-[120px]" />
         <div className="absolute -bottom-40 -right-20 size-[500px] rounded-full bg-accent/10 blur-[100px]" />
-        
+
         {/* Subtle mesh/shimmer effect */}
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-overlay" />
-        
+
         {/* State of the art dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.08]"
@@ -197,7 +197,7 @@ export function Footer({ links = [], company }: FooterProps = {}) {
                 Stay updated with our latest industrial insights and procurement alerts.
               </p>
             </div>
-            
+
             <form className="flex flex-col gap-4" noValidate>
               <div className="relative">
                 <LucideMail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500" />

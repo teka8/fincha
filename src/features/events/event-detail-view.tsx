@@ -21,7 +21,7 @@ function formatDate(dateStr: string | undefined) {
 export function EventDetailView({ id }: Props) {
     const { data: event, isLoading, isError } = useEventDetail(id);
 
-    
+
     if (isLoading) {
         return (
             <div className="flex justify-center items-center py-40 min-h-[60vh]">
@@ -37,9 +37,9 @@ export function EventDetailView({ id }: Props) {
     if (isError || !event) {
         return (
             <div className="flex flex-col items-center justify-center py-40 min-h-[60vh] text-center px-4">
-                <div className="bg-white p-12 rounded-[2rem] shadow-xl border border-slate-100 max-w-md w-full">
+                <div className="bg-white dark:bg-slate-800 p-12 rounded-[2rem] shadow-xl border border-slate-100 dark:border-slate-700 max-w-md w-full">
                     <LucideCalendar size={48} className="mx-auto mb-6 text-slate-300" strokeWidth={1} />
-                    <h2 className="text-2xl font-black text-slate-900 mb-2">Event Not Found</h2>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Event Not Found</h2>
                     <p className="text-slate-500 mb-8">
                         This event may have passed or the link is no longer valid.
                     </p>
@@ -82,7 +82,7 @@ export function EventDetailView({ id }: Props) {
                                 {event.category}
                             </span>
                         )}
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-tight tracking-tight">
+                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-tight tracking-tight">
                             {event.title}
                         </h1>
                     </div>
@@ -101,7 +101,7 @@ export function EventDetailView({ id }: Props) {
                     )}
 
                     {/* Description card */}
-                    <div className="relative bg-white p-8 sm:p-12 rounded-[2rem] border-l-8 border-primary shadow-sm overflow-hidden">
+                    <div className="relative bg-white dark:bg-slate-800 p-8 sm:p-12 rounded-[2rem] border-l-8 border-primary shadow-sm overflow-hidden">
                         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
                         <h2 className="text-primary text-sm font-black uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
                             <span className="w-8 h-[2px] bg-primary" />
@@ -121,8 +121,8 @@ export function EventDetailView({ id }: Props) {
                 {/* ── Right: Sidebar ────────────────────────────────────────────── */}
                 <aside className="space-y-6">
                     {/* Details card */}
-                    <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 sticky top-28">
-                        <h3 className="text-xl font-black text-slate-900 mb-6">Event Details</h3>
+                    <div className="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-sm border border-slate-100 dark:border-slate-700 sticky top-28">
+                        <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6">Event Details</h3>
                         <ul className="space-y-5">
 
                             {/* Date */}
@@ -133,7 +133,7 @@ export function EventDetailView({ id }: Props) {
                                     </div>
                                     <div>
                                         <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Date</span>
-                                        <span className="font-bold text-slate-900 text-sm">{formatDate(dateStr)}</span>
+                                        <span className="font-bold text-slate-900 dark:text-slate-200 text-sm">{formatDate(dateStr)}</span>
                                     </div>
                                 </li>
                             )}
@@ -146,7 +146,7 @@ export function EventDetailView({ id }: Props) {
                                     </div>
                                     <div>
                                         <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Time</span>
-                                        <span className="font-bold text-slate-900 text-sm">
+                                        <span className="font-bold text-slate-900 dark:text-slate-200 text-sm">
                                             {[event.start_time, event.end_time].filter(Boolean).join(" – ")}
                                         </span>
                                     </div>
@@ -161,7 +161,7 @@ export function EventDetailView({ id }: Props) {
                                     </div>
                                     <div className="flex-1 min-w-0">
                                         <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Location</span>
-                                        <span className="font-bold text-slate-900 text-sm block">{event.location}</span>
+                                        <span className="font-bold text-slate-900 dark:text-slate-200 text-sm block">{event.location}</span>
                                         {event.google_map_location_link && (
                                             <a href={event.google_map_location_link} target="_blank" rel="noopener noreferrer"
                                                 className="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline mt-1">
@@ -180,7 +180,7 @@ export function EventDetailView({ id }: Props) {
                                     </div>
                                     <div>
                                         <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Audience</span>
-                                        <span className="font-bold text-slate-900 text-sm capitalize">{event.target_audience}</span>
+                                        <span className="font-bold text-slate-900 dark:text-slate-200 text-sm capitalize">{event.target_audience}</span>
                                     </div>
                                 </li>
                             )}
@@ -192,7 +192,7 @@ export function EventDetailView({ id }: Props) {
                                 </div>
                                 <div>
                                     <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Admission</span>
-                                    <span className="font-bold text-slate-900 text-sm">
+                                    <span className="font-bold text-slate-900 dark:text-slate-200 text-sm">
                                         {isFree ? "Free" : `${event.cost_amount} ETB`}
                                     </span>
                                 </div>
@@ -215,8 +215,8 @@ export function EventDetailView({ id }: Props) {
 
                     {/* Attachments */}
                     {event.attachments && event.attachments.length > 0 && (
-                        <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
-                            <h3 className="text-lg font-black text-slate-900 mb-5">Attachments</h3>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-700">
+                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-5">Attachments</h3>
                             <ul className="space-y-3">
                                 {event.attachments.map((a, i) => (
                                     <li key={i}>
@@ -224,7 +224,7 @@ export function EventDetailView({ id }: Props) {
                                             href={a.path ?? "#"}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-slate-100 hover:border-primary/30 hover:shadow-sm transition-all group"
+                                            className="flex items-center gap-3 p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-600 hover:border-primary/30 hover:shadow-sm transition-all group"
                                         >
                                             <div className="p-2 rounded-xl bg-slate-100 group-hover:bg-primary/10 group-hover:text-primary text-slate-500 transition-colors flex-shrink-0">
                                                 <LucideDownload size={16} />

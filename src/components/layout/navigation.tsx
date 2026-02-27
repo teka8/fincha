@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
@@ -154,7 +155,7 @@ export function Navigation({ brandName }: NavigationProps) {
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-500 ${isScrolled
-        ? "border-b border-white/10 bg-white/70 shadow-lg shadow-primary/5 backdrop-blur-xl"
+        ? "border-b border-black/5 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 shadow-lg shadow-primary/5 backdrop-blur-xl"
         : "bg-transparent"
         }`}
     >
@@ -184,7 +185,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       type="button"
                       className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-all ${isActive || activeDropdown === item.key
                         ? "bg-primary/10 text-primary"
-                        : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                        : "text-slate-600 dark:text-slate-300 hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                         }`}
                     >
                       {tNav(item.key as any)}
@@ -205,7 +206,7 @@ export function Navigation({ brandName }: NavigationProps) {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 10, scale: 0.95 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute left-0 mt-2 w-56 origin-top-left rounded-3xl border border-slate-100 bg-white p-2 shadow-2xl"
+                          className="absolute left-0 mt-2 w-56 origin-top-left rounded-3xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-2 shadow-2xl"
                         >
                           <div className="space-y-1">
                             {item.children.map((child) => {
@@ -216,7 +217,7 @@ export function Navigation({ brandName }: NavigationProps) {
                                   href={child.href as LocalizedRoute}
                                   className={`block rounded-2xl px-4 py-2.5 text-sm font-medium transition-all ${isChildActive
                                     ? "bg-primary/10 text-primary"
-                                    : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                                    : "text-slate-600 dark:text-slate-300 hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                                     }`}
                                 >
                                   {tNav(child.key as any)}
@@ -238,7 +239,7 @@ export function Navigation({ brandName }: NavigationProps) {
                   href={item.href as LocalizedRoute}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all ${isActive
                     ? "bg-primary/10 text-primary"
-                    : "text-slate-600 hover:bg-primary/5 hover:text-primary"
+                    : "text-slate-600 dark:text-slate-300 hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                     }`}
                 >
                   {isActive && (
@@ -256,13 +257,14 @@ export function Navigation({ brandName }: NavigationProps) {
         </motion.div>
 
         <motion.div {...animation} className="flex items-center gap-3">
+          <ThemeToggle />
           <LanguageSwitcher currentLocale={contextLocale} />
           {/* <Button asChild className="hidden shadow-glow-sm md:inline-flex">
             <Link href="/contact">{tActions("learn_more")}</Link>
           </Button> */}
           <button
             type="button"
-            className="relative inline-flex items-center rounded-xl p-2.5 text-slate-700 transition-all hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 lg:hidden"
+            className="relative inline-flex items-center rounded-xl p-2.5 text-slate-700 dark:text-slate-300 transition-all hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 lg:hidden"
             onClick={() => setIsMobileOpen((state) => !state)}
             aria-expanded={isMobileOpen}
             aria-label={
@@ -293,7 +295,7 @@ export function Navigation({ brandName }: NavigationProps) {
               animate={{ opacity: 1, y: 0, height: "auto" }}
               exit={{ opacity: 0, y: -10, height: 0 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="absolute inset-x-0 top-20 z-50 overflow-hidden border-t border-white/20 bg-white/95 backdrop-blur-xl lg:hidden"
+              className="absolute inset-x-0 top-20 z-50 overflow-hidden border-t border-black/5 dark:border-white/10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl lg:hidden"
             >
               <div className="space-y-1 p-4">
                 {navigationStructure.map((item) => {
@@ -304,7 +306,7 @@ export function Navigation({ brandName }: NavigationProps) {
                         <button
                           type="button"
                           onClick={() => setActiveDropdown(isOpen ? null : item.key)}
-                          className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${isOpen ? "text-primary" : "text-slate-900"
+                          className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${isOpen ? "text-primary" : "text-slate-900 dark:text-white"
                             }`}
                         >
                           {item.label}
@@ -320,14 +322,14 @@ export function Navigation({ brandName }: NavigationProps) {
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden bg-slate-50/50 rounded-2xl pl-4"
+                              className="overflow-hidden bg-slate-50/50 dark:bg-slate-800/50 rounded-2xl pl-4"
                             >
                               {item.children.map((child) => (
                                 <button
                                   key={child.key}
                                   type="button"
                                   onClick={() => handleNavigate(child.href)}
-                                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600"
+                                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600 dark:text-slate-400"
                                     }`}
                                 >
                                   {child.label}
@@ -347,7 +349,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       onClick={() => handleNavigate(item.href!)}
                       className={`block w-full rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${pathname === item.href
                         ? "bg-primary/10 text-primary"
-                        : "text-slate-900 hover:bg-primary/5 hover:text-primary"
+                        : "text-slate-900 dark:text-white hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                         }`}
                     >
                       {item.label}

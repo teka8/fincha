@@ -23,7 +23,7 @@ export default async function AnnouncementPage({ params }: Props) {
     const { id } = await params;
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-surface min-h-screen">
             <AnnouncementDetailView id={id} />
         </div>
     );

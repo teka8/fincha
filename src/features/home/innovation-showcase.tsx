@@ -61,7 +61,7 @@ export function InnovationShowcase({ eyebrow, title, description, pillLabel, lea
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="hover-lift group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 shadow-card"
+              className="hover-lift group relative flex flex-col gap-6 overflow-hidden rounded-3xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-card"
             >
               {/* Gradient overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${cardGradients[index]} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
@@ -75,15 +75,15 @@ export function InnovationShowcase({ eyebrow, title, description, pillLabel, lea
                   <div className={`flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br ${iconColors[index]} text-white shadow-md transition-transform duration-300 group-hover:scale-110`}>
                     <LucideLightbulb size={22} strokeWidth={1.5} />
                   </div>
-                  <span className="text-5xl font-black text-slate-100/80 transition-colors group-hover:text-primary/10">
+                  <span className="text-5xl font-black text-slate-100/80 dark:text-slate-800/80 transition-colors group-hover:text-primary/10">
                     0{index + 1}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-semibold text-slate-900 transition-colors group-hover:text-primary">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white transition-colors group-hover:text-primary">
                   {innovation.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-muted">{innovation.description}</p>
+                <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400">{innovation.description}</p>
               </div>
 
               <div className="relative mt-auto">

@@ -22,7 +22,7 @@ export default async function EventsPage({ params }: EventsPageProps) {
     return (
         <div className="flex flex-col">
             {/* Page header */}
-            <section className="bg-white pt-24 pb-12">
+            <section className="bg-white dark:bg-slate-900 pt-24 pb-12">
                 <div className="max-w-layout mx-auto px-8">
                     <SectionHeading
                         eyebrow="What's Next"

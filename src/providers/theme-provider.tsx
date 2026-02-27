@@ -12,8 +12,8 @@ export function ThemeProvider({ locale, children }: ThemeProviderProps) {
     <NextThemesProvider
       attribute="class"
       defaultTheme="light"
-      enableSystem
-      disableTransitionOnChange
+      enableSystem={false}
+      disableTransitionOnChange={false}
       value={{
         light: "light",
         dark: locale === "am" ? "dark rtl" : "dark",

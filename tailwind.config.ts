@@ -39,9 +39,9 @@ const config: Config = {
           800: "#7A4D00",
           900: "#613D00",
         },
-        surface: "#F9FAFB",
+        surface: "hsl(var(--surface))",
         muted: "#64748B",
-        foreground: "#0F172A",
+        foreground: "hsl(var(--foreground))",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "sans-serif"],

@@ -13,9 +13,9 @@ import { useProjectsPreview } from "@/features/home/hooks";
 const projectIcons = [LucideSprout, LucideZap, LucideDroplets];
 const projectAccents = ["from-emerald-500 to-teal-500", "from-amber-500 to-orange-500", "from-primary-400 to-primary"];
 const projectBgs = [
-  "bg-gradient-to-br from-emerald-50 via-white to-teal-50/50",
-  "bg-gradient-to-br from-amber-50 via-white to-orange-50/50",
-  "bg-gradient-to-br from-primary-50 via-white to-sky-50/50",
+  "bg-gradient-to-br from-emerald-50 via-white to-teal-50/50 dark:from-emerald-900/20 dark:via-slate-900 dark:to-teal-900/20",
+  "bg-gradient-to-br from-amber-50 via-white to-orange-50/50 dark:from-amber-900/20 dark:via-slate-900 dark:to-orange-900/20",
+  "bg-gradient-to-br from-primary-50 via-white to-sky-50/50 dark:from-primary-900/20 dark:via-slate-900 dark:to-sky-900/20",
 ];
 
 export function ProjectsCarousel() {
@@ -33,49 +33,49 @@ export function ProjectsCarousel() {
   }
   const fallbackItems = Array.isArray(rawItems) && rawItems.length > 0
     ? (rawItems as string[]).map((item, index) => ({
-        id: `fallback-${index}`,
-        title: item,
-        slug: undefined,
-        summary: undefined,
-      }))
+      id: `fallback-${index}`,
+      title: item,
+      slug: undefined,
+      summary: undefined,
+    }))
     : [
-        {
-          id: "fallback-1",
-          title: "Greenfield sugarcane expansion",
-          slug: undefined,
-          summary: "Scaling irrigated acreage to secure reliable cane throughput across seasons.",
-        },
-        {
-          id: "fallback-2",
-          title: "Bagasse co-generation upgrade",
-          slug: undefined,
-          summary: "Modern turbines elevating renewable power output for grid and factory resilience.",
-        },
-        {
-          id: "fallback-3",
-          title: "Irrigation modernization phase II",
-          slug: undefined,
-          summary: "Precision water management improving yields while conserving watershed resources.",
-        },
-      ];
+      {
+        id: "fallback-1",
+        title: "Greenfield sugarcane expansion",
+        slug: undefined,
+        summary: "Scaling irrigated acreage to secure reliable cane throughput across seasons.",
+      },
+      {
+        id: "fallback-2",
+        title: "Bagasse co-generation upgrade",
+        slug: undefined,
+        summary: "Modern turbines elevating renewable power output for grid and factory resilience.",
+      },
+      {
+        id: "fallback-3",
+        title: "Irrigation modernization phase II",
+        slug: undefined,
+        summary: "Precision water management improving yields while conserving watershed resources.",
+      },
+    ];
 
   const items =
     Array.isArray(projects) && projects.length > 0
       ? projects.map((project, index) => {
-          const cmsProject = project as ProjectSummary;
-          return {
-            id: String(cmsProject.id ?? index),
-            title: cmsProject.title ?? cmsProject.name ?? fallbackItems[index]?.title ?? "Project",
-            slug: cmsProject.slug ?? (cmsProject.id ? String(cmsProject.id) : undefined),
-            summary:
-              cmsProject.summary ?? cmsProject.description ??
-              fallbackItems[index % fallbackItems.length]?.summary,
-          };
-        })
+        const cmsProject = project as ProjectSummary;
+        return {
+          id: String(cmsProject.id ?? index),
+          title: cmsProject.title ?? cmsProject.name ?? fallbackItems[index]?.title ?? "Project",
+          slug: cmsProject.slug ?? (cmsProject.id ? String(cmsProject.id) : undefined),
+          summary:
+            cmsProject.summary ?? cmsProject.description ??
+            fallbackItems[index % fallbackItems.length]?.summary,
+        };
+      })
       : fallbackItems;
 
   return (
-    <SectionContainer className="bg-white">
+    <SectionContainer className="bg-white dark:bg-slate-900">
       <SectionHeading eyebrow={ctaLabel} title={title} description={description} />
       <div className="grid gap-8 md:grid-cols-3">
         {items.map((project, index) => {
@@ -87,7 +87,7 @@ export function ProjectsCarousel() {
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className={`hover-lift group relative overflow-hidden rounded-3xl border border-slate-100 ${projectBgs[index]} p-8 shadow-card`}
+              className={`hover-lift group relative overflow-hidden rounded-3xl border border-slate-100 dark:border-slate-800 ${projectBgs[index]} p-8 shadow-card`}
             >
               {/* Side accent bar */}
               <div className={`absolute inset-y-6 left-0 w-1 rounded-r-full bg-gradient-to-b ${projectAccents[index]} opacity-60 transition-opacity group-hover:opacity-100`} />
@@ -102,7 +102,7 @@ export function ProjectsCarousel() {
                 </span>
               </div>
 
-              <p className="text-lg font-semibold text-slate-900">{project.title}</p>
+              <p className="text-lg font-semibold text-slate-900 dark:text-white">{project.title}</p>
               <p className="mt-3 text-sm text-muted leading-relaxed">
                 {project.summary ?? "Driving transformation through strategic investments in cutting-edge technology and sustainable practices."}
               </p>

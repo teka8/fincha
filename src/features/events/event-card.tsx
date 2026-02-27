@@ -24,7 +24,7 @@ export function EventCard({ item }: EventCardProps) {
     const isConfirmed = item.status === "Confirmed";
 
     return (
-        <div className="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+        <div className="group bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
             {/* Image */}
             <div className="relative h-52 w-full overflow-hidden flex-shrink-0">
                 {imageUrl ? (
@@ -41,9 +41,9 @@ export function EventCard({ item }: EventCardProps) {
                 )}
 
                 {/* Date badge */}
-                <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 text-center shadow-lg min-w-[48px]">
+                <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-2xl px-3 py-2 text-center shadow-lg min-w-[48px]">
                     <span className="block text-primary font-black text-xl leading-none">{day}</span>
-                    <span className="block text-slate-500 text-[10px] font-bold uppercase tracking-widest mt-0.5">{month}</span>
+                    <span className="block text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-0.5">{month}</span>
                 </div>
 
                 {/* Status badge */}
@@ -69,20 +69,20 @@ export function EventCard({ item }: EventCardProps) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                     {item.title}
                 </h3>
 
                 {/* Meta */}
                 <div className="space-y-2 mb-5 flex-1">
                     {(item.location) && (
-                        <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium">
                             <LucideMapPin size={14} className="text-primary flex-shrink-0" />
                             <span className="truncate">{item.location}</span>
                         </div>
                     )}
                     {item.start_time && (
-                        <div className="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                        <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 font-medium">
                             <LucideClock size={14} className="text-primary flex-shrink-0" />
                             <span>{item.start_time}{item.end_time ? ` – ${item.end_time}` : ""}</span>
                         </div>
@@ -92,7 +92,7 @@ export function EventCard({ item }: EventCardProps) {
                 {/* CTA */}
                 <Link
                     href={{ pathname: "/event/[id]", params: { id: String(item.id) } }}
-                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-slate-50 hover:bg-primary hover:text-white text-slate-900 font-bold rounded-2xl transition-all duration-300 group/btn text-sm"
+                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 hover:bg-primary hover:text-white text-slate-900 dark:text-white font-bold rounded-2xl transition-all duration-300 group/btn text-sm"
                 >
                     View Details
                     <LucideArrowRight size={14} className="transform group-hover/btn:translate-x-1 transition-transform" />

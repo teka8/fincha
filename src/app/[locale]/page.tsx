@@ -55,7 +55,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <WhoWeAre />
 
-      <section className="relative border-b border-primary/5 bg-[#eeeeee]">
+      <section className="relative border-b border-primary/5 bg-slate-50 dark:bg-slate-900/50">
         <Highlights
           title={t("highlights.title")}
           description={t("highlights.description")}
@@ -65,15 +65,15 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <HistoricalTimeline />
 
-      <section className="relative border-b border-slate-100 bg-slate-50/50">
+      <section className="relative border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
         <ProductShowcase />
       </section>
 
-      <section className="relative bg-white">
+      <section className="relative bg-white dark:bg-slate-900">
         <ProjectsCarousel />
       </section>
 
-      <section className="relative border-y border-primary/5 bg-primary-50/10">
+      <section className="relative border-y border-primary/5 bg-primary-50/10 dark:bg-primary-950/20">
         <CSRSpotlight
           title={t("csr.title")}
           description={t("csr.description")}
@@ -118,17 +118,13 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <VideoFeaturette />
 
-      <section className="relative bg-white">
+      <section className="relative bg-white dark:bg-slate-900">
         <LatestNews />
       </section>
 
       <DistributionMap />
 
-      <section className="relative border-y border-slate-100 bg-slate-50/30">
-        <MediaGallery />
-      </section>
-
-      <section className="relative bg-white">
+      <section className="relative bg-white dark:bg-slate-900">
         <PartnersMarquee
           eyebrow={t("partners.eyebrow")}
           title={t("partners.title")}
@@ -136,7 +132,7 @@ export default async function HomePage({ params }: HomePageProps) {
         />
       </section>
 
-      <section className="relative border-y border-primary/5 bg-primary-50/15">
+      <section className="relative border-y border-primary/5 bg-primary-50/15 dark:bg-primary-950/20">
         <InnovationShowcase
           eyebrow={t("innovation.eyebrow")}
           title={t("innovation.title")}
@@ -165,7 +161,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       <TestimonialsSlider />
 
-      <section className="relative bg-white pb-10">
+      <section className="relative bg-white dark:bg-slate-900 pb-10">
         <FAQsPreview />
       </section>
 

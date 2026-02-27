@@ -35,7 +35,7 @@ function NewsCard({ item }: { item: Post }) {
         <Link
             id={`news-card-${item.id}`}
             href={{ pathname: "/news/[id]", params: { id: newsId } } as any}
-            className="group flex flex-col bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover-lift shadow-sm animate-fade-up"
+            className="group flex flex-col bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-100 dark:border-slate-800 hover-lift shadow-sm animate-fade-up"
         >
             <div className="relative aspect-[16/10] overflow-hidden">
                 {imageUrl ? (
@@ -51,24 +51,24 @@ function NewsCard({ item }: { item: Post }) {
                     </div>
                 )}
                 <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-slate-900 text-[10px] font-black uppercase tracking-widest shadow-sm">
+                    <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-[10px] font-black uppercase tracking-widest shadow-sm">
                         {item.category?.name ?? "Update"}
                     </span>
                 </div>
             </div>
 
             <div className="p-8 flex flex-col flex-1">
-                <div className="flex items-center gap-3 text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-4">
+                <div className="flex items-center gap-3 text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-4">
                     <LucideClock size={12} />
                     {formatDate(item.created_at)}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors leading-snug mb-4 line-clamp-2">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors leading-snug mb-4 line-clamp-2">
                     {item.title}
                 </h3>
-                <p className="text-sm text-slate-500 line-clamp-2 mb-6 font-medium leading-relaxed">
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-6 font-medium leading-relaxed">
                     {item.excerpt ?? item.summary ?? "Stay informed with company announcements and industry insights."}
                 </p>
-                <div className="mt-auto pt-6 border-t border-slate-50 flex items-center justify-between">
+                <div className="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                     <span className="text-[10px] font-black text-primary uppercase tracking-widest group-hover:translate-x-1 transition-transform inline-flex items-center gap-2">
                         Read Story <LucideArrowRight size={14} />
                     </span>
@@ -107,7 +107,7 @@ export function NewsListView() {
 
     if (isError) {
         return (
-            <div className="text-center py-20 bg-slate-50 rounded-[3rem] border border-slate-100">
+            <div className="text-center py-20 bg-slate-50 dark:bg-slate-800 rounded-[3rem] border border-slate-100 dark:border-slate-700">
                 <p className="text-slate-400 font-bold mb-6">Failed to load industry insights.</p>
                 <button
                     onClick={() => void refetch()}
@@ -131,7 +131,7 @@ export function NewsListView() {
     return (
         <div className="space-y-12">
             <div className="flex items-center justify-between px-2">
-                <h3 className="text-2xl font-black text-slate-900 tracking-tighter">
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tighter">
                     Latest News & Stories
                 </h3>
                 <div className="flex gap-2">
@@ -169,7 +169,7 @@ export function NewsListView() {
             {/* Footer Pagination */}
             {meta && meta.last_page > 1 && (
                 <div className="flex justify-center pt-8">
-                    <div className="flex items-center gap-4 p-2 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="flex items-center gap-4 p-2 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700">
                         <button
                             onClick={() => setPage(p => Math.max(1, p - 1))}
                             disabled={page === 1}

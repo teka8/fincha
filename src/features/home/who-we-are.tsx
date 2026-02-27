@@ -11,8 +11,8 @@ export function WhoWeAre() {
   const t = useTranslations("home.who_we_are");
 
   return (
-    <SectionContainer className="bg-white relative overflow-hidden">
-      <SectionHeading 
+    <SectionContainer className="bg-white dark:bg-slate-900 relative overflow-hidden">
+      <SectionHeading
         eyebrow={t("eyebrow")}
         title={t("title")}
         align="center"
@@ -20,31 +20,31 @@ export function WhoWeAre() {
       />
 
       <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
-        
+
         {/* Text Content */}
         <motion.div
           initial={prefersReducedMotion ? undefined : { opacity: 0, x: -30 }}
           whileInView={prefersReducedMotion ? undefined : { opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="space-y-6 text-slate-600 text-lg leading-relaxed"
+          className="space-y-6 text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
         >
           <p>{t("description_1")}</p>
           <p>{t("description_2")}</p>
-          
+
           <ul className="space-y-4 pt-4 pb-4">
-             <li className="flex items-center gap-3 font-medium text-slate-800">
-               <div className="size-2 rounded-full bg-primary flex-shrink-0" />
-               {t("bullet_1")}
-             </li>
-             <li className="flex items-center gap-3 font-medium text-slate-800">
-               <div className="size-2 rounded-full bg-primary flex-shrink-0" />
-               {t("bullet_2")}
-             </li>
-             <li className="flex items-center gap-3 font-medium text-slate-800">
-               <div className="size-2 rounded-full bg-primary flex-shrink-0" />
-               {t("bullet_3")}
-             </li>
+            <li className="flex items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+              <div className="size-2 rounded-full bg-primary flex-shrink-0" />
+              {t("bullet_1")}
+            </li>
+            <li className="flex items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+              <div className="size-2 rounded-full bg-primary flex-shrink-0" />
+              {t("bullet_2")}
+            </li>
+            <li className="flex items-center gap-3 font-medium text-slate-800 dark:text-slate-200">
+              <div className="size-2 rounded-full bg-primary flex-shrink-0" />
+              {t("bullet_3")}
+            </li>
           </ul>
 
           <Link
@@ -69,11 +69,11 @@ export function WhoWeAre() {
             <div className="absolute inset-0 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center mix-blend-overlay opacity-50" />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 via-transparent to-accent/20" />
           </div>
-          
+
           {/* Decorative floating elements */}
           <div className="absolute -left-10 -bottom-10 size-40 rounded-full bg-accent/30 blur-[40px]" />
           <div className="absolute -right-10 -top-10 size-60 rounded-full bg-primary/40 blur-[60px]" />
-          
+
           {/* Branding Overlay */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="size-24 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center p-4 shadow-[0_0_40px_rgba(0,0,0,0.2)]">

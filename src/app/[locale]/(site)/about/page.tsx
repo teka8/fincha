@@ -36,101 +36,101 @@ export default async function AboutPage({ params }: AboutPageProps) {
           {/* Placeholder for Hero Image - In a real app we'd use a real asset */}
           <div className="size-full bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center" />
         </div>
-        
+
         <div className="relative z-20 max-w-layout mx-auto px-8 text-center text-white">
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
             {t("navigation.about")}
           </h1>
           <p className="text-xl text-primary-100/80 max-w-2xl mx-auto leading-relaxed">
-            Fincha Sugar Factory is a cornerstone of Ethiopia&apos;s industrial landscape, 
+            Fincha Sugar Factory is a cornerstone of Ethiopia&apos;s industrial landscape,
             driving progress through sustainable sugar production and innovation.
           </p>
         </div>
       </section>
 
       {/* History & Mission */}
-      <SectionContainer className="bg-white">
+      <SectionContainer className="bg-white dark:bg-slate-900">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
-            <SectionHeading 
-              eyebrow="Our Legacy" 
-              title="A History of Excellence" 
+            <SectionHeading
+              eyebrow="Our Legacy"
+              title="A History of Excellence"
               description="Established in the heart of the Fincha Valley, our journey began with a vision to maximize the potential of Ethiopia&apos;s agricultural resources."
               align="left"
             />
-            <div className="space-y-4 text-muted leading-relaxed">
+            <div className="space-y-4 text-muted dark:text-slate-400 leading-relaxed">
               <p>
-                From its humble beginnings, Fincha Sugar Factory has expanded into a massive 
-                agro-industrial complex. Our two-phase expansion has significantly increased 
-                our capacity, allowing us to produce high-quality sugar, fuel-grade ethanol, 
+                From its humble beginnings, Fincha Sugar Factory has expanded into a massive
+                agro-industrial complex. Our two-phase expansion has significantly increased
+                our capacity, allowing us to produce high-quality sugar, fuel-grade ethanol,
                 and renewable energy.
               </p>
               <p>
-                Today, we stand as a model of integrated manufacturing, where nothing goes to waste. 
-                Our by-products power our factory and contribute to the national grid, 
+                Today, we stand as a model of integrated manufacturing, where nothing goes to waste.
+                Our by-products power our factory and contribute to the national grid,
                 embodying the spirit of circular economy.
               </p>
             </div>
-            
+
             <div className="grid sm:grid-cols-2 gap-8 pt-4">
-              <div className="p-6 rounded-3xl bg-primary-50/50 border border-primary/10">
+              <div className="p-6 rounded-3xl bg-primary-50/50 dark:bg-primary-900/10 border border-primary/10">
                 <h3 className="font-bold text-lg text-primary mb-2">Our Mission</h3>
-                <p className="text-sm text-slate-600">
-                  To be the leading producer of sugar and related agro-industrial products in 
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  To be the leading producer of sugar and related agro-industrial products in
                   East Africa through sustainable practices and innovation.
                 </p>
               </div>
-              <div className="p-6 rounded-3xl bg-accent-50/50 border border-accent/10">
+              <div className="p-6 rounded-3xl bg-accent-50/50 dark:bg-accent-900/10 border border-accent/10">
                 <h3 className="font-bold text-lg text-accent mb-2">Our Vision</h3>
-                <p className="text-sm text-slate-600">
-                  Empowering communities and sweetening progress by delivering world-class 
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Empowering communities and sweetening progress by delivering world-class
                   products while preserving the environment.
                 </p>
               </div>
             </div>
           </div>
-          
+
           <div className="relative rounded-[40px] overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-auto lg:h-[600px]">
-             {/* Gradient Placeholder for History Image */}
-             <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white/20">
-               <span className="text-9xl font-black">FINCHA</span>
-             </div>
-             <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 to-transparent">
-                <p className="text-white font-medium text-lg">Aerial view of the Fincha Valley plantation</p>
-             </div>
+            {/* Gradient Placeholder for History Image */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white/20">
+              <span className="text-9xl font-black">FINCHA</span>
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/60 to-transparent">
+              <p className="text-white font-medium text-lg">Aerial view of the Fincha Valley plantation</p>
+            </div>
           </div>
         </div>
       </SectionContainer>
 
       {/* Leadership Section */}
-      <div className="bg-slate-50/50">
+      <div className="bg-slate-50/50 dark:bg-slate-900/50">
         <SectionContainer>
-          <SectionHeading 
-            eyebrow="Leadership" 
-            title="Guided by Visionaries" 
+          <SectionHeading
+            eyebrow="Leadership"
+            title="Guided by Visionaries"
             description="Our leadership team brings decades of experience in management, engineering, and sustainable development."
             align="center"
           />
-          
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {leaders.length > 0 ? leaders.map((leader) => (
               <div key={leader.id} className="group flex flex-col items-center text-center">
-                <div className="relative size-48 mb-6 overflow-hidden rounded-full border-4 border-white shadow-lg transition-transform duration-500 group-hover:scale-105">
+                <div className="relative size-48 mb-6 overflow-hidden rounded-full border-4 border-white dark:border-slate-800 shadow-lg transition-transform duration-500 group-hover:scale-105">
                   <div className="size-full bg-slate-200 flex items-center justify-center text-slate-400">
                     <span className="text-4xl font-bold">{leader.name.charAt(0)}</span>
                   </div>
                   {leader.avatar && (
-                    <Image 
-                      src={leader.avatar} 
-                      alt={leader.name} 
-                      fill 
+                    <Image
+                      src={leader.avatar}
+                      alt={leader.name}
+                      fill
                       className="object-cover"
                     />
                   )}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-1">{leader.name}</h3>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{leader.name}</h3>
                 <p className="text-sm text-primary font-semibold uppercase tracking-wider">{leader.title}</p>
-                <p className="mt-4 text-sm text-muted leading-relaxed line-clamp-3 px-4">
+                <p className="mt-4 text-sm text-muted dark:text-slate-400 leading-relaxed line-clamp-3 px-4">
                   {leader.bio ?? "Leading our operations with a focus on efficiency and social responsibility."}
                 </p>
               </div>
@@ -149,40 +149,40 @@ export default async function AboutPage({ params }: AboutPageProps) {
       </div>
 
       {/* Values / Integrated Model */}
-      <SectionContainer className="bg-white">
+      <SectionContainer className="bg-white dark:bg-slate-900">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-           <SectionHeading 
-              eyebrow="Integrated Value Chain" 
-              title="Nothing Wasted, Everything Value" 
-              description="Learn how we transform sugarcane into multiple valuable products for a sustainable future."
-              align="center"
-           />
-           
-           <div className="relative mt-12 p-8 md:p-12 rounded-[50px] bg-gradient-to-br from-primary-900 to-primary-800 text-white overflow-hidden">
-             <div className="absolute top-0 right-0 p-12 opacity-10">
-                <span className="text-[200px] font-black leading-none">FSF</span>
-             </div>
-             <div className="relative z-10 grid md:grid-cols-3 gap-12 text-left">
-                <div className="space-y-4">
-                  <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Sugar</h4>
-                  <p className="text-primary-100/70 text-sm leading-relaxed">
-                    Premium white and retail crystal sugar produced using the latest plantation white processing tech.
-                  </p>
-                </div>
-                <div className="space-y-4">
-                   <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Ethanol</h4>
-                   <p className="text-primary-100/70 text-sm leading-relaxed">
-                      Fuel-grade ethanol distilled from molasses, reducing Ethiopia&apos;s fuel import bill.
-                   </p>
-                </div>
-                <div className="space-y-4">
-                   <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Energy</h4>
-                   <p className="text-primary-100/70 text-sm leading-relaxed">
-                      Renewable electricity co-generated from bagasse, powering thousands of homes.
-                   </p>
-                </div>
-             </div>
-           </div>
+          <SectionHeading
+            eyebrow="Integrated Value Chain"
+            title="Nothing Wasted, Everything Value"
+            description="Learn how we transform sugarcane into multiple valuable products for a sustainable future."
+            align="center"
+          />
+
+          <div className="relative mt-12 p-8 md:p-12 rounded-[50px] bg-gradient-to-br from-primary-900 to-primary-800 text-white overflow-hidden">
+            <div className="absolute top-0 right-0 p-12 opacity-10">
+              <span className="text-[200px] font-black leading-none">FSF</span>
+            </div>
+            <div className="relative z-10 grid md:grid-cols-3 gap-12 text-left">
+              <div className="space-y-4">
+                <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Sugar</h4>
+                <p className="text-primary-100/70 text-sm leading-relaxed">
+                  Premium white and retail crystal sugar produced using the latest plantation white processing tech.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Ethanol</h4>
+                <p className="text-primary-100/70 text-sm leading-relaxed">
+                  Fuel-grade ethanol distilled from molasses, reducing Ethiopia&apos;s fuel import bill.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <h4 className="text-accent text-xl font-bold uppercase tracking-widest">Energy</h4>
+                <p className="text-primary-100/70 text-sm leading-relaxed">
+                  Renewable electricity co-generated from bagasse, powering thousands of homes.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </SectionContainer>
     </div>

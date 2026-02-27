@@ -22,7 +22,7 @@ export function ContactBanner() {
         whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
-        className="relative overflow-hidden rounded-[32px] border border-primary/10 bg-white p-8 shadow-card xl:p-12"
+        className="relative overflow-hidden rounded-[32px] border border-primary/10 dark:border-primary/20 bg-white dark:bg-slate-900 p-8 shadow-card dark:shadow-none xl:p-12"
       >
         {/* Accent strip */}
         <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-primary via-accent to-primary" />
@@ -30,10 +30,10 @@ export function ContactBanner() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">Get in Touch</p>
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
               {t("contact.title")}
             </h2>
-            <p className="text-lg leading-relaxed text-muted">
+            <p className="text-lg leading-relaxed text-slate-500 dark:text-slate-400">
               {t("contact.description")}
             </p>
             <Link
@@ -52,11 +52,11 @@ export function ContactBanner() {
               { icon: LucidePhone, label: "+251 XX XXX XXXX" },
               { icon: LucideMail, label: "info@finchasugar.com" },
             ].map((item) => (
-              <div key={item.label} className="flex items-center gap-3 rounded-xl border border-slate-100 bg-surface px-4 py-3">
+              <div key={item.label} className="flex items-center gap-3 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/50 px-4 py-3">
                 <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10">
                   <item.icon size={16} className="text-primary" />
                 </div>
-                <p className="text-sm text-slate-700">{item.label}</p>
+                <p className="text-sm text-slate-700 dark:text-slate-300">{item.label}</p>
               </div>
             ))}
           </div>

@@ -39,7 +39,7 @@ export function Highlights({ title, description, items }: HighlightsProps) {
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="hover-lift group relative overflow-hidden rounded-3xl border-2 border-slate-200 bg-white p-8 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300"
+              className="hover-lift group relative overflow-hidden rounded-3xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-8 shadow-xl shadow-slate-200/50 dark:shadow-none hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/20 transition-all duration-300"
             >
               {/* Gradient background on hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index]} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
@@ -51,7 +51,7 @@ export function Highlights({ title, description, items }: HighlightsProps) {
                 <div className={`flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br ${iconBgs[index]} text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}>
                   <Icon size={26} strokeWidth={1.5} />
                 </div>
-                <p className="mt-6 text-xl font-semibold text-slate-900">
+                <p className="mt-6 text-xl font-semibold text-slate-900 dark:text-white">
                   {item}
                 </p>
                 <div className="mt-4 h-1 w-12 rounded-full bg-gradient-to-r from-primary/40 to-accent/40 transition-all duration-500 group-hover:w-20" />

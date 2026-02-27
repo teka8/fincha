@@ -26,6 +26,16 @@ function formatDate(dateStr: string | undefined): string {
     });
 }
 
+function getImageUrl(item: any): string | null {
+    if (!item) return null;
+    const candidate = item.featured_image || item.image || item.hero_image || item.event_image || item.thumbnail || item.media_url;
+    if (typeof candidate === 'string') return candidate;
+    if (candidate && typeof candidate === 'object') {
+        return candidate.url || candidate.source_url || candidate.path || candidate.full_url || null;
+    }
+    return null;
+}
+
 // ─── Main View ───────────────────────────────────────────────────────────────
 
 export function AnnouncementDetailView({ id }: Props) {
@@ -33,7 +43,7 @@ export function AnnouncementDetailView({ id }: Props) {
 
     if (isLoading) {
         return (
-            <div className="flex flex-col justify-center items-center h-[80vh] w-full bg-white">
+            <div className="flex flex-col justify-center items-center h-[80vh] w-full bg-white dark:bg-slate-900">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -59,11 +69,11 @@ export function AnnouncementDetailView({ id }: Props) {
 
     if (isError || !announcement) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-6 bg-white">
+            <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-6 bg-white dark:bg-slate-900">
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="max-w-xl p-16 rounded-[4rem] bg-white border border-slate-100 shadow-floating relative overflow-hidden"
+                    className="max-w-xl p-16 rounded-[4rem] bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-floating relative overflow-hidden"
                 >
                     <div className="absolute top-0 left-0 w-full h-2 bg-rose-500/20" />
                     <LucideMegaphone size={80} strokeWidth={1} className="mx-auto mb-10 text-slate-100" />
@@ -83,14 +93,14 @@ export function AnnouncementDetailView({ id }: Props) {
         );
     }
 
-    const imageUrl = announcement.featured_image ?? announcement.image;
+    const imageUrl = getImageUrl(announcement);
     const date = new Date(announcement.created_at);
     const day = date.toLocaleDateString("en-US", { day: "2-digit" });
     const month = date.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
     const year = date.getFullYear();
 
     return (
-        <div className="relative min-h-screen bg-[#F9FAFB] pb-32">
+        <div className="relative min-h-screen bg-white dark:bg-slate-900 pb-32">
             {/* Cinematic Background Layer */}
             <div className="absolute top-0 inset-x-0 h-[60vh] bg-slate-900 overflow-hidden">
                 {imageUrl ? (
@@ -102,12 +112,12 @@ export function AnnouncementDetailView({ id }: Props) {
                             className="object-cover opacity-40 scale-105 blur-[2px]"
                             priority
                         />
-                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-[#F9FAFB]" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-white dark:to-slate-900" />
                     </>
                 ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
                         <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #80EF80 1px, transparent 0)', backgroundSize: '40px 40px' }} />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F9FAFB]" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white dark:to-slate-900" />
                     </div>
                 )}
             </div>
@@ -150,10 +160,10 @@ export function AnnouncementDetailView({ id }: Props) {
                             initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="bg-white rounded-[4rem] shadow-floating overflow-hidden border border-slate-100"
+                            className="bg-white dark:bg-slate-800 rounded-[4rem] shadow-floating overflow-hidden border border-slate-100 dark:border-slate-700"
                         >
                             {/* Article Header */}
-                            <div className="p-10 sm:p-20 bg-gradient-to-b from-slate-50 to-white border-b border-slate-100 relative overflow-hidden">
+                            <div className="p-10 sm:p-20 bg-gradient-to-b from-slate-50 dark:from-slate-900 to-white dark:to-slate-800 border-b border-slate-100 dark:border-slate-700 relative overflow-hidden">
                                 <div className="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none">
                                     <LucideMegaphone size={240} />
                                 </div>
@@ -225,7 +235,7 @@ export function AnnouncementDetailView({ id }: Props) {
                             </div>
 
                             {/* Footer Authentication */}
-                            <div className="p-10 sm:p-20 bg-slate-50 border-t border-slate-100">
+                            <div className="p-10 sm:p-20 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-700">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                                     <div className="flex items-center gap-6">
                                         <div className="size-20 rounded-[2rem] bg-white flex items-center justify-center text-primary shadow-xl border border-slate-100">

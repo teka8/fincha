@@ -59,7 +59,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <NextIntlClientProvider locale={locale} messages={messages} timeZone="Africa/Addis_Ababa">
       <Providers locale={locale}>
-        <div className={direction} data-locale={locale} data-direction={direction}>
+        <div className={`${direction}`} data-locale={locale} data-direction={direction}>
           <div className="flex min-h-screen flex-col">
             <a
               href="#main-content"

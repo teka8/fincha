@@ -55,7 +55,7 @@ export function OperationalMetrics({ eyebrow, title, description, metrics, local
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden py-24 bg-[#f0f9ea]">
+    <section className="relative overflow-hidden py-24 bg-primary-50/30 dark:bg-slate-900/80">
       {/* Animated subtle shapes for light theme */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
@@ -86,7 +86,7 @@ export function OperationalMetrics({ eyebrow, title, description, metrics, local
           title={title}
           description={description}
           align="center"
-          className="[&_h2]:text-slate-900 [&_p]:text-slate-600"
+          className="[&_h2]:text-slate-900 dark:[&_h2]:text-white [&_p]:text-slate-600 dark:[&_p]:text-slate-400"
         />
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {metrics.map((metric, index) => (
@@ -96,7 +96,7 @@ export function OperationalMetrics({ eyebrow, title, description, metrics, local
               whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.6, delay: index * 0.12 }}
-              className="group relative overflow-hidden rounded-[40px] border border-white bg-white/60 p-10 shadow-sm backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:bg-white hover:shadow-xl hover:shadow-primary/5"
+              className="group relative overflow-hidden rounded-[40px] border border-white dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 p-10 shadow-sm backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:bg-white dark:hover:bg-slate-800 hover:shadow-xl hover:shadow-primary/5"
             >
               {/* Highlight bar */}
               <div className="absolute left-0 top-0 h-full w-1.5 bg-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:w-2" />
@@ -106,20 +106,20 @@ export function OperationalMetrics({ eyebrow, title, description, metrics, local
                   {metric.label}
                 </p>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-6xl font-black tracking-tight text-slate-900">
+                  <span className="text-6xl font-black tracking-tight text-slate-900 dark:text-white">
                     <AnimatedCounter value={metric.value} suffix={metric.suffix} locale={locale} />
                   </span>
                 </div>
                 {metric.description && (
-                  <p className="text-sm font-medium leading-relaxed text-slate-500/80">
+                  <p className="text-sm font-medium leading-relaxed text-slate-500 dark:text-slate-400">
                     {metric.description}
                   </p>
                 )}
-                
+
                 {/* Visual indicator */}
                 <div className="flex items-center gap-2 pt-2">
-                  <div className="h-1 flex-1 rounded-full bg-slate-100 overflow-hidden">
-                    <motion.div 
+                  <div className="h-1 flex-1 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                    <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: "70%" }}
                       transition={{ duration: 1.5, delay: 0.5 + index * 0.1 }}

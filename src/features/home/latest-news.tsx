@@ -40,7 +40,7 @@ export function LatestNews() {
       <div className="grid gap-10 md:grid-cols-3">
         {isLoading
           ? Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="group relative overflow-hidden rounded-[2.5rem] bg-white border border-slate-100 shadow-sm animate-pulse">
+            <div key={i} className="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm animate-pulse">
               <div className="aspect-[16/11] bg-slate-50" />
               <div className="p-8 space-y-4">
                 <div className="h-3 w-24 bg-slate-50 rounded-full" />
@@ -67,7 +67,7 @@ export function LatestNews() {
                 whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-[2.5rem] bg-white border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500"
+                className="group relative overflow-hidden rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500"
               >
                 <Link href={{ pathname: "/news/[id]", params: { id: safeId } } as any} className="block">
                   {/* Image Wrap */}
@@ -86,7 +86,7 @@ export function LatestNews() {
 
                     {/* Badges */}
                     <div className="absolute top-5 left-5">
-                      <span className="px-3 py-1.5 rounded-xl bg-white/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-slate-900 shadow-sm">
+                      <span className="px-3 py-1.5 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white shadow-sm">
                         {article.category?.name ?? "Update"}
                       </span>
                     </div>
@@ -98,11 +98,11 @@ export function LatestNews() {
                       <div className="h-px flex-1 bg-slate-50" />
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-primary leading-snug line-clamp-2 min-h-[3.5rem]">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white transition-colors group-hover:text-primary leading-snug line-clamp-2 min-h-[3.5rem]">
                       {article.title}
                     </h3>
 
-                    <p className="mt-4 text-sm leading-relaxed text-slate-500 line-clamp-2 font-medium">
+                    <p className="mt-4 text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-2 font-medium">
                       {article.excerpt ?? article.summary ?? "Discover the strategic progress and milestones at Fincha Sugar Factory."}
                     </p>
 

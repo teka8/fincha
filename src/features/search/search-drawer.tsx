@@ -2,7 +2,7 @@ import { SectionContainer, SectionHeading } from "@/components/ui/section-headin
 
 export function SearchDrawer() {
   return (
-    <SectionContainer className="bg-white">
+    <SectionContainer className="bg-white dark:bg-slate-900">
       <SectionHeading
         eyebrow="Search"
         title="Find products and updates"
@@ -13,7 +13,7 @@ export function SearchDrawer() {
         <input
           type="text"
           placeholder="Search the site"
-          className="w-full rounded-full border border-slate-200 bg-white px-5 py-3 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-3 text-sm text-slate-900 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
         />
         <button
           type="button"

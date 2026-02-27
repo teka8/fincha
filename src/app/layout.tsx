@@ -64,7 +64,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-surface text-foreground antialiased selection:bg-primary/20 selection:text-primary-900">
+      <body className="min-h-screen antialiased selection:bg-primary/20 selection:text-primary-900">
         {children}
       </body>
     </html>
