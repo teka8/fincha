@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Footer } from "@/components/layout/footer";
 import { Navigation } from "@/components/layout/navigation";
+import { ChatbotWidget } from "@/components/chatbot/chatbot-widget";
 import { getMessages, locales } from "@/i18n/routing";
 import { getApiClient } from "@/lib/api-client";
 import { Providers } from "@/providers/providers";
@@ -72,6 +73,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
               {children}
             </main>
             <Footer links={footerLinks} company={companyData} />
+            <ChatbotWidget />
           </div>
         </div>
       </Providers>

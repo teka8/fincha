@@ -5,7 +5,7 @@ import { useState } from "react";
 import { LucideArrowLeft, LucideArrowRight, LucideNewspaper, LucideClock } from "lucide-react";
 import type { Post } from "@/types/cms";
 import { useNewsList } from "@/hooks/use-news-list";
-import { Link } from "@/i18n/routing";
+import { Link, type LocalizedRoute } from "@/i18n/routing";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

@@ -295,8 +295,8 @@ function TenderApplicationForm({
 
     const fd = new FormData();
     Object.entries(formData).forEach(([k, v]) => {
-      if (k === "proposals") {
-        (v as File[]).forEach((file: File) => fd.append("proposals[]", file));
+      if (k === "proposals" && Array.isArray(v)) {
+        v.forEach((file) => fd.append("proposals[]", file));
       } else if (v !== null && v !== undefined) {
         fd.append(k, v as string);
       }

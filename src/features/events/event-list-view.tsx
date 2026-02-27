@@ -76,6 +76,9 @@ export function EventListView() {
     const events = result?.data ?? [];
     const meta = result?.meta;
 
+    // Reset page on view change
+    // (handled in setView handlers below)
+
     // Map events by date key
     const byDate = useMemo(() => {
         const map: Record<string, Event[]> = {};
