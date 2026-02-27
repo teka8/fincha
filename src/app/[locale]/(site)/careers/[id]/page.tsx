@@ -310,8 +310,8 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                   Job Description
                 </h2>
               </div>
-              <div className="p-6" 
-                dangerouslySetInnerHTML={{ __html: job.description && job.description.length > 10 ? job.description : getFallbackDescription(id, job.title || "") }}
+<div className="p-6" 
+                dangerouslySetInnerHTML={{ __html: job.content || job.description || getFallbackDescription(id, job.title || "") }}
               />
             </div>
             
@@ -360,10 +360,11 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
             </div>
           </div>
 
-          {/* Application Form & Quick Insights */}
-          <div className="lg:col-span-2 space-y-6">
+{/* Application Form & Quick Insights */}
+          <div className="lg:col-span-2">
+            <div className="sticky top-24 space-y-6">
             {/* Application Form Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-primary/10 overflow-hidden sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg border border-primary/10 overflow-hidden">
               <div className="bg-gradient-to-r from-primary to-primary-600 px-6 py-4">
                 <h2 className="text-lg font-bold text-white">Apply for this Position</h2>
                 <p className="text-primary-100 text-xs">Join our team at Fincha Sugar Factory</p>
@@ -373,7 +374,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               </div>
             </div>
 
-            {/* Quick Insights Card */}
+{/* Quick Insights Card */}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
               <div className="px-5 py-3 border-b border-slate-100">
                 <h3 className="font-semibold text-slate-900">Quick Insights</h3>
@@ -399,10 +400,11 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                     Accepting Applications
                   </span>
-                </div>
               </div>
             </div>
+            </div>
           </div>
+        </div>
         </div>
       </SectionContainer>
     </div>

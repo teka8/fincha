@@ -187,7 +187,7 @@ export function Navigation({ brandName }: NavigationProps) {
                         : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                         }`}
                     >
-                      {tNav(item.key as any)}
+{tNav(item.key as StaticNavLinkKey)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
@@ -219,7 +219,7 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                                     }`}
                                 >
-                                  {tNav(child.key as any)}
+                                  {tNav(child.key as StaticNavLinkKey)}
                                 </Link>
                               );
                             })}
@@ -248,7 +248,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="relative z-10">{tNav(item.key as any)}</span>
+                  <span className="relative z-10">{tNav(item.key as StaticNavLinkKey)}</span>
                 </Link>
               );
             })}
@@ -260,7 +260,7 @@ export function Navigation({ brandName }: NavigationProps) {
           {/* <Button asChild className="hidden shadow-glow-sm md:inline-flex">
             <Link href="/contact">{tActions("learn_more")}</Link>
           </Button> */}
-          <button
+          <Button
             type="button"
             className="relative inline-flex items-center rounded-xl p-2.5 text-slate-700 transition-all hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 lg:hidden"
             onClick={() => setIsMobileOpen((state) => !state)}
@@ -272,7 +272,7 @@ export function Navigation({ brandName }: NavigationProps) {
             }
           >
             {isMobileOpen ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
-          </button>
+          </Button>
         </motion.div>
       </div>
 

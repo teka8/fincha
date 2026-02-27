@@ -77,7 +77,10 @@ export function EventListView() {
     const meta = result?.meta;
 
     // Reset page on view change
-    useEffect(() => { setPage(1); }, [view]);
+    useEffect(() => { 
+        const timer = setTimeout(() => setPage(1), 0);
+        return () => clearTimeout(timer);
+    }, [view]);
 
     // Map events by date key
     const byDate = useMemo(() => {

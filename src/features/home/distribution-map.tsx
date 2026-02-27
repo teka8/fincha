@@ -22,7 +22,10 @@ export function DistributionMap() {
       if (typeof window === "undefined" || !mapRef.current) return;
       
       const L = (await import("leaflet")).default;
-      await import("leaflet/dist/leaflet.css");
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      document.head.appendChild(link);
 
       if (mapRef.current.querySelector(".leaflet-container")) return;
 

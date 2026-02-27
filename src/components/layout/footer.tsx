@@ -208,7 +208,21 @@ export function Footer({ links = [], company }: FooterProps = {}) {
                   className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-14 pr-4 text-sm text-white placeholder:text-slate-500 outline-none transition-all focus:border-accent/40 focus:bg-white/10 focus:ring-4 focus:ring-accent/10"
                   placeholder="Your email address"
                   autoComplete="email"
+                  required
                 />
+              </div>
+              <div className="relative">
+                <select
+                  name="interest"
+                  className="w-full rounded-2xl border border-white/10 bg-transparent py-4 pl-4 pr-4 text-sm text-white outline-none transition-all focus:border-accent/40 focus:bg-white/5 focus:ring-4 focus:ring-accent/10"
+                  required
+                >
+                  <option value="" className="bg-slate-900 text-slate-400">Select your interest</option>
+                  <option value="all" className="bg-slate-900 text-white">All News</option>
+                  <option value="announcement" className="bg-slate-900 text-white">Announcements</option>
+                  <option value="event" className="bg-slate-900 text-white">Events</option>
+                  <option value="newsletter" className="bg-slate-900 text-white">Newsletter</option>
+                </select>
               </div>
               <button
                 type="submit"

@@ -34,7 +34,7 @@ function NewsCard({ item }: { item: Post }) {
     return (
         <Link
             id={`news-card-${item.id}`}
-            href={{ pathname: "/news/[id]", params: { id: newsId } } as any}
+            href={{ pathname: "/news/[id]", params: { id: newsId } }}
             className="group flex flex-col bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover-lift shadow-sm animate-fade-up"
         >
             <div className="relative aspect-[16/10] overflow-hidden">

@@ -114,7 +114,7 @@ export function ApplicationForm({ jobId, jobTitle, locale }: ApplicationFormProp
         >
           <h3 className="text-lg font-bold text-slate-900 mb-2">Interested in this role?</h3>
           <p className="text-slate-500 mb-6">
-            Join our team and help us build the future. We're looking for passionate individuals.
+            Join our team and help us build the future. We&apos;re looking for passionate individuals.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
@@ -270,6 +270,7 @@ export function ApplicationForm({ jobId, jobTitle, locale }: ApplicationFormProp
             type="file"
             accept=".pdf,.doc,.docx"
             onChange={handleFileChange}
+            title="Upload Resume / CV"
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
           <div className="flex items-center gap-3">
