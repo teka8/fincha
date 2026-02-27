@@ -19,7 +19,7 @@ export function PageHero({
   badge,
   children,
 }: PageHeroProps) {
-  const prefersReducedMotion = useReducedMotion();
+  // const prefersReducedMotion = useReducedMotion();
 
   const containerVariants = {
     hidden: { opacity: 0 },

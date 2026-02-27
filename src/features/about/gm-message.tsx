@@ -23,7 +23,7 @@ export function GMMessage() {
         >
           {/* Transition to actual leader image when available */}
           <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 via-primary-800 to-accent/20" />
-          <div className="absolute inset-0 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center mix-blend-overlay opacity-30" />
+          <div className="absolute inset-0 bg-[url('/images/land-o-lakes-inc-PCITNW3g85Q-unsplash.jpg')] bg-cover bg-center mix-blend-overlay opacity-30" />
           
           <div className="absolute inset-0 flex items-center justify-center">
              <div className="text-center text-white/40 space-y-4">

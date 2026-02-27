@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { LucideX, LucideChevronLeft, LucideChevronRight, LucideImage, LucideVideo, LucideMusic } from "lucide-react";
-import Image from "next/image";
+import { LucideX, LucideChevronLeft, LucideChevronRight, LucideMusic } from "lucide-react";
 
 export type ModalMediaItem = {
     id: string | number;

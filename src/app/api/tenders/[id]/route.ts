@@ -7,9 +7,12 @@ export async function GET(
 ) {
   const url = new URL(request.url);
   const locale = url.searchParams.get("locale") ?? "en";
+  const { id } = await params;
 
   try {
+
     const { id } = await params;
+
     const tender = await getTenderById(locale, id);
     if (!tender) {
       return NextResponse.json({ message: "Not found" }, { status: 404 });

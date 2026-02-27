@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     LucideMegaphone, LucideArrowRight, LucideSearch,
-    LucideFilter, LucideDownload, LucideCalendarDays,
-    LucideX, LucideBell, LucideCheckCircle2
+    LucideDownload,
+    LucideX
 } from "lucide-react";
 import { useAnnouncementsList } from "@/hooks/use-announcements-list";
 import { Link, type LocalizedRoute } from "@/i18n/routing";
@@ -38,7 +38,7 @@ function AnnouncementCard({ item, index }: { item: Announcement; index: number }
             transition={{ duration: 0.4, delay: index * 0.05 }}
         >
             <Link
-                href={`/announcement/${item.id}` as LocalizedRoute}
+                href={{ pathname: "/announcement/[id]", params: { id: String(item.id) } }}
                 className="group relative flex flex-col md:flex-row gap-8 p-8 bg-white rounded-[2.5rem] border border-slate-100 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
             >
                 {/* Visual Date Element */}

@@ -4,7 +4,6 @@ import { LucideHeart, LucideSprout, LucideUsers, LucideGraduationCap, LucideGlob
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
-import Image from "next/image";
 
 type CSRPageProps = {
   params: Promise<{
@@ -51,14 +50,14 @@ const pillars = [
 
 export default async function CSRPage({ params }: CSRPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
 
   return (
     <div className="flex flex-col">
       <PageHero
         title="Grown with Purpose"
         subtitle="Experience our dedication to social empowerment, environmental guardianship, and sustainable industrial growth."
-        image="/images/community-header.jpg"
+        image="/images/pexels-junior-teixeira-1064069-2047905.jpg"
         badge="CSR & Sustainability"
       />
 
