@@ -39,7 +39,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <PageHero
         title="Sweetening the Nation Since 1998"
         subtitle="Experience the history, scale, and dedication behind one of Africa's most integrated sugar production complexes."
-        image="/images/hero-factory.jpg"
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
         badge="Our Heritage"
       />
 

@@ -33,7 +33,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/images/hero-factory.jpg",
+    image: "/images/pexels-mikael-blomkvist-64765951.jpg",
     badge: "Operational Might",
     title: "Driving Industrial Progress",
     description: "State-of-the-art facilities powering the nation's energy and sugar needs with efficiency.",

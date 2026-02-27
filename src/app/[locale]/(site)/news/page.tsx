@@ -30,7 +30,7 @@ export default async function NewsPage({ params }: NewsPageProps) {
       <PageHero
         title="Voice of the Valley"
         subtitle="Discover the latest stories on industrial expansion, community impact, and agricultural innovation at Fincha."
-        image="/images/hero-factory.jpg"
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
         badge="News & Media"
       />
 

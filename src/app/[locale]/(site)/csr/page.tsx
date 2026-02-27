@@ -58,7 +58,7 @@ export default async function CSRPage({ params }: CSRPageProps) {
       <PageHero
         title="Grown with Purpose"
         subtitle="Experience our dedication to social empowerment, environmental guardianship, and sustainable industrial growth."
-        image="/images/community-header.jpg"
+        image="/images/pexels-junior-teixeira-1064069-2047905.jpg"
         badge="CSR & Sustainability"
       />
 

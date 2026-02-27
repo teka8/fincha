@@ -22,7 +22,14 @@ export function DistributionMap() {
       if (typeof window === "undefined" || !mapRef.current) return;
       
       const L = (await import("leaflet")).default;
-      await import("leaflet/dist/leaflet.css");
+
+      // Load Leaflet CSS via link tag (avoids TS module resolution issues)
+      if (!document.querySelector('link[href*="leaflet"]')) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        document.head.appendChild(link);
+      }
 
       if (mapRef.current.querySelector(".leaflet-container")) return;
 
@@ -63,7 +70,7 @@ export function DistributionMap() {
 
   return (
     <SectionContainer className="bg-slate-50 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
       
       <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
         <div className="space-y-12">

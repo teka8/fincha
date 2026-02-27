@@ -152,7 +152,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
              <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-                <div className="w-full h-full bg-[url('/images/workers-huddle.jpg')] bg-cover bg-center" />
+                <div className="w-full h-full bg-[url('/images/pexels-magnetme-3917414-5839461.jpg')] bg-cover bg-center" />
                 <div className="absolute inset-0 flex items-center justify-center">
                    <div className="size-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
                       <div className="size-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-1" />

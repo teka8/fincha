@@ -33,7 +33,7 @@ export default async function TeamPage({ params }: TeamPageProps) {
       <PageHero
         title="Meet Our Team"
         subtitle="The talented individuals who make Fincha Sugar Factory a success. Together, we work towards a sustainable future for Ethiopia."
-        image="/images/hero-factory.jpg"
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
         badge="Our People"
       />
 
