@@ -19,38 +19,44 @@ export function MediaGallery() {
   const { data: mediaItems } = useMediaGallery(5);
 
   // Fallback data
-  const fallbackItems = [
+  const fallbackItems: MediaItem[] = [
     {
-      id: "1",
+      id: 1,
       title: "Cane harvest at dawn",
       type: "image",
+      url: "/images/1.jpg",
     },
     {
-      id: "2",
+      id: 2,
       title: "Ethanol distillation control room",
       type: "image",
+      url: "/images/2.jpg",
     },
     {
-      id: "3",
+      id: 3,
       title: "Community health outreach",
       type: "image",
+      url: "/images/3.jpg",
     },
     {
-      id: "4",
+      id: 4,
       title: "Bagasse power turbines",
       type: "video",
+      url: "/images/4.jpg",
+      thumbnail: "/images/4.jpg",
     },
     {
-      id: "5",
+      id: 5,
       title: "Factory expansion progress",
       type: "image",
+      url: "/images/5.jpg",
     },
   ];
 
   const items: MediaItem[] =
     Array.isArray(mediaItems) && mediaItems.length > 0
       ? mediaItems.slice(0, 5)
-      : (fallbackItems as MediaItem[]);
+      : fallbackItems;
 
   return (
     <SectionContainer className="bg-transparent">
@@ -61,11 +67,7 @@ export function MediaGallery() {
         {items.map((item, index) => {
           const isLarge = index === 0;
           const isVideo = item.type === "video";
-          const imageUrl =
-            (item as any).thumbnail ||
-            (item as any).thumb_url ||
-            (item as any).url ||
-            null;
+          const imageUrl = item.thumbnail || item.thumb_url || item.url || null;
 
           return (
             <motion.a
