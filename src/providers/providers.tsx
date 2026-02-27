@@ -23,14 +23,14 @@ export function Providers({ locale, children }: ProvidersProps) {
 
   useEffect(() => {
     document.documentElement.setAttribute("lang", locale);
-    document.documentElement.setAttribute("dir", locale === "am" ? "rtl" : "ltr");
+    document.documentElement.setAttribute("dir", "ltr");
   }, [locale]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <LocaleContext.Provider value={clientValue}>
         <AnimatePresence mode="wait">
-          <ThemeProvider locale={locale}>{children}</ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </AnimatePresence>
       </LocaleContext.Provider>
     </QueryClientProvider>

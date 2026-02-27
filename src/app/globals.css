@@ -25,10 +25,6 @@ a {
   @apply text-primary hover:text-primary-600 transition-colors;
 }
 
-[dir="rtl"] * {
-  font-family: var(--font-geist-sans);
-}
-
 /* ─── Scrollbar ─────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 6px;

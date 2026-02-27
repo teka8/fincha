@@ -32,6 +32,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   const messages = await getMessages(locale);
+  const direction = "ltr";
 
   // Fetch navigation and footer data on the server
   const client = getApiClient(locale);
@@ -58,7 +59,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <NextIntlClientProvider locale={locale} messages={messages} timeZone="Africa/Addis_Ababa">
       <Providers locale={locale}>
-        <div className="ltr" data-locale={locale} data-direction="ltr">
+        <div className={direction} data-locale={locale} data-direction={direction}>
           <div className="flex min-h-screen flex-col">
             <a
               href="#main-content"

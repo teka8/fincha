@@ -3,11 +3,7 @@
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { PropsWithChildren } from "react";
 
-type ThemeProviderProps = PropsWithChildren<{
-  locale: string;
-}>;
-
-export function ThemeProvider({ locale, children }: ThemeProviderProps) {
+export function ThemeProvider({ children }: PropsWithChildren) {
   return (
     <NextThemesProvider
       attribute="class"
@@ -16,7 +12,7 @@ export function ThemeProvider({ locale, children }: ThemeProviderProps) {
       disableTransitionOnChange
       value={{
         light: "light",
-        dark: locale === "am" ? "dark rtl" : "dark",
+        dark: "dark",
       }}
     >
       {children}
