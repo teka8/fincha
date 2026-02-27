@@ -2,6 +2,7 @@
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { LucideDownload, LucideHelpCircle, LucideImage, LucideQrCode } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -25,7 +26,7 @@ type StaticNavLinkKey =
   | "news"
   | "projects"
   | "csr"
-  | "media"
+  | "more"
   | "careers"
   | "tenders"
   | "downloads"
@@ -37,11 +38,20 @@ type StaticNavEntry = {
   label?: string;
 };
 
+type NavChild = {
+  href: string;
+  key: string;
+  label: string;
+  description?: string;
+  Icon?: React.ComponentType<{ size?: number; className?: string }>;
+};
+
 type NavItem = {
   href?: string;
   key: string;
   label: string;
-  children?: { href: string; key: string; label: string }[];
+  isMega?: boolean;
+  children?: NavChild[];
 };
 
 const navigationStructure: NavItem[] = [
@@ -77,11 +87,36 @@ const navigationStructure: NavItem[] = [
   {
     key: "media",
     label: "Resources",
+    isMega: true,
     children: [
-
-      { href: "/media", key: "media", label: "Media Gallery" },
-      { href: "/downloads", key: "downloads", label: "Download Center" },
-      { href: "/faq", key: "faq", label: "FAQ" },
+      {
+        href: "/media",
+        key: "media",
+        label: "Media Gallery",
+        description: "Browse photos, videos & audio showcasing our operations.",
+        Icon: LucideImage,
+      },
+      {
+        href: "/downloads",
+        key: "downloads",
+        label: "Download Center",
+        description: "Annual reports, policies, and official documents.",
+        Icon: LucideDownload,
+      },
+      {
+        href: "/faq",
+        key: "faq",
+        label: "FAQ",
+        description: "Quick answers to common questions about Fincha.",
+        Icon: LucideHelpCircle,
+      },
+      {
+        href: "/qr-checker",
+        key: "qr-checker",
+        label: "QR Code Checker",
+        description: "Verify the authenticity of any Fincha product.",
+        Icon: LucideQrCode,
+      },
     ],
   },
   { href: "/contact", key: "contact", label: "Contact" },
@@ -219,7 +254,7 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                                     }`}
                                 >
-                                  {tNav(child.key as any)}
+                                  {child.label ?? tNav(child.key as any)}
                                 </Link>
                               );
                             })}
