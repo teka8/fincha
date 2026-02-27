@@ -15,9 +15,8 @@ import type {
 } from "@/types/cms";
 
 
-//const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
-
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://fincha.tewostechsolutions.com/api/v1";
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000/api/v1";
+ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "https://fincha.tewostechsolutions.com/api/v1";
 
 
 type PaginatedResponse<T> = {

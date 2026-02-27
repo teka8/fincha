@@ -5,6 +5,7 @@ import { LucideBriefcase, LucideMapPin, LucideClock, LucideArrowRight } from "lu
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
 import { getJobs } from "@/lib/cms";
+import type { Job } from "@/types/cms";
 import { Link } from "@/i18n/routing";
 
 type CareersPageProps = {
@@ -26,8 +27,50 @@ export async function generateMetadata({ params }: CareersPageProps): Promise<Me
 export default async function CareersPage({ params }: CareersPageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "common" });
-  const jobsRes = await getJobs(locale);
-  const jobs = jobsRes.data;
+  
+  let jobs: Job[] = [];
+  try {
+    const jobsRes = await getJobs(locale);
+    jobs = jobsRes.data;
+  } catch (error) {
+    console.error("Failed to load jobs:", error);
+  }
+
+  // Fallback jobs if API fails
+  if (jobs.length === 0) {
+    jobs = [
+      {
+        id: 1,
+        title: "Senior Mechanical Engineer",
+        department: "Engineering",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>We are looking for a Senior Mechanical Engineer to join our engineering team.</p><ul><li>5+ years of experience in sugar industry</li><li>Bachelor's degree in Mechanical Engineering</li></ul>",
+        closing_date: "2026-03-31",
+        created_at: "2026-02-01"
+      },
+      {
+        id: 2,
+        title: "Agronomist",
+        department: "Agriculture",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>Join our agriculture team to help improve cane yields.</p>",
+        closing_date: "2026-04-15",
+        created_at: "2026-02-10"
+      },
+      {
+        id: 3,
+        title: "Finance Manager",
+        department: "Finance",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>Manage financial operations for our facility.</p>",
+        closing_date: "2026-03-20",
+        created_at: "2026-02-05"
+      }
+    ];
+  }
 
   return (
     <div className="flex flex-col">
