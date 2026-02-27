@@ -1,13 +1,11 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
-import { LucideGlobe2, LucideMapPin, LucideShip, LucideTruck } from "lucide-react";
+import { LucideMapPin, LucideShip, LucideTruck } from "lucide-react";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 
 export function DistributionMap() {
-  const prefersReducedMotion = useReducedMotion();
   const t = useTranslations("home.distribution");
   const mapRef = useRef<HTMLDivElement>(null);
 

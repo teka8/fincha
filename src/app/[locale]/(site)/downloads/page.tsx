@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { LucideFileText, LucideDownload, LucideSearch, LucideFileArchive, LucideChevronRight } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
 import { getResources, getDownloadCategories } from "@/lib/cms";
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: DownloadsPageProps): Promise<
 
 export default async function DownloadsPage({ params }: DownloadsPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
   const resourcesRes = await getResources(locale);
   const categories = await getDownloadCategories(locale);
   const resources = resourcesRes.data;

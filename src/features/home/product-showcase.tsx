@@ -21,7 +21,6 @@ export function ProductShowcase() {
   const t = useTranslations("home");
   const title = t("products.title");
   const description = t("products.description");
-  const ctaLabel = t("products.cta");
   const { locale } = useLocaleContext();
 
   const items = [

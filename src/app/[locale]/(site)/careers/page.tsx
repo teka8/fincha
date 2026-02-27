@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: CareersPageProps): Promise<Me
 
 export default async function CareersPage({ params }: CareersPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
   
   let jobs: Job[] = [];
   try {

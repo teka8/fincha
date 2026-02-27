@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { Button } from "@/components/ui/button";
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useLocaleContext } from "@/providers/providers";
@@ -222,6 +221,7 @@ export function Navigation({ brandName }: NavigationProps) {
                         : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                         }`}
                     >
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       {tNav(item.key as any)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
@@ -254,6 +254,7 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                                     }`}
                                 >
+                                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                                   {child.label ?? tNav(child.key as any)}
                                 </Link>
                               );
@@ -283,6 +284,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <span className="relative z-10">{tNav(item.key as any)}</span>
                 </Link>
               );

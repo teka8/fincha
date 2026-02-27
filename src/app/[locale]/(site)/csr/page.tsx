@@ -4,7 +4,6 @@ import { LucideHeart, LucideSprout, LucideUsers, LucideGraduationCap, LucideGlob
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
-import Image from "next/image";
 
 type CSRPageProps = {
   params: Promise<{
@@ -51,7 +50,7 @@ const pillars = [
 
 export default async function CSRPage({ params }: CSRPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
 
   return (
     <div className="flex flex-col">

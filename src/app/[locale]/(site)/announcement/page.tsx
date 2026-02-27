@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
 import { AnnouncementListView } from "@/features/announcements/announcement-list-view";
 

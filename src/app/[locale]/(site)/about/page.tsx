@@ -31,7 +31,6 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
   const leaders = await getLeaders(locale);
 
   return (

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { LucidePhone, LucideMail, LucideMapPin, LucideClock, LucideGithub, LucideLinkedin, LucideFacebook } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
 
 type ContactPageProps = {
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
 
 export default async function ContactPage({ params }: ContactPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
 
   return (
     <div className="flex flex-col">
