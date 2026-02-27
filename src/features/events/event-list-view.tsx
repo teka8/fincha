@@ -77,10 +77,7 @@ export function EventListView() {
     const meta = result?.meta;
 
     // Reset page on view change
-    useEffect(() => { 
-        const timer = setTimeout(() => setPage(1), 0);
-        return () => clearTimeout(timer);
-    }, [view]);
+    // (handled in setView handlers below)
 
     // Map events by date key
     const byDate = useMemo(() => {
@@ -141,7 +138,7 @@ export function EventListView() {
                 {/* Toggle */}
                 <div className="inline-flex p-1 bg-slate-100 rounded-2xl">
                     <button
-                        onClick={() => setView("calendar")}
+                        onClick={() => { setView("calendar"); setPage(1); }}
                         className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all ${view === "calendar"
                                 ? "bg-white text-primary shadow-sm"
                                 : "text-slate-500 hover:text-slate-700"
@@ -151,7 +148,7 @@ export function EventListView() {
                         Calendar
                     </button>
                     <button
-                        onClick={() => setView("list")}
+                        onClick={() => { setView("list"); setPage(1); }}
                         className={`flex items-center gap-2 px-5 py-2 rounded-xl text-sm font-bold transition-all ${view === "list"
                                 ? "bg-white text-primary shadow-sm"
                                 : "text-slate-500 hover:text-slate-700"

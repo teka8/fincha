@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { SectionContainer } from "@/components/ui/section-heading";
 import { LucideCalendar, LucideMap, LucideTrendingUp, LucideUsers } from "lucide-react";
 
 export function AboutStats() {

@@ -2,11 +2,11 @@
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { LucideDownload, LucideHelpCircle, LucideImage, LucideQrCode } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { Button } from "@/components/ui/button";
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useLocaleContext } from "@/providers/providers";
@@ -25,7 +25,7 @@ type StaticNavLinkKey =
   | "news"
   | "projects"
   | "csr"
-  | "media"
+  | "more"
   | "careers"
   | "tenders"
   | "downloads"
@@ -37,11 +37,20 @@ type StaticNavEntry = {
   label?: string;
 };
 
+type NavChild = {
+  href: string;
+  key: string;
+  label: string;
+  description?: string;
+  Icon?: React.ComponentType<{ size?: number; className?: string }>;
+};
+
 type NavItem = {
   href?: string;
   key: string;
   label: string;
-  children?: { href: string; key: string; label: string }[];
+  isMega?: boolean;
+  children?: NavChild[];
 };
 
 const navigationStructure: NavItem[] = [
@@ -77,11 +86,36 @@ const navigationStructure: NavItem[] = [
   {
     key: "media",
     label: "Resources",
+    isMega: true,
     children: [
-
-      { href: "/media", key: "media", label: "Media Gallery" },
-      { href: "/downloads", key: "downloads", label: "Download Center" },
-      { href: "/faq", key: "faq", label: "FAQ" },
+      {
+        href: "/media",
+        key: "media",
+        label: "Media Gallery",
+        description: "Browse photos, videos & audio showcasing our operations.",
+        Icon: LucideImage,
+      },
+      {
+        href: "/downloads",
+        key: "downloads",
+        label: "Download Center",
+        description: "Annual reports, policies, and official documents.",
+        Icon: LucideDownload,
+      },
+      {
+        href: "/faq",
+        key: "faq",
+        label: "FAQ",
+        description: "Quick answers to common questions about Fincha.",
+        Icon: LucideHelpCircle,
+      },
+      {
+        href: "/qr-checker",
+        key: "qr-checker",
+        label: "QR Code Checker",
+        description: "Verify the authenticity of any Fincha product.",
+        Icon: LucideQrCode,
+      },
     ],
   },
   { href: "/contact", key: "contact", label: "Contact" },
@@ -187,7 +221,8 @@ export function Navigation({ brandName }: NavigationProps) {
                         : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                         }`}
                     >
-{tNav(item.key as StaticNavLinkKey)}
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {tNav(item.key as any)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
@@ -219,7 +254,8 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 hover:bg-primary/5 hover:text-primary"
                                     }`}
                                 >
-                                  {tNav(child.key as StaticNavLinkKey)}
+                                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                  {child.label ?? tNav(child.key as any)}
                                 </Link>
                               );
                             })}
@@ -248,7 +284,8 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
-                  <span className="relative z-10">{tNav(item.key as StaticNavLinkKey)}</span>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                  <span className="relative z-10">{tNav(item.key as any)}</span>
                 </Link>
               );
             })}

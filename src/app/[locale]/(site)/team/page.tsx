@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: TeamPageProps): Promise< Meta
 
 export default async function TeamPage({ params }: TeamPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
   const leaders = await getLeaders(locale);
 
   return (
@@ -33,14 +33,14 @@ export default async function TeamPage({ params }: TeamPageProps) {
       <PageHero
         title="Meet Our Team"
         subtitle="The talented individuals who make Fincha Sugar Factory a success. Together, we work towards a sustainable future for Ethiopia."
-        image="/images/hero-factory.jpg"
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
         badge="Our People"
       />
 
       {/* Team Grid */}
       <SectionContainer className="bg-gradient-to-b from-slate-50 to-white py-24">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {leaders.length > 0 ? leaders.map((leader, index) => (
+          {leaders.length > 0 ? leaders.map((leader) => (
             <div 
               key={leader.id} 
               className="group relative bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"

@@ -18,7 +18,7 @@ export function CommunityImpact() {
             initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}
             whileInView={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="aspect-square rounded-[32px] bg-primary/20 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center"
+            className="aspect-square rounded-[32px] bg-primary/20 bg-[url('/images/land-o-lakes-inc-PCITNW3g85Q-unsplash.jpg')] bg-cover bg-center"
           />
           <motion.div 
             initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.9 }}

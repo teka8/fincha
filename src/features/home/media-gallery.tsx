@@ -1,85 +1,144 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { LucidePlay, LucideCamera, LucideImage } from "lucide-react";
+import { LucidePlay, LucideCamera } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 import { useMediaGallery } from "@/features/media/hooks";
 import type { MediaItem } from "@/types/cms";
 
-const mediaIcons = [LucideCamera, LucidePlay, LucideImage, LucideCamera];
-const mediaGradients = [
-  "from-primary-700 via-primary-600 to-primary-500",
-  "from-accent-600 via-accent-500 to-amber-400",
-  "from-primary-600 via-primary-500 to-primary-400",
-  "from-accent-700 via-accent-600 to-accent-500",
-];
-
 export function MediaGallery() {
   const prefersReducedMotion = useReducedMotion();
   const t = useTranslations("home");
+
   const title = t("media.title");
   const description = t("media.description");
-  const caption = t("media.caption", { default: t("media.description") });
-  const { data: mediaItems } = useMediaGallery();
-  const fallbackItems = [
-    { label: "Cane harvest at dawn", meta: "Fincha Valley" },
-    { label: "Ethanol distillation control room", meta: "Process Innovation" },
-    { label: "Community health outreach", meta: "CSR Spotlight" },
-    { label: "Bagasse power turbines", meta: "Renewable Energy" },
+
+  const { data: mediaItems } = useMediaGallery(5);
+
+  // Fallback data
+  const fallbackItems: MediaItem[] = [
+    {
+      id: 1,
+      title: "Cane harvest at dawn",
+      type: "image",
+      url: "/images/1.jpg",
+    },
+    {
+      id: 2,
+      title: "Ethanol distillation control room",
+      type: "image",
+      url: "/images/2.jpg",
+    },
+    {
+      id: 3,
+      title: "Community health outreach",
+      type: "image",
+      url: "/images/3.jpg",
+    },
+    {
+      id: 4,
+      title: "Bagasse power turbines",
+      type: "video",
+      url: "/images/4.jpg",
+      thumbnail: "/images/4.jpg",
+    },
+    {
+      id: 5,
+      title: "Factory expansion progress",
+      type: "image",
+      url: "/images/5.jpg",
+    },
   ];
-  const items =
+
+  const items: MediaItem[] =
     Array.isArray(mediaItems) && mediaItems.length > 0
-      ? mediaItems.map((item: MediaItem) => ({
-          label: item.title,
-          meta: item.type === "video" ? "Video" : "Gallery",
-        }))
+      ? mediaItems.slice(0, 5)
       : fallbackItems;
 
   return (
     <SectionContainer className="bg-transparent">
       <SectionHeading eyebrow="Gallery" title={title} description={description} />
-      {/* Masonry-like grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+      {/* Fixed Grid Layout */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[220px]">
         {items.map((item, index) => {
-          const Icon = mediaIcons[index] ?? LucideCamera;
           const isLarge = index === 0;
+          const isVideo = item.type === "video";
+          const imageUrl = item.thumbnail || item.thumb_url || item.url || null;
 
           return (
-            <motion.div
-              key={item.label}
-              initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
-              whileInView={prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }}
+            <motion.a
+              key={item.id ?? index}
+              href="/media"
+              initial={
+                prefersReducedMotion
+                  ? undefined
+                  : { opacity: 0, scale: 0.95 }
+              }
+              whileInView={
+                prefersReducedMotion
+                  ? undefined
+                  : { opacity: 1, scale: 1 }
+              }
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`group relative cursor-pointer overflow-hidden rounded-3xl shadow-card ${
+              className={`group relative overflow-hidden rounded-3xl shadow-card ${
                 isLarge ? "sm:col-span-2 sm:row-span-2" : ""
               }`}
             >
-              {/* Gradient background as image placeholder */}
-              <div className={`aspect-square bg-gradient-to-br ${mediaGradients[index]} transition-transform duration-700 group-hover:scale-110`}>
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                  <div className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm transition-all duration-300 group-hover:bg-white/20 group-hover:scale-110">
-                    <Icon size={isLarge ? 40 : 28} className="text-white" strokeWidth={1.5} />
+              {/* Image Container */}
+              <div className="relative h-full w-full">
+                {imageUrl ? (
+                  <Image
+                    src={imageUrl}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary-700 via-primary-600 to-primary-500">
+                    <LucideCamera
+                      size={isLarge ? 40 : 28}
+                      className="text-white"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Video Play Overlay */}
+              {isVideo && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="rounded-full bg-black/50 p-4 backdrop-blur-sm">
+                    <LucidePlay
+                      size={isLarge ? 40 : 28}
+                      className="text-white fill-white"
+                    />
                   </div>
                 </div>
-              </div>
+              )}
 
-              {/* Overlay on hover */}
+              {/* Dark Hover Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-              {/* Content at bottom */}
-              <div className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                <p className="text-base font-semibold text-white">{item.label}</p>
-                <p className="mt-1 text-xs text-white/70">{item.meta ?? caption}</p>
+              {/* Bottom Content */}
+              <div className="absolute bottom-0 left-0 right-0 translate-y-3 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                <p className="text-base font-semibold text-white">
+                  {item.title}
+                </p>
+                <p className="mt-1 text-xs text-white/70">
+                  {isVideo ? "Video" : "Gallery"}
+                </p>
               </div>
 
-              {/* Category badge */}
+              {/* Top Badge */}
               <div className="absolute right-3 top-3 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm">
-                {item.meta ?? "Gallery"}
+                {isVideo ? "Video" : "Gallery"}
               </div>
-            </motion.div>
+            </motion.a>
           );
         })}
       </div>

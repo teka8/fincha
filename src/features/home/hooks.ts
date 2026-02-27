@@ -69,5 +69,7 @@ export function useProjectsPreview(limit = 3) {
       return data.slice(0, limit);
     },
     staleTime: 1000 * 60 * 5,
+    retry: 1,
+    retryDelay: 5000,
   });
 }

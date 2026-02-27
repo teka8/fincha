@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideSprout, LucideZap, LucideDroplets, LucideCheckCircle2 } from "lucide-react";
+import { LucideSprout, LucideCheckCircle2 } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
 import { PageHero } from "@/components/ui/page-hero";
 import { getProjects } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
   const projectsRes = await getProjects(locale);
   const projects = projectsRes.data;
 
@@ -35,7 +35,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
       <PageHero
         title="Engineering Sustainable Change"
         subtitle="From precision irrigation to carbon-neutral power, our projects address the dual challenges of industrial productivity and environmental care."
-        image="/images/project-banner.jpg" // Using actual image referenced in original code
+        image="/images/pexels-format-380633-1029757.jpg"
         badge="Strategic Portfolio"
       />
 

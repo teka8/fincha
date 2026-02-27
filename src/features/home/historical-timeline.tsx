@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionHeading } from "@/components/ui/section-heading";
 
 const milestones = [
   { year: "1998", title: "Factory Established", desc: "Phase I construction completed, launching our visionary sugar production facility." },

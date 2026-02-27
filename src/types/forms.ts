@@ -21,11 +21,11 @@ export const jobApplicationSchema = z.object({
 });
 
 export const tenderApplicationSchema = z.object({
-  name: z.string().min(2),
+  company_name: z.string().min(2),
   email: z.string().email(),
-  company: z.string().min(2),
   phone: z.string().min(6),
-  document: z.instanceof(File),
+  message: z.string().optional(),
+  proposals: z.array(z.instanceof(File)).min(1),
 });
 
 export type ContactFormValues = z.infer<typeof contactSchema>;

@@ -39,7 +39,7 @@ export function VideoFeaturette() {
           muted
           loop
           playsInline
-          poster="/images/factory-aerial.jpg"
+          poster="/images/land-o-lakes-inc-PCITNW3g85Q-unsplash.jpg"
         >
           <source src="/videos/sample2.mp4" type="video/mp4" />
         </video>

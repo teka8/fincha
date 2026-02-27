@@ -26,7 +26,6 @@ export async function generateMetadata({ params }: CareersPageProps): Promise<Me
 
 export default async function CareersPage({ params }: CareersPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
   
   let jobs: Job[] = [];
   try {
@@ -169,7 +168,7 @@ export default async function CareersPage({ params }: CareersPageProps) {
       {/* Culture Section */}
       <div className="bg-gradient-to-b from-white to-slate-50">
         <SectionContainer>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center"> mekklit04
              <div className="relative rounded-[40px] overflow-hidden aspect-[4/3] shadow-2xl shadow-slate-900/10">
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/10 to-transparent z-10" />
                 <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
@@ -190,6 +189,12 @@ export default async function CareersPage({ params }: CareersPageProps) {
                             <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Operations</div>
                          </div>
                       </div>
+             <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
+                <div className="w-full h-full bg-[url('/images/pexels-magnetme-3917414-5839461.jpg')] bg-cover bg-center" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <div className="size-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
+                      <div className="size-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-1" />
                    </div>
                 </div>
              </div>

@@ -31,7 +31,6 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
   const leaders = await getLeaders(locale);
 
   return (
@@ -39,7 +38,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       <PageHero
         title="Sweetening the Nation Since 1998"
         subtitle="Experience the history, scale, and dedication behind one of Africa's most integrated sugar production complexes."
-        image="/images/hero-factory.jpg"
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
         badge="Our Heritage"
       />
 

@@ -88,7 +88,7 @@ export function LatestNews() {
               <div className="absolute inset-0 bg-gradient-to-br from-primary-600/70 via-primary-800/50 to-slate-900/95 z-10" />
               <motion.div 
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('${featured.slug === "fincha-ethanol-upgrade" ? "/images/hero-factory.jpg" : "/images/hero-factory.jpg"}')` }}
+                style={{ backgroundImage: `url('${featured.featured_image || featured.image || "/images/pexels-mikael-blomkvist-64765951.jpg"}')` }}
               />
             </div>
 

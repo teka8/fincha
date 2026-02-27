@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: false,
   },
+  outputFileTracingRoot: __dirname,
   images: {
     remotePatterns: [
       {

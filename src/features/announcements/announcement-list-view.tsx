@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     LucideMegaphone, LucideArrowRight, LucideSearch,
-    LucideFilter, LucideDownload, LucideCalendarDays,
-    LucideX, LucideBell, LucideCheckCircle2
+    LucideDownload,
+    LucideX
 } from "lucide-react";
 import { useAnnouncementsList } from "@/hooks/use-announcements-list";
-import { Link } from "@/i18n/routing";
+import { Link, type LocalizedRoute } from "@/i18n/routing";
 import type { Announcement } from "@/types/cms";
 import { clsx } from "clsx";
 
