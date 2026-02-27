@@ -154,7 +154,7 @@ export async function getPostById(locale: string, postType: string, id: string):
     });
     return (data as { data: Post }).data ?? (data as Post) ?? null;
   } catch (error) {
-    console.error(`Failed to load post ${postType}/${id}`, error);
+    console.error("Failed to load post:", error);
     return null;
   }
 }
