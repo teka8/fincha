@@ -3,7 +3,7 @@ import OpenAI from "openai";
 import { FINCHA_KNOWLEDGE_BASE } from "@/data/fincha-knowledge";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || "", // Ensure this is set in your environment variables
 });
 
 const systemPrompt = `
@@ -61,7 +61,6 @@ const isRelated = (message: string) => {
   return allowedKeywords.some((word) => lower.includes(word));
 };
 
-
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
@@ -71,20 +70,28 @@ export async function POST(request: Request) {
     const message = (body?.message ?? "").toString().trim();
 
     if (!message) {
-      return NextResponse.json({ message: "Please enter a question." }, { status: 400 });
+      return NextResponse.json(
+        { message: "Please enter a question." },
+        { status: 400 },
+      );
     }
 
     if (!isRelated(message)) {
       return NextResponse.json({ message: refusalAnswer.answer, sources: [] });
     }
 
-    const knowledgeBlock = FINCHA_KNOWLEDGE_BASE
-      .map((entry) => `ID: ${entry.id}\nTitle: ${entry.title}\nContent: ${entry.content}`)
-      .join("\n\n");
+    const knowledgeBlock = FINCHA_KNOWLEDGE_BASE.map(
+      (entry) =>
+        `ID: ${entry.id}\nTitle: ${entry.title}\nContent: ${entry.content}`,
+    ).join("\n\n");
 
     const historyBlock = Array.isArray(body.history)
       ? body.history
-          .filter((m) => (m.role === "assistant" || m.role === "user") && typeof m.text === "string")
+          .filter(
+            (m) =>
+              (m.role === "assistant" || m.role === "user") &&
+              typeof m.text === "string",
+          )
           .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.text}`)
           .join("\n")
       : "";
@@ -127,7 +134,7 @@ export async function POST(request: Request) {
     console.error("Chatbot API error", error);
     return NextResponse.json(
       { message: "We could not answer right now. Please try again shortly." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
