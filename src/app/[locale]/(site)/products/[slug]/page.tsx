@@ -16,7 +16,13 @@ type ProductDetailPageProps = {
 
 export async function generateMetadata({ params }: ProductDetailPageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const product = await getProductById(locale, slug);
+  
+  let product;
+  try {
+    product = await getProductById(locale, slug);
+  } catch {
+    product = null;
+  }
 
   return {
     title: product?.name ?? "Product Detail",
@@ -27,7 +33,13 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { locale, slug } = await params;
   const t = await getTranslations({ locale, namespace: "common" });
-  const product = await getProductById(locale, slug);
+  
+  let product;
+  try {
+    product = await getProductById(locale, slug);
+  } catch {
+    product = null;
+  }
 
   if (!product) {
     return (
