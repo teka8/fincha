@@ -168,60 +168,58 @@ export default async function CareersPage({ params }: CareersPageProps) {
       {/* Culture Section */}
       <div className="bg-gradient-to-b from-white to-slate-50">
         <SectionContainer>
-          <div className="grid lg:grid-cols-2 gap-16 items-center"> mekklit04
-             <div className="relative rounded-[40px] overflow-hidden aspect-[4/3] shadow-2xl shadow-slate-900/10">
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/10 to-transparent z-10" />
-                <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
-                <div className="w-full h-full bg-[url('/images/workers-huddle.jpg')] bg-cover bg-center" />
-                <div className="absolute bottom-8 left-8 right-8 z-20">
-                   <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                         <div>
-                            <div className="text-3xl font-black text-primary">500+</div>
-                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Employees</div>
-                         </div>
-                         <div>
-                            <div className="text-3xl font-black text-primary">50+</div>
-                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Departments</div>
-                         </div>
-                         <div>
-                            <div className="text-3xl font-black text-primary">24/7</div>
-                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Operations</div>
-                         </div>
-                      </div>
-             <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
-                <div className="w-full h-full bg-[url('/images/pexels-magnetme-3917414-5839461.jpg')] bg-cover bg-center" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="size-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
-                      <div className="size-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-1" />
-                   </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative rounded-[40px] overflow-hidden aspect-[4/3] shadow-2xl shadow-slate-900/10">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/10 to-transparent z-10" />
+              <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
+              <div className="w-full h-full bg-[url('/images/workers-huddle.jpg')] bg-cover bg-center" />
+              <div className="absolute bottom-8 left-8 right-8 z-20">
+                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-3xl font-black text-primary">500+</div>
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Employees</div>
+                    </div>
+                    <div>
+                      <div className="text-3xl font-black text-primary">50+</div>
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Departments</div>
+                    </div>
+                    <div>
+                      <div className="text-3xl font-black text-primary">24/7</div>
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Operations</div>
+                    </div>
+                  </div>
                 </div>
-             </div>
-             <div className="relative">
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
-                <SectionHeading 
-                  eyebrow="Why Join Us" 
-                  title="Build Your Future at Fincha" 
-                  description="Join a dynamic team where your career growth is our priority. We invest in our people through comprehensive training, competitive benefits, and clear advancement paths."
-                  align="left"
-                />
-                <div className="grid sm:grid-cols-2 gap-5 mt-10 relative z-10">
-                   {[
-                     { icon: "🏥", title: "Health & Wellness", desc: "Comprehensive medical coverage for you and your family" },
-                     { icon: "📚", title: "Learning & Growth", desc: "Vocational training and management development programs" },
-                     { icon: "🏠", title: "Quality Living", desc: "On-site housing and world-class campus facilities" },
-                     { icon: "🚀", title: "Career Pathways", desc: "Internal promotion first policy for top performers" }
-                   ].map((item, i) => (
-                     <div key={i} className="group p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:border-primary/20 hover:-translate-y-1 transition-all duration-300">
-                        <div className="text-3xl mb-3">{item.icon}</div>
-                        <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
-                        <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
-                     </div>
-                   ))}
-                </div>
-             </div>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl" />
+              <SectionHeading
+                eyebrow="Why Join Us"
+                title="Build Your Future at Fincha"
+                description="Join a dynamic team where your career growth is our priority. We invest in our people through comprehensive training, competitive benefits, and clear advancement paths."
+                align="left"
+              />
+              <div className="grid sm:grid-cols-2 gap-5 mt-10 relative z-10">
+                {[
+                  { icon: "🏥", title: "Health & Wellness", desc: "Comprehensive medical coverage for you and your family" },
+                  { icon: "📚", title: "Learning & Growth", desc: "Vocational training and management development programs" },
+                  { icon: "🏠", title: "Quality Living", desc: "On-site housing and world-class campus facilities" },
+                  { icon: "🚀", title: "Career Pathways", desc: "Internal promotion first policy for top performers" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="group p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:border-primary/20 hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="text-3xl mb-3">{item.icon}</div>
+                    <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
+                    <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </SectionContainer>
       </div>

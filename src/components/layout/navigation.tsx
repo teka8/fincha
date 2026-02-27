@@ -297,7 +297,7 @@ export function Navigation({ brandName }: NavigationProps) {
           {/* <Button asChild className="hidden shadow-glow-sm md:inline-flex">
             <Link href="/contact">{tActions("learn_more")}</Link>
           </Button> */}
-          <Button
+          <button
             type="button"
             className="relative inline-flex items-center rounded-xl p-2.5 text-slate-700 transition-all hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 lg:hidden"
             onClick={() => setIsMobileOpen((state) => !state)}
@@ -309,7 +309,7 @@ export function Navigation({ brandName }: NavigationProps) {
             }
           >
             {isMobileOpen ? <XMarkIcon className="size-6" /> : <Bars3Icon className="size-6" />}
-          </Button>
+          </button>
         </motion.div>
       </div>
 
