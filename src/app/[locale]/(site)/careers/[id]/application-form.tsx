@@ -270,6 +270,7 @@ export function ApplicationForm({ jobId, jobTitle, locale }: ApplicationFormProp
             type="file"
             accept=".pdf,.doc,.docx"
             onChange={handleFileChange}
+            title="Upload Resume / CV"
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
           />
           <div className="flex items-center gap-3">

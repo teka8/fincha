@@ -82,73 +82,113 @@ export default async function CareersPage({ params }: CareersPageProps) {
 
       {/* Jobs Listing */}
       <SectionContainer className="bg-white">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-           <h2 className="text-2xl font-black text-slate-900">
-             Current Openings <span className="ml-2 text-primary text-sm font-bold bg-primary/5 px-3 py-1 rounded-full">{jobs.length}</span>
-           </h2>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+           <div className="flex items-center gap-4">
+             <div className="w-1 h-10 bg-primary rounded-full"></div>
+             <h2 className="text-3xl font-black text-slate-900">
+               Open Positions
+             </h2>
+             <span className="ml-2 text-sm font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full">{jobs.length} roles available</span>
+           </div>
            <div className="flex gap-3">
-              <select className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-bold text-slate-500 focus:outline-none">
+               <select title="Filter by department" className="px-5 py-3 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-600 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer hover:border-slate-300">
                  <option>All Departments</option>
                  <option>Engineering</option>
                  <option>Agriculture</option>
                  <option>Management</option>
+                 <option>Finance</option>
+                 <option>Operations</option>
               </select>
            </div>
         </div>
 
-        <div className="space-y-4">
-          {jobs.length > 0 ? jobs.map((job) => (
+<div className="space-y-4">
+          {jobs.length > 0 ? jobs.map((job, index) => (
             <Link 
               key={job.id}
               href={{ pathname: "/careers/[id]", params: { id: job.id.toString() } }}
-              className="group flex flex-col md:flex-row md:items-center justify-between p-8 bg-white border border-slate-100 rounded-[32px] transition-all hover:bg-slate-50 hover:border-primary/20 hover:shadow-card"
+              className="group block relative overflow-hidden bg-white border border-slate-200 rounded-3xl p-8 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 hover:-translate-y-1"
             >
-              <div className="space-y-4 mb-6 md:mb-0">
-                 <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-full bg-accent/10 text-accent-700 text-[10px] font-bold uppercase tracking-widest">
-                      {job.department ?? 'Operational'}
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-primary/5 text-primary-700 text-[10px] font-bold uppercase tracking-widest">
-                      {job.type ?? 'Full-time'}
-                    </span>
-                 </div>
-                 <h3 className="text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors">{job.title}</h3>
-                 <div className="flex items-center gap-6 text-sm text-slate-400 font-medium">
-                    <span className="flex items-center gap-2">
-                       <LucideMapPin size={16} className="text-slate-300" />
-                       {job.location ?? 'Fincha Valley'}
-                    </span>
-                    <span className="flex items-center gap-2">
-                       <LucideClock size={16} className="text-slate-300" />
-                       Posted {job.created_at ? new Date(job.created_at).toLocaleDateString(locale) : 'Recently'}
-                    </span>
-                 </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                 <div className="hidden sm:flex flex-col items-end mr-6 text-right">
-                    <span className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Apply by</span>
-                    <span className="text-sm font-bold text-slate-500">{job.closing_date ? new Date(job.closing_date).toLocaleDateString(locale) : 'TBD'}</span>
-                 </div>
-                 <div className="size-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center transition-all group-hover:bg-primary group-hover:shadow-glow-sm">
-                    <LucideArrowRight size={24} />
-                 </div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-l-3xl"></div>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+               <div className="space-y-4">
+                  <div className="flex items-center gap-3 flex-wrap">
+                     <span className="px-4 py-1.5 rounded-full bg-primary/10 text-primary-700 text-xs font-bold uppercase tracking-wide">
+                       {job.department ?? 'Operational'}
+                     </span>
+                     <span className="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wide">
+                       {job.type ?? 'Full-time'}
+                     </span>
+                     {job.closing_date && new Date(job.closing_date) > new Date() && (
+                       <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold flex items-center gap-1">
+                         <LucideClock size={12} /> 
+                         Closing {new Date(job.closing_date).toLocaleDateString(locale)}
+                       </span>
+                     )}
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors">{job.title}</h3>
+                  <div className="flex items-center gap-6 text-sm text-slate-500 font-medium">
+                     <span className="flex items-center gap-2">
+                        <LucideMapPin size={16} className="text-primary/70" />
+                        {job.location ?? 'Fincha Valley'}
+                     </span>
+                     <span className="flex items-center gap-2">
+                        <LucideClock size={16} className="text-primary/70" />
+                        Posted {job.created_at ? new Date(job.created_at).toLocaleDateString(locale) : 'Recently'}
+                     </span>
+                  </div>
+               </div>
+               
+               <div className="flex items-center gap-4">
+                  <div className="hidden md:flex flex-col items-end mr-4 text-right">
+                     <span className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1">Apply by</span>
+                     <span className="text-sm font-bold text-slate-600">{job.closing_date ? new Date(job.closing_date).toLocaleDateString(locale) : 'TBD'}</span>
+                  </div>
+                  <div className="size-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center transition-all group-hover:bg-primary group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30">
+                     <LucideArrowRight size={22} />
+                  </div>
+               </div>
               </div>
             </Link>
           )) : (
-            <div className="py-24 text-center border-2 border-dashed border-slate-100 rounded-[40px]">
-               <LucideBriefcase size={48} className="text-slate-200 mx-auto mb-4" />
-               <h3 className="text-xl font-bold text-slate-900 mb-2">No active openings right now</h3>
-               <p className="text-slate-400 max-w-sm mx-auto">We&apos;re always looking for talent. Please check back later or send us your CV for future consideration.</p>
+            <div className="py-20 text-center border-2 border-dashed border-slate-200 rounded-[40px] bg-slate-50/50">
+               <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                 <LucideBriefcase size={36} className="text-slate-300" />
+               </div>
+               <h3 className="text-xl font-bold text-slate-900 mb-2">No openings available</h3>
+               <p className="text-slate-500 max-w-sm mx-auto mb-6">We&apos;re always looking for great talent. Send us your CV and we&apos;ll reach out when a position matching your skills opens up.</p>
+               <a href="mailto:careers@fincha.com" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary-600 transition-colors">
+                 Contact HR
+               </a>
             </div>
           )}
         </div>
       </SectionContainer>
       
       {/* Culture Section */}
-      <div className="bg-slate-50">
+      <div className="bg-gradient-to-b from-white to-slate-50">
         <SectionContainer>
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center"> mekklit04
+             <div className="relative rounded-[40px] overflow-hidden aspect-[4/3] shadow-2xl shadow-slate-900/10">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-primary/10 to-transparent z-10" />
+                <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
+                <div className="w-full h-full bg-[url('/images/workers-huddle.jpg')] bg-cover bg-center" />
+                <div className="absolute bottom-8 left-8 right-8 z-20">
+                   <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
+                      <div className="grid grid-cols-3 gap-4 text-center">
+                         <div>
+                            <div className="text-3xl font-black text-primary">500+</div>
+                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Employees</div>
+                         </div>
+                         <div>
+                            <div className="text-3xl font-black text-primary">50+</div>
+                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Departments</div>
+                         </div>
+                         <div>
+                            <div className="text-3xl font-black text-primary">24/7</div>
+                            <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Operations</div>
+                         </div>
+                      </div>
              <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
                 <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
                 <div className="w-full h-full bg-[url('/images/pexels-magnetme-3917414-5839461.jpg')] bg-cover bg-center" />
@@ -158,22 +198,25 @@ export default async function CareersPage({ params }: CareersPageProps) {
                    </div>
                 </div>
              </div>
-             <div>
+             <div className="relative">
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl"></div>
                 <SectionHeading 
-                  eyebrow="Our Culture" 
-                  title="Life at Fincha" 
-                  description="We don&apos;t just offer jobs; we offer a community. Living and working at the Fincha Valley complex is a unique experience focused on mutual growth."
+                  eyebrow="Why Join Us" 
+                  title="Build Your Future at Fincha" 
+                  description="Join a dynamic team where your career growth is our priority. We invest in our people through comprehensive training, competitive benefits, and clear advancement paths."
                   align="left"
                 />
-                <div className="grid sm:grid-cols-2 gap-6 mt-10">
+                <div className="grid sm:grid-cols-2 gap-5 mt-10 relative z-10">
                    {[
-                     { title: "Holistic Benefits", desc: "Comprehensive healthcare and performance bonuses." },
-                     { title: "Continuous Learning", desc: "Access to vocational and management training." },
-                     { title: "Family Support", desc: "Standard housing and school facilities on campus." },
-                     { title: "Career Pathing", desc: "Internal promotion first policy for high performers." }
+                     { icon: "🏥", title: "Health & Wellness", desc: "Comprehensive medical coverage for you and your family" },
+                     { icon: "📚", title: "Learning & Growth", desc: "Vocational training and management development programs" },
+                     { icon: "🏠", title: "Quality Living", desc: "On-site housing and world-class campus facilities" },
+                     { icon: "🚀", title: "Career Pathways", desc: "Internal promotion first policy for top performers" }
                    ].map((item, i) => (
-                     <div key={i} className="space-y-2">
-                        <h4 className="font-bold text-slate-900">{item.title}</h4>
+                     <div key={i} className="group p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:border-primary/20 hover:-translate-y-1 transition-all duration-300">
+                        <div className="text-3xl mb-3">{item.icon}</div>
+                        <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
                         <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
                      </div>
                    ))}

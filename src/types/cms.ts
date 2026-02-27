@@ -171,6 +171,7 @@ export type Job = {
   title: string;
   department?: string;
   type?: string;
+  content?: string;
   description: string;
   location: string;
   closing_date: string;
