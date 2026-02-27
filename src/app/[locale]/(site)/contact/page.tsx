@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { LucidePhone, LucideMail, LucideMapPin, LucideClock, LucideGithub, LucideLinkedin, LucideFacebook } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 
 type ContactPageProps = {
    params: Promise<{
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: ContactPageProps): Promise<Me
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
+<<<<<<< HEAD
    const { locale } = await params;
    const t = await getTranslations({ locale, namespace: "common" });
 
@@ -37,6 +39,19 @@ export default async function ContactPage({ params }: ContactPageProps) {
                />
             </div>
          </section>
+=======
+  const { locale } = await params;
+  await getTranslations({ locale, namespace: "common" });
+
+  return (
+    <div className="flex flex-col">
+      <PageHero
+        title="Let's Start a Conversation"
+        subtitle="Whether you're a prospective partner, a wholesaler, or a member of the community, we're here to listen and collaborate."
+        image="/images/4.jpg"
+        badge="Get in touch"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
          {/* Main Contact Section */}
          <SectionContainer className="pt-0">

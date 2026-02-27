@@ -2,12 +2,16 @@
 
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
+import { LucideDownload, LucideHelpCircle, LucideImage, LucideQrCode } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
+<<<<<<< HEAD
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
+=======
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useLocaleContext } from "@/providers/providers";
@@ -26,7 +30,7 @@ type StaticNavLinkKey =
   | "news"
   | "projects"
   | "csr"
-  | "media"
+  | "more"
   | "careers"
   | "tenders"
   | "downloads"
@@ -38,11 +42,20 @@ type StaticNavEntry = {
   label?: string;
 };
 
+type NavChild = {
+  href: string;
+  key: string;
+  label: string;
+  description?: string;
+  Icon?: React.ComponentType<{ size?: number; className?: string }>;
+};
+
 type NavItem = {
   href?: string;
   key: string;
   label: string;
-  children?: { href: string; key: string; label: string }[];
+  isMega?: boolean;
+  children?: NavChild[];
 };
 
 const navigationStructure: NavItem[] = [
@@ -78,11 +91,36 @@ const navigationStructure: NavItem[] = [
   {
     key: "media",
     label: "Resources",
+    isMega: true,
     children: [
-
-      { href: "/media", key: "media", label: "Media Gallery" },
-      { href: "/downloads", key: "downloads", label: "Download Center" },
-      { href: "/faq", key: "faq", label: "FAQ" },
+      {
+        href: "/media",
+        key: "media",
+        label: "Media Gallery",
+        description: "Browse photos, videos & audio showcasing our operations.",
+        Icon: LucideImage,
+      },
+      {
+        href: "/downloads",
+        key: "downloads",
+        label: "Download Center",
+        description: "Annual reports, policies, and official documents.",
+        Icon: LucideDownload,
+      },
+      {
+        href: "/faq",
+        key: "faq",
+        label: "FAQ",
+        description: "Quick answers to common questions about Fincha.",
+        Icon: LucideHelpCircle,
+      },
+      {
+        href: "/qr-checker",
+        key: "qr-checker",
+        label: "QR Code Checker",
+        description: "Verify the authenticity of any Fincha product.",
+        Icon: LucideQrCode,
+      },
     ],
   },
   { href: "/contact", key: "contact", label: "Contact" },
@@ -188,6 +226,7 @@ export function Navigation({ brandName }: NavigationProps) {
                         : "text-slate-600 dark:text-slate-300 hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                         }`}
                     >
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                       {tNav(item.key as any)}
                       <motion.span
                         animate={{ rotate: activeDropdown === item.key ? 180 : 0 }}
@@ -220,7 +259,8 @@ export function Navigation({ brandName }: NavigationProps) {
                                     : "text-slate-600 dark:text-slate-300 hover:bg-primary/5 hover:text-primary dark:hover:bg-primary/20"
                                     }`}
                                 >
-                                  {tNav(child.key as any)}
+                                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                  {child.label ?? tNav(child.key as any)}
                                 </Link>
                               );
                             })}
@@ -249,6 +289,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <span className="relative z-10">{tNav(item.key as any)}</span>
                 </Link>
               );

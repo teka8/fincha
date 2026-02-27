@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideBriefcase, LucideMapPin, LucideClock, LucideSearch, LucideArrowRight } from "lucide-react";
+import { LucideBriefcase, LucideMapPin, LucideClock, LucideArrowRight } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getJobs } from "@/lib/cms";
+import type { Job } from "@/types/cms";
 import { Link } from "@/i18n/routing";
 
 type CareersPageProps = {
@@ -24,12 +26,54 @@ export async function generateMetadata({ params }: CareersPageProps): Promise<Me
 
 export default async function CareersPage({ params }: CareersPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
-  const jobsRes = await getJobs(locale);
-  const jobs = jobsRes.data;
+  
+  let jobs: Job[] = [];
+  try {
+    const jobsRes = await getJobs(locale);
+    jobs = jobsRes.data;
+  } catch (error) {
+    console.error("Failed to load jobs:", error);
+  }
+
+  // Fallback jobs if API fails
+  if (jobs.length === 0) {
+    jobs = [
+      {
+        id: 1,
+        title: "Senior Mechanical Engineer",
+        department: "Engineering",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>We are looking for a Senior Mechanical Engineer to join our engineering team.</p><ul><li>5+ years of experience in sugar industry</li><li>Bachelor's degree in Mechanical Engineering</li></ul>",
+        closing_date: "2026-03-31",
+        created_at: "2026-02-01"
+      },
+      {
+        id: 2,
+        title: "Agronomist",
+        department: "Agriculture",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>Join our agriculture team to help improve cane yields.</p>",
+        closing_date: "2026-04-15",
+        created_at: "2026-02-10"
+      },
+      {
+        id: 3,
+        title: "Finance Manager",
+        department: "Finance",
+        type: "Full-time",
+        location: "Fincha Valley, Ethiopia",
+        description: "<p>Manage financial operations for our facility.</p>",
+        closing_date: "2026-03-20",
+        created_at: "2026-02-05"
+      }
+    ];
+  }
 
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* Careers Hero */}
       <section className="bg-primary-900 pt-32 pb-24 overflow-hidden relative">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-950 to-primary-900 opacity-90 z-10" />
@@ -64,6 +108,14 @@ export default async function CareersPage({ params }: CareersPageProps) {
           </div>
         </div>
       </section>
+=======
+      <PageHero
+        title="Build a Sweet Career"
+        subtitle="Join Ethiopia's industrial transformation. We're looking for passionate professionals to help us innovate the sugar value chain."
+        image="/images/pexels-mikael-blomkvist-6476595.jpg"
+        badge="Join the Fincha Family"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
       {/* Jobs Listing */}
       <SectionContainer className="bg-white dark:bg-slate-900">
@@ -134,12 +186,22 @@ export default async function CareersPage({ params }: CareersPageProps) {
       <div className="bg-slate-50 dark:bg-slate-900/50">
         <SectionContainer>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
+<<<<<<< HEAD
             <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
               <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
               <div className="w-full h-full bg-[url('/images/workers-huddle.jpg')] bg-cover bg-center" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="size-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
                   <div className="size-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-1" />
+=======
+             <div className="relative rounded-[50px] overflow-hidden aspect-video shadow-2xl">
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply" />
+                <div className="w-full h-full bg-[url('/images/pexels-magnetme-3917414-5839461.jpg')] bg-cover bg-center" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <div className="size-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40">
+                      <div className="size-0 border-y-[12px] border-y-transparent border-l-[20px] border-l-white ml-1" />
+                   </div>
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
                 </div>
               </div>
             </div>

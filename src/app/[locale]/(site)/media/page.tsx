@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideVideo, LucideImage, LucideFileText, LucideDownload } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
+import { SectionContainer } from "@/components/ui/section-heading";
 import { getMedia } from "@/lib/cms";
-import { Link } from "@/i18n/routing";
-import Image from "next/image";
+import { MediaGallery } from "@/components/media/media-gallery";
 
 type MediaPageProps = {
   params: Promise<{
@@ -19,7 +18,7 @@ export async function generateMetadata({ params }: MediaPageProps): Promise<Meta
 
   return {
     title: t("navigation.media"),
-    description: "Explore photos, videos, and documents showcasing our industrial operations and community engagements.",
+    description: "Explore photos, videos, and audio media assets showcasing Fincha's industrial operations and community engagements.",
   };
 }
 
@@ -27,8 +26,18 @@ export default async function MediaPage({ params }: MediaPageProps) {
   const { locale } = await params;
   const mediaItems = await getMedia(locale);
 
+  // Normalize items from the API into the shape MediaGallery expects
+  const normalized = mediaItems.map((item) => ({
+    id: String(item.id),
+    type: item.type as "image" | "video" | "audio",
+    title: item.title,
+    src: item.url,
+    thumbnail: item.thumbnail ?? (item.type === "image" ? item.url : ""),
+  }));
+
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* Media Hero */}
       <section className="bg-slate-900 overflow-hidden relative py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-950 to-black z-10" />
@@ -134,6 +143,18 @@ export default async function MediaPage({ params }: MediaPageProps) {
           </div>
         </SectionContainer>
       </div>
+=======
+      <PageHero
+        title="Through the Lens"
+        subtitle="Visual stories and documentaries capturing the essence of Fincha's industrial journey and social impact."
+        image="/images/4.jpg"
+        badge="Media Library"
+      />
+
+      <SectionContainer className="bg-white">
+        <MediaGallery initialItems={normalized} />
+      </SectionContainer>
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
     </div>
   );
 }

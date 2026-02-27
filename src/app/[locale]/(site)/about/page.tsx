@@ -3,8 +3,15 @@ import { getTranslations } from "next-intl/server";
 // Removed unused motion import
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getLeaders } from "@/lib/cms";
 import Image from "next/image";
+
+import { AboutStats } from "@/features/about/stats-grid";
+import { GMMessage } from "@/features/about/gm-message";
+import { CoreValues } from "@/features/about/core-values";
+import { CommunityImpact } from "@/features/about/community-impact";
+import { AboutTimeline } from "@/features/about/milestones-timeline";
 
 type AboutPageProps = {
   params: Promise<{
@@ -24,29 +31,18 @@ export async function generateMetadata({ params }: AboutPageProps): Promise<Meta
 
 export default async function AboutPage({ params }: AboutPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
   const leaders = await getLeaders(locale);
 
   return (
     <div className="flex flex-col">
-      {/* About Hero */}
-      <section className="relative h-[60vh] min-h-[400px] overflow-hidden bg-primary-900 flex items-center justify-center">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/40 to-primary-900 z-10" />
-          {/* Placeholder for Hero Image - In a real app we'd use a real asset */}
-          <div className="size-full bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center" />
-        </div>
+      <PageHero
+        title="Sweetening the Nation Since 1998"
+        subtitle="Experience the history, scale, and dedication behind one of Africa's most integrated sugar production complexes."
+        image="/images/pexels-mikael-blomkvist-64765951.jpg"
+        badge="Our Heritage"
+      />
 
-        <div className="relative z-20 max-w-layout mx-auto px-8 text-center text-white">
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-            {t("navigation.about")}
-          </h1>
-          <p className="text-xl text-primary-100/80 max-w-2xl mx-auto leading-relaxed">
-            Fincha Sugar Factory is a cornerstone of Ethiopia&apos;s industrial landscape,
-            driving progress through sustainable sugar production and innovation.
-          </p>
-        </div>
-      </section>
+      <AboutStats />
 
       {/* History & Mission */}
       <SectionContainer className="bg-white dark:bg-slate-900">
@@ -102,6 +98,10 @@ export default async function AboutPage({ params }: AboutPageProps) {
         </div>
       </SectionContainer>
 
+      <GMMessage />
+      
+      <CoreValues />
+
       {/* Leadership Section */}
       <div className="bg-slate-50/50 dark:bg-slate-900/50">
         <SectionContainer>
@@ -145,8 +145,22 @@ export default async function AboutPage({ params }: AboutPageProps) {
               ))
             )}
           </div>
+
+          <div className="mt-12 text-center">
+            <a 
+              href={`/${locale}/team`}
+              className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-5 py-2.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5"
+            >
+              Meet Our FSF Team
+              <span aria-hidden>→</span>
+            </a>
+          </div>
         </SectionContainer>
       </div>
+
+      <CommunityImpact />
+
+      <AboutTimeline />
 
       {/* Values / Integrated Model */}
       <SectionContainer className="bg-white dark:bg-slate-900">

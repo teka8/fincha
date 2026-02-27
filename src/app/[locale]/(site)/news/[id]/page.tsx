@@ -10,8 +10,19 @@ type NewsDetailPageProps = {
 };
 
 export async function generateMetadata({ params }: NewsDetailPageProps): Promise<Metadata> {
+<<<<<<< HEAD
    const { locale, id } = await params;
    const post = await getPostById(locale, "news", id);
+=======
+  const { locale, id } = await params;
+  
+  let post;
+  try {
+    post = await getPostById(locale, "news", id);
+  } catch {
+    post = null;
+  }
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
    return {
       title: post?.title ? `${post.title} | Fincha News` : "News Detail",
@@ -20,7 +31,18 @@ export async function generateMetadata({ params }: NewsDetailPageProps): Promise
 }
 
 export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
+<<<<<<< HEAD
    const { id } = await params;
+=======
+  const { locale, id } = await params;
+  
+  let post;
+  try {
+    post = await getPostById(locale, "news", id);
+  } catch {
+    post = null;
+  }
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
    return (
       <div className="bg-surface min-h-screen">

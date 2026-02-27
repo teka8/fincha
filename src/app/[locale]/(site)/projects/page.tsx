@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideSprout, LucideZap, LucideDroplets, LucideCheckCircle2 } from "lucide-react";
+import { LucideSprout, LucideCheckCircle2 } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getProjects } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
@@ -25,12 +26,13 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 
 export default async function ProjectsPage({ params }: ProjectsPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
   const projectsRes = await getProjects(locale);
   const projects = projectsRes.data;
 
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* Projects Hero */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden bg-primary-950 flex items-center">
         <div className="absolute inset-0 bg-[url('/images/project-banner.jpg')] bg-cover bg-center opacity-40" />
@@ -51,6 +53,14 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
           </div>
         </div>
       </section>
+=======
+      <PageHero
+        title="Engineering Sustainable Change"
+        subtitle="From precision irrigation to carbon-neutral power, our projects address the dual challenges of industrial productivity and environmental care."
+        image="/images/pexels-format-380633-1029757.jpg"
+        badge="Strategic Portfolio"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
       {/* Projects Portfolio */}
       <SectionContainer className="bg-white dark:bg-slate-900">

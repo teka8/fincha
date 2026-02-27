@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { EventListView } from "@/features/events/event-list-view";
 
 type EventsPageProps = {
@@ -21,6 +22,7 @@ export default async function EventsPage({ params }: EventsPageProps) {
     await params;
     return (
         <div className="flex flex-col">
+<<<<<<< HEAD
             {/* Page header */}
             <section className="bg-white dark:bg-slate-900 pt-24 pb-12">
                 <div className="max-w-layout mx-auto px-8">
@@ -32,6 +34,14 @@ export default async function EventsPage({ params }: EventsPageProps) {
                     />
                 </div>
             </section>
+=======
+            <PageHero
+                title="Upcoming Events"
+                subtitle="Stay updated with our latest activities, workshops, and community initiatives."
+                image="/images/5.jpg"
+                badge="What's Next"
+            />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
             {/* Interactive calendar / list */}
             <SectionContainer className="pt-4 pb-20">

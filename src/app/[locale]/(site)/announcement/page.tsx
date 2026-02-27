@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { AnnouncementListView } from "@/features/announcements/announcement-list-view";
 
 type AnnouncementPageProps = {
@@ -26,17 +27,12 @@ export default async function AnnouncementPage({ params }: AnnouncementPageProps
 
     return (
         <div className="flex flex-col">
-            {/* Page Header */}
-            <section className="bg-white dark:bg-slate-900 pt-24 pb-12">
-                <div className="max-w-layout mx-auto px-8">
-                    <SectionHeading
-                        eyebrow="Updates & Notices"
-                        title="Official Announcements"
-                        description="Stay informed with the latest organizational updates, official directives, and critical communications from Fincha."
-                        align="left"
-                    />
-                </div>
-            </section>
+            <PageHero
+                title="Official Announcements"
+                subtitle="Stay informed with the latest organizational updates, official directives, and critical communications from Fincha."
+                image="/images/4.jpg"
+                badge="Updates & Notices"
+            />
 
             {/* Interactive Announcement List */}
             <SectionContainer className="pt-4">

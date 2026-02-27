@@ -60,8 +60,13 @@ export function Footer({ links = [], company }: FooterProps = {}) {
         <div className="absolute -bottom-40 -right-20 size-[500px] rounded-full bg-accent/10 blur-[100px]" />
 
         {/* Subtle mesh/shimmer effect */}
+<<<<<<< HEAD
         <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-overlay" />
 
+=======
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] mix-blend-overlay" />
+        
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
         {/* State of the art dot pattern */}
         <div
           className="absolute inset-0 opacity-[0.08]"

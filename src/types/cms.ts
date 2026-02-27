@@ -117,10 +117,27 @@ export type Faq = {
 export type MediaItem = {
   id: number;
   title: string;
-  type: "image" | "video";
+  type: "image" | "video" | "audio";
   thumbnail?: string;
   url: string;
-  created_at: string;
+  thumb_url?: string;
+  src?: string;
+  created_at?: string;
+};
+
+export type TenderDocument = {
+  id: number;
+  title: string;
+  file_url: string;
+  file_size?: number;
+  file_extension?: string;
+};
+
+export type TenderAward = {
+  awarded_company_name?: string;
+  contract_value?: number;
+  award_date?: string;
+  award_document_url?: string;
 };
 
 export type Tender = {
@@ -128,13 +145,25 @@ export type Tender = {
   title: string;
   reference_number?: string;
   status?: string;
+  tender_type?: string;
+  visibility?: string;
   description: string;
-  deadline: string;
-  documents?: Array<{
-    id: number;
-    title: string;
-    file_url: string;
-  }>;
+  requirements?: string;
+  submission_guidelines?: string;
+  submission_method?: string;
+  published_at?: string;
+  deadline?: string;
+  deadline_at?: string;
+  documents?: TenderDocument[];
+  award?: TenderAward | null;
+  participating_companies?: string[];
+};
+
+export type TenderGuideline = {
+  content?: string;
+  steps?: string[];
+  pdf_url?: string;
+  pdf_name?: string;
 };
 
 export type Job = {

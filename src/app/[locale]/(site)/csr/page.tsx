@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideHeart, LucideSprout, LucideUsers, LucideGraduationCap, LucideGlobe } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
-import Image from "next/image";
+import { PageHero } from "@/components/ui/page-hero";
 
 type CSRPageProps = {
   params: Promise<{
@@ -50,10 +50,11 @@ const pillars = [
 
 export default async function CSRPage({ params }: CSRPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
 
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* CSR Hero */}
       <section className="relative py-24 bg-primary-900 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/images/community-header.jpg')] bg-cover bg-center opacity-20" />
@@ -68,6 +69,14 @@ export default async function CSRPage({ params }: CSRPageProps) {
           </div>
         </div>
       </section>
+=======
+      <PageHero
+        title="Grown with Purpose"
+        subtitle="Experience our dedication to social empowerment, environmental guardianship, and sustainable industrial growth."
+        image="/images/pexels-junior-teixeira-1064069-2047905.jpg"
+        badge="CSR & Sustainability"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
       {/* Intro Section */}
       <SectionContainer className="bg-white dark:bg-slate-900">

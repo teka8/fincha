@@ -1,0 +1,61 @@
+name: Deploy Next.js App to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies & build
+      run: |
+        npm ci
+        npm run build
+
+    - name: Deploy code via SCP
+      uses: appleboy/scp-action@v0.1.6
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        source: "./"
+        target: "/var/www/fincha_tmp"
+        rm: false
+
+    - name: Post-deploy on server
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
+          # Sync new release into production
+          sudo rsync -a --delete /var/www/fincha_tmp/ /var/www/fincha/
+
+          cd /var/www/fincha
+
+          # Install any new dependencies
+          npm ci
+
+          # Build for production
+          npm run build
+
+          # Restart Next.js app using PM2
+          pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
+
+          # Save PM2 process and enable startup
+          pm2 save
+          pm2 startup | tail -n 1 | bash

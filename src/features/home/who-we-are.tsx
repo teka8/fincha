@@ -66,7 +66,7 @@ export function WhoWeAre() {
         >
           {/* Main Image Base */}
           <div className="absolute inset-0 bg-primary-900">
-            <div className="absolute inset-0 bg-[url('/images/factory-aerial.jpg')] bg-cover bg-center mix-blend-overlay opacity-50" />
+            <div className="absolute inset-0 bg-[url('/images/land-o-lakes-inc-PCITNW3g85Q-unsplash.jpg')] bg-cover bg-center mix-blend-overlay opacity-50" />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 via-transparent to-accent/20" />
           </div>
 

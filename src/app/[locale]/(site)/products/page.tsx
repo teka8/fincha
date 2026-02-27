@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { LucideBox, LucideDroplets, LucideFlame, LucideArrowRight, LucideIcon } from "lucide-react";
 
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getProducts } from "@/lib/cms";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
@@ -38,6 +39,7 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* Products Hero */}
       <section className="relative py-24 bg-slate-50 dark:bg-slate-900 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-accent-50/30 dark:from-slate-800 dark:to-slate-900/50 opacity-60" />
@@ -50,6 +52,14 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           />
         </div>
       </section>
+=======
+      <PageHero
+        title="Sweetening Progress, Powering Industry"
+        subtitle="From premium refined sugar to renewable energy, Fincha's integrated output supports households and industries across the nation."
+        image="/images/sweet sugar.jpg"
+        badge="Our Products"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
       {/* Products Grid */}
       <SectionContainer className="bg-white dark:bg-slate-900">
@@ -107,15 +117,32 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
           }) : (
             // Fallback product cards if none from API
             [
-              { title: "White Refined Sugar", type: "sugar", desc: "Premium grade sugar produced for industrial and wholesale markets." },
+              { title: "White Refined Sugar", type: "sugar", desc: "Premium grade sugar produced for industrial and wholesale markets.", image: "/images/sweet sugar.jpg" },
               { title: "Retail Crystal Sugar", type: "sugar", desc: "Available in 5kg and 2kg packs for household consumption." },
               { title: "Ethanol (Fuel Grade)", type: "ethanol", desc: "99.5% pure ethanol distilled from high-quality molasses." },
               { title: "Cane Molasses", type: "molasses", desc: "Rich in nutrients, ideal for cattle feed and industrial fermentation." },
               { title: "Bagasse Bales", type: "energy", desc: "Pressed cane fiber used as carbon-neutral biofuel for industrial boilers." }
             ].map((p, i) => (
+<<<<<<< HEAD
               <div key={i} className="group relative flex flex-col bg-white dark:bg-slate-800 rounded-[40px] border border-slate-100 dark:border-slate-700 p-8 shadow-card transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden opacity-80">
                 <div className="relative mb-8 aspect-square bg-slate-100 dark:bg-slate-700 rounded-3xl flex items-center justify-center text-slate-300 dark:text-slate-500">
                   <LucideBox size={64} strokeWidth={1} />
+=======
+              <div key={i} className="group relative flex flex-col bg-white rounded-[40px] border border-slate-100 p-8 shadow-card transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 overflow-hidden opacity-80">
+                <div className="relative mb-8 aspect-square bg-slate-100 rounded-3xl overflow-hidden">
+                  {p.image ? (
+                    <Image 
+                      src={p.image} 
+                      alt={p.title} 
+                      fill 
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-300">
+                      <LucideBox size={64} strokeWidth={1} />
+                    </div>
+                  )}
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{p.title}</h2>
                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">{p.desc}</p>

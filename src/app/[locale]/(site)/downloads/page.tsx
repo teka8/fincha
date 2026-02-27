@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { LucideFileText, LucideDownload, LucideSearch, LucideFileArchive, LucideChevronRight } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import { SectionContainer } from "@/components/ui/section-heading";
+import { PageHero } from "@/components/ui/page-hero";
 import { getResources, getDownloadCategories } from "@/lib/cms";
 
 type DownloadsPageProps = {
@@ -23,13 +24,14 @@ export async function generateMetadata({ params }: DownloadsPageProps): Promise<
 
 export default async function DownloadsPage({ params }: DownloadsPageProps) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  await getTranslations({ locale, namespace: "common" });
   const resourcesRes = await getResources(locale);
   const categories = await getDownloadCategories(locale);
   const resources = resourcesRes.data;
 
   return (
     <div className="flex flex-col">
+<<<<<<< HEAD
       {/* Downloads Hero */}
       <section className="bg-slate-50 dark:bg-slate-900/50 pt-32 pb-16">
         <div className="max-w-layout mx-auto px-8">
@@ -41,6 +43,14 @@ export default async function DownloadsPage({ params }: DownloadsPageProps) {
           />
         </div>
       </section>
+=======
+      <PageHero
+        title="Resources & Documents"
+        subtitle="A centralized hub for all public records, policy documents, and corporate media kits."
+        image="/images/4.jpg"
+        badge="Download Center"
+      />
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
 
       {/* Categories & Search */}
       <SectionContainer className="pt-0">

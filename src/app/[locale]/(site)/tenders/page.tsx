@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { LucideGavel, LucideClock, LucideFileText, LucideInfo, LucideArrowRight } from "lucide-react";
 
-import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
+import TenderList from "@/components/tenders/TenderList";
+import { PageHero } from "@/components/ui/page-hero";
 import { getTenders } from "@/lib/cms";
-import { Link } from "@/i18n/routing";
+import type { TenderGuideline } from "@/types/cms";
 
 type TendersPageProps = {
    params: Promise<{
@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: TendersPageProps): Promise<Me
    const { locale } = await params;
    const t = await getTranslations({ locale, namespace: "common" });
 
+<<<<<<< HEAD
    return {
       title: t("navigation.tenders"),
       description: "View active procurement opportunities, invitation to bid, and tender results from Fincha Sugar Factory.",
@@ -149,4 +150,41 @@ export default async function TendersPage({ params }: TendersPageProps) {
          </section>
       </div>
    );
+=======
+  return {
+    title: t("navigation.tenders"),
+    description: "Latest tenders and updates from Fincha Sugar Factory.",
+  };
 }
+
+export default async function TendersPage({ params }: TendersPageProps) {
+  const { locale } = await params;
+
+  let tenders = [] as Awaited<ReturnType<typeof getTenders>>["data"];
+  let tenderGuideline: TenderGuideline | null = null;
+
+  try {
+    const tendersRes = await getTenders(locale);
+    tenders = tendersRes.data ?? [];
+    tenderGuideline = (tendersRes as { tender_guideline?: TenderGuideline | null }).tender_guideline ?? null;
+  } catch (error) {
+    console.error("Failed to load tenders", error);
+  }
+
+  return (
+    <main className="min-h-screen bg-gray-50">
+      <PageHero
+        title="Transparent Procurement, Shared Growth"
+        subtitle="Explore current tender opportunities and partner with Fincha Sugar Factory on projects that strengthen industry and community."
+        image="/images/pexels-mikael-blomkvist-6476595.jpg"
+        badge="Tender Notices"
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <TenderList tenders={tenders} tenderGuideline={tenderGuideline} />
+      </div>
+    </main>
+  );
+>>>>>>> 41d8bfce7b06977bd0e03c2a0783425e638d7d1d
+}
+
