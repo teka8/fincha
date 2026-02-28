@@ -162,10 +162,8 @@ export function Navigation({ brandName }: NavigationProps) {
   }, [closeMenu, isMobileOpen]);
 
   useEffect(() => {
-    if (!isMobileOpen) return;
-    const timeout = setTimeout(() => closeMenu(), 0);
-    return () => clearTimeout(timeout);
-  }, [pathname, closeMenu, isMobileOpen]);
+    closeMenu();
+  }, [pathname, closeMenu]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -313,92 +311,96 @@ export function Navigation({ brandName }: NavigationProps) {
         </motion.div>
       </div>
 
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            key="mobile-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 top-20 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
+            onClick={closeMenu}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="fixed inset-0 top-20 z-40 bg-black/20 backdrop-blur-sm lg:hidden"
-              onClick={closeMenu}
-            />
-            <motion.nav
-              initial={{ opacity: 0, y: -10, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: "auto" }}
-              exit={{ opacity: 0, y: -10, height: 0 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="absolute inset-x-0 top-20 z-50 overflow-hidden border-t border-white/20 bg-white/95 backdrop-blur-xl lg:hidden"
-            >
-              <div className="space-y-1 p-4">
-                {navigationStructure.map((item) => {
-                  if (item.children) {
-                    const isOpen = activeDropdown === item.key;
-                    return (
-                      <div key={item.key} className="space-y-1">
-                        <button
-                          type="button"
-                          onClick={() => setActiveDropdown(isOpen ? null : item.key)}
-                          className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${isOpen ? "text-primary" : "text-slate-900"
-                            }`}
-                        >
-                          {item.label}
-                          <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
-                            <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </motion.span>
-                        </button>
-                        <AnimatePresence>
-                          {isOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden bg-slate-50/50 rounded-2xl pl-4"
-                            >
-                              {item.children.map((child) => (
-                                <button
-                                  key={child.key}
-                                  type="button"
-                                  onClick={() => handleNavigate(child.href)}
-                                  className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600"
-                                    }`}
-                                >
-                                  {child.label}
-                                </button>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
-
+          <motion.nav
+            key="mobile-nav"
+            initial={{ opacity: 0, y: -10, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }}
+            exit={{ opacity: 0, y: -10, height: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="absolute inset-x-0 top-20 z-50 overflow-hidden border-t border-white/20 bg-white/95 backdrop-blur-xl lg:hidden"
+          >
+            <div className="space-y-1 p-4">
+              {navigationStructure.map((item) => {
+                if (item.children) {
+                  const isOpen = activeDropdown === item.key;
                   return (
-                    <button
-                      key={item.key}
-                      type="button"
-                      onClick={() => handleNavigate(item.href!)}
-                      className={`block w-full rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${pathname === item.href
-                        ? "bg-primary/10 text-primary"
-                        : "text-slate-900 hover:bg-primary/5 hover:text-primary"
-                        }`}
-                    >
-                      {item.label}
-                    </button>
+                    <div key={item.key} className="space-y-1">
+                      <button
+                        type="button"
+                        onClick={() => setActiveDropdown(isOpen ? null : item.key)}
+                        className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${isOpen ? "text-primary" : "text-slate-900"
+                          }`}
+                      >
+                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                        {tNav(item.key as any)}
+                        <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>
+                          <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </motion.span>
+                      </button>
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden bg-slate-50/50 rounded-2xl pl-4"
+                          >
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.key}
+                                href={child.href as LocalizedRoute}
+                                onClick={closeMenu}
+                                className={`block w-full rounded-xl px-4 py-3 text-left text-sm font-medium ${pathname === child.href ? "text-primary bg-primary/5" : "text-slate-600"
+                                  }`}
+                              >
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {child.label ?? tNav(child.key as any)}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   );
-                })}
-                {/* <div className="pt-2">
-                  <Button asChild className="w-full justify-center shadow-glow-sm">
-                    <Link href="/contact" onClick={closeMenu}>{tActions("learn_more")}</Link>
-                  </Button>
-                </div> */}
-              </div>
-            </motion.nav>
-          </>
+                }
+
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href as LocalizedRoute}
+                    onClick={closeMenu}
+                    className={`block w-full rounded-2xl px-4 py-3.5 text-left text-base font-bold transition-all ${pathname === item.href
+                      ? "bg-primary/10 text-primary"
+                      : "text-slate-900 hover:bg-primary/5 hover:text-primary"
+                      }`}
+                  >
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                    {tNav(item.key as any)}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </header>

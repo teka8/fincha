@@ -3,7 +3,8 @@
 import { useState, useTransition, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LucideGlobe, LucideChevronDown, LucideCheck } from "lucide-react";
-import { locales, usePathname } from "@/i18n/routing";
+import { locales, usePathname, useRouter } from "@/i18n/routing";
+import { useParams } from "next/navigation";
 import { clsx } from "clsx";
 
 const labelMap: Record<(typeof locales)[number], string> = {
@@ -16,7 +17,9 @@ type LanguageSwitcherProps = {
 };
 
 export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
+  const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -42,17 +45,8 @@ export function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {
     }
 
     startTransition(() => {
-      const segments = pathname.split("/").filter(Boolean);
-      if (segments.length === 0) {
-        segments.push(languageCode);
-      } else {
-        segments[0] = languageCode;
-      }
-
-      const search = typeof window !== "undefined" ? window.location.search : "";
-      const hash = typeof window !== "undefined" ? window.location.hash : "";
-      const nextPath = `/${segments.join("/")}${search}${hash}`;
-      window.location.href = nextPath;
+      // @ts-expect-error -- we can ignore since shared parameters are identical across locales
+      router.replace({ pathname, params }, { locale: languageCode });
     });
   };
 
