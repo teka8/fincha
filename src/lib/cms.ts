@@ -188,10 +188,33 @@ export async function getEventById(locale: string, id: string): Promise<Event | 
 
 export async function getLeaders(locale: string): Promise<Leader[]> {
   try {
-    const data = await fetchJson<{ data: Leader[] }>("/fincha-leaders", {
+    const data = await fetchJson<{ data: Array<{
+      id: number;
+      name: string;
+      position: string;
+      image: string | null;
+      description?: string;
+      linkedin_url?: string | null;
+      facebook_url?: string | null;
+      twitter_url?: string | null;
+      instagram_url?: string | null;
+    }> }>("/fincha-leaders", {
       headers: { "Accept-Language": locale },
     });
-    return data.data;
+    
+    return data.data.map((leader) => ({
+      id: leader.id,
+      name: leader.name,
+      title: leader.position,
+      avatar: leader.image ?? undefined,
+      bio: leader.description?.replace(/<[^>]*>/g, "") ?? undefined,
+      social: {
+        linkedin: leader.linkedin_url ?? undefined,
+        facebook: leader.facebook_url ?? undefined,
+        twitter: leader.twitter_url ?? undefined,
+        instagram: leader.instagram_url ?? undefined,
+      },
+    }));
   } catch (error) {
     console.error("Failed to load leaders", error);
     return [];
