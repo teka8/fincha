@@ -203,7 +203,7 @@ export function Navigation({ brandName }: NavigationProps) {
             </span>
             <span className="gradient-text">{brandName ?? tCommon("brand")}</span>
           </Link>
-          <nav className="hidden items-center gap-2 lg:flex">
+          <nav className="relative hidden items-center gap-2 lg:flex">
             {navigationStructure.map((item) => {
               if (item.children) {
                 const isActive = item.children.some((child) => pathname === child.href || pathname.startsWith(`${child.href}/`));
@@ -284,8 +284,7 @@ export function Navigation({ brandName }: NavigationProps) {
                       transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
-                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                  <span className="relative z-10">{tNav(item.key as any)}</span>
+                  <span className="relative z-10">{tNav(item.key)}</span>
                 </Link>
               );
             })}
