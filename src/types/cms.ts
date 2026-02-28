@@ -106,6 +106,14 @@ export type Leader = {
   title: string;
   bio?: string;
   avatar?: string;
+  social?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+    youtube?: string;
+    telegram?: string;
+  };
 };
 
 export type Faq = {
