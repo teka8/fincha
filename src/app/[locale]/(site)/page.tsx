@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
+import dynamic from "next/dynamic";
 
 import { Hero } from "@features/home/hero";
 import { Highlights } from "@features/home/highlights";
@@ -7,17 +9,25 @@ import { ProductShowcase } from "@features/home/product-showcase";
 import { ProjectsCarousel } from "@features/home/projects-carousel";
 import { CSRSpotlight } from "@features/home/csr-spotlight";
 import { OperationalMetrics } from "@features/home/operational-metrics";
-import { LatestNews } from "@features/home/latest-news";
-import { MediaGallery } from "@features/home/media-gallery";
 import { PartnersMarquee } from "@features/home/partners-marquee";
 import { InnovationShowcase } from "@features/home/innovation-showcase";
 import { FAQsPreview } from "@features/home/faqs-preview";
 import { HistoricalTimeline } from "@features/home/historical-timeline";
-import { DistributionMap } from "@features/home/distribution-map";
 import { TestimonialsSlider } from "@features/home/testimonials-slider";
 import { CertificationsBanner } from "@features/home/certifications-banner";
-import { VideoFeaturette } from "@features/home/video-featurette";
 import { WhoWeAre } from "@features/home/who-we-are";
+import { ClientVideoFeaturette, ClientDistributionMap } from "@features/home/client-dynamic-wrapper";
+
+import { getLatestPosts, getMedia, getProducts } from "@/lib/cms";
+import type { Post, MediaItem, Product } from "@/types/cms";
+
+const LatestNews = dynamic(() => import("@features/home/latest-news").then(mod => ({ default: mod.LatestNews })), {
+  loading: () => <div className="h-[400px] bg-white animate-pulse" />,
+});
+
+const MediaGallery = dynamic(() => import("@features/home/media-gallery").then(mod => ({ default: mod.MediaGallery })), {
+  loading: () => <div className="h-[400px] bg-white animate-pulse" />,
+});
 
 type HomePageProps = {
   params: Promise<{
@@ -47,6 +57,12 @@ export default async function HomePage({ params }: HomePageProps) {
   const t = await getTranslations({ locale, namespace: "home" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
 
+  const [latestNews, mediaItems, products] = await Promise.all([
+    getLatestPosts(locale, 3).catch(() => [] as Post[]),
+    getMedia(locale).catch(() => [] as MediaItem[]),
+    getProducts(locale, new URLSearchParams({ per_page: "6" })).then(res => res.data).catch(() => [] as Product[]),
+  ]);
+
   return (
     <main className="flex min-h-screen flex-col">
       <Hero title={t("hero.title")} subtitle={t("hero.subtitle")} />
@@ -64,7 +80,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <HistoricalTimeline />
 
       <section className="relative border-b border-slate-100 bg-[#eeeeee]">
-        <ProductShowcase />
+        <ProductShowcase products={products} />
       </section>
 
       <section className="relative bg-white">
@@ -113,16 +129,24 @@ export default async function HomePage({ params }: HomePageProps) {
           },
         ]}
       />
-      <VideoFeaturette />
+      <Suspense fallback={<div className="h-[80vh] min-h-[600px] bg-slate-900 animate-pulse" />}>
+        <ClientVideoFeaturette />
+      </Suspense>
 
       <section className="relative bg-white">
-        <LatestNews />
+        <Suspense fallback={<div className="h-[400px] bg-white animate-pulse" />}>
+          <LatestNews />
+        </Suspense>
       </section>
 
-      <DistributionMap />
+      <Suspense fallback={<div className="h-[500px] bg-slate-50 animate-pulse" />}>
+        <ClientDistributionMap />
+      </Suspense>
 
       <section className="relative border-y border-slate-100 bg-slate-50/30">
-        <MediaGallery />
+        <Suspense fallback={<div className="h-[400px] bg-white animate-pulse" />}>
+          <MediaGallery />
+        </Suspense>
       </section>
 
       <section className="relative bg-white">

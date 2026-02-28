@@ -17,7 +17,14 @@ type LocaleContextValue = {
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
 export function Providers({ locale, children }: ProvidersProps) {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5,
+        refetchOnWindowFocus: false,
+      },
+    },
+  }));
 
   const clientValue = useMemo(() => ({ locale }), [locale]);
 

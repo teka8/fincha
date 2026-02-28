@@ -8,6 +8,7 @@ import { SectionContainer, SectionHeading } from "@/components/ui/section-headin
 export function DistributionMap() {
   const t = useTranslations("home.distribution");
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapInitialized = useRef(false);
 
   const stats = [
     { icon: LucideTruck, label: "National Distribution", value: "85%" },
@@ -17,7 +18,9 @@ export function DistributionMap() {
 
   useEffect(() => {
     const loadLeaflet = async () => {
-      if (typeof window === "undefined" || !mapRef.current) return;
+      if (typeof window === "undefined" || !mapRef.current || mapInitialized.current) return;
+      
+      mapInitialized.current = true;
       
       const L = (await import("leaflet")).default;
 
@@ -28,8 +31,6 @@ export function DistributionMap() {
         link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
         document.head.appendChild(link);
       }
-
-      if (mapRef.current.querySelector(".leaflet-container")) return;
 
       const ethiopiaBounds: [[number, number], [number, number]] = [
         [3.5, 33],

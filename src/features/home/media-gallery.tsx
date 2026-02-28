@@ -67,7 +67,8 @@ export function MediaGallery() {
         {items.map((item, index) => {
           const isLarge = index === 0;
           const isVideo = item.type === "video";
-          const imageUrl = item.thumbnail || item.thumb_url || item.url || null;
+          const hasThumbnail = !!(item.thumbnail || item.thumb_url);
+          const imageUrl = hasThumbnail ? (item.thumbnail || item.thumb_url) : (!isVideo ? item.url : null);
 
           return (
             <motion.a

@@ -1,21 +1,24 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { LucideArrowRight, LucideTrendingUp, LucideCalendar, LucideArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/routing";
 import type { NewsPreview } from "@/features/home/hooks";
-import { useLatestNews } from "@/features/home/hooks";
 import { SectionContainer, SectionHeading } from "@/components/ui/section-heading";
 
-export function LatestNews() {
+type LatestNewsProps = {
+  news?: NewsPreview[];
+};
+
+export function LatestNews({ news: serverNews }: LatestNewsProps) {
   const prefersReducedMotion = useReducedMotion();
   const t = useTranslations("home");
   const pathname = usePathname();
   const locale = pathname?.startsWith("/am") ? "am" : "en";
   const title = t("news.title");
   const description = t("news.description");
-  const { data: latestNews } = useLatestNews();
   
   const fallbackItems: NewsPreview[] = [
     {
@@ -42,7 +45,7 @@ export function LatestNews() {
   ];
   
   const items: NewsPreview[] =
-    Array.isArray(latestNews) && latestNews.length > 0 ? latestNews : fallbackItems;
+    serverNews && serverNews.length > 0 ? serverNews : fallbackItems;
 
   const featured = items[0];
   const secondary = items.slice(1, 3);
@@ -86,9 +89,12 @@ export function LatestNews() {
           >
             <div className="absolute inset-0">
               <div className="absolute inset-0 bg-gradient-to-br from-primary-600/70 via-primary-800/50 to-slate-900/95 z-10" />
-              <motion.div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('${featured.featured_image || featured.image || "/images/pexels-mikael-blomkvist-64765951.jpg"}')` }}
+              <Image
+                src={featured.featured_image || featured.image || "/images/pexels-mikael-blomkvist-64765951.jpg"}
+                alt={featured.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                className="object-cover"
               />
             </div>
 
@@ -186,9 +192,12 @@ export function LatestNews() {
                         transition={{ duration: 0.4 }}
                         className="w-24 h-24 shrink-0 rounded-xl overflow-hidden shadow-md"
                       >
-                        <div 
-                          className="w-full h-full bg-cover bg-center"
-                          style={{ backgroundImage: `url('${articleImage}')` }}
+                        <Image
+                          src={articleImage}
+                          alt={article.title}
+                          width={96}
+                          height={96}
+                          className="w-full h-full object-cover"
                         />
                       </motion.div>
                       <div className="flex flex-col justify-center flex-1 min-w-0">

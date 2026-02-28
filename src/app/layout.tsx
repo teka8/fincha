@@ -64,6 +64,11 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fincha.tewostechsolutions.com" />
+        <link rel="dns-prefetch" href="https://fincha.tewostechsolutions.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className="min-h-screen bg-surface text-foreground antialiased selection:bg-primary/20 selection:text-primary-900">
         {children}
       </body>
