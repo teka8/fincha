@@ -29,6 +29,8 @@ type PaginatedResponse<T> = {
   links?: Record<string, unknown>;
 };
 
+const DEFAULT_REVALIDATE = 300;
+
 async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     ...init,
@@ -42,7 +44,7 @@ async function fetchJson<T>(path: string, init?: RequestInit): Promise<T> {
       "Content-Type": "application/json",
       ...(init?.headers ?? {}),
     },
-    next: { revalidate: init?.next?.revalidate ?? 60 },
+    next: { revalidate: init?.next?.revalidate ?? DEFAULT_REVALIDATE },
   });
 
   if (!response.ok) {
@@ -58,6 +60,7 @@ export async function getNavigation(locale: string): Promise<NavigationLink[]> {
       headers: {
         "Accept-Language": locale,
       },
+      next: { revalidate: 3600 },
     });
     return Array.isArray(data.pages) ? data.pages : [];
   } catch (error) {
@@ -72,6 +75,7 @@ export async function getFooter(locale: string): Promise<NavigationLink[]> {
       headers: {
         "Accept-Language": locale,
       },
+      next: { revalidate: 3600 },
     });
     return Array.isArray(data.pages) ? data.pages : [];
   } catch (error) {
@@ -84,6 +88,7 @@ export async function getCompanyInfo(locale: string): Promise<CompanyInfo | null
   try {
     return await fetchJson<CompanyInfo>("/company-info", {
       headers: { "Accept-Language": locale },
+      next: { revalidate: 3600 },
     });
   } catch (error) {
     console.error("Failed to load company info", error);
@@ -275,7 +280,7 @@ export async function getMedia(locale: string): Promise<MediaItem[]> {
 export async function getProjects(locale: string, params?: URLSearchParams): Promise<PaginatedResponse<Record<string, unknown>>> {
   try {
     const query = params && params.size > 0 ? `?${params.toString()}` : "";
-    return await fetchJson<PaginatedResponse<Record<string, unknown>>>(`/projects${query}`, {
+    return await fetchJson<PaginatedResponse<Record<string, unknown>>>(`/project${query}`, {
       headers: { "Accept-Language": locale },
     });
   } catch (error) {

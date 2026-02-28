@@ -10,6 +10,9 @@ export function VideoFeaturette() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
+  const handlePlay = () => setIsPlaying(true);
+  const handlePause = () => setIsPlaying(false);
+
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -35,11 +38,14 @@ export function VideoFeaturette() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover opacity-70"
-          autoPlay
           muted
           loop
           playsInline
+          preload="none"
+          aria-hidden="true"
           poster="/images/land-o-lakes-inc-PCITNW3g85Q-unsplash.jpg"
+          onPlay={handlePlay}
+          onPause={handlePause}
         >
           <source src="/videos/sample2.mp4" type="video/mp4" />
         </video>

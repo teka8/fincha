@@ -97,8 +97,10 @@ export function Hero({ title, subtitle }: HeroProps) {
               src={slide.image}
               alt={slide.title}
               fill
+              sizes="100vw"
               className="object-cover"
-              priority
+              priority={current === 0}
+              quality={80}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
           </div>

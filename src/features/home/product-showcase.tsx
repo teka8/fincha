@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { LucideBox, LucideDroplets, LucideFlame } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -8,6 +9,7 @@ import { SectionContainer, SectionHeading } from "@/components/ui/section-headin
 import type { LocalizedRoute } from "@/i18n/routing";
 import { Link } from "@/i18n/routing";
 import { useLocaleContext } from "@/providers/providers";
+import type { Product } from "@/types/cms";
 
 const productIcons = [LucideBox, LucideDroplets, LucideFlame];
 const productColors = [
@@ -16,14 +18,18 @@ const productColors = [
   { bg: "from-primary-50 to-primary-100/50", icon: "from-primary-400 to-primary-600", border: "border-primary-200/30" },
 ];
 
-export function ProductShowcase() {
+type ProductShowcaseProps = {
+  products?: Product[];
+};
+
+export function ProductShowcase({ products: serverProducts }: ProductShowcaseProps) {
   const prefersReducedMotion = useReducedMotion();
   const t = useTranslations("home");
   const title = t("products.title");
   const description = t("products.description");
   const { locale } = useLocaleContext();
 
-  const items = [
+  const fallbackItems = [
     {
       id: "1",
       title: "Premium white sugar (50kg)",
@@ -46,6 +52,16 @@ export function ProductShowcase() {
       image: "/images/Industrial molasses supply.jpg",
     },
   ];
+
+  const items = serverProducts && serverProducts.length > 0
+    ? serverProducts.slice(0, 3).map((p) => ({
+        id: String(p.id),
+        title: p.name || "",
+        slug: p.slug || "",
+        description: p.short_description || p.description || "",
+        image: p.hero_image || p.thumbnail || "",
+      }))
+    : fallbackItems;
 
   return (
     <SectionContainer className="relative overflow-hidden bg-transparent">
@@ -84,10 +100,12 @@ export function ProductShowcase() {
               {/* Product image */}
               <div className="mb-6 aspect-[4/3] overflow-hidden rounded-2xl bg-white/50">
                 {product.image ? (
-                  <img
+                  <Image
                     src={product.image}
                     alt={product.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center">

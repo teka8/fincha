@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   },
   outputFileTracingRoot: __dirname,
   images: {
+    formats: ["image/avif", "image/webp"],
+    qualities: [40, 50, 60, 70, 80, 90, 100],
     remotePatterns: [
       {
         protocol: "https",
